@@ -7,6 +7,7 @@ package view;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import util.TelaUtils;
 
 /**
  *
@@ -41,10 +42,14 @@ public class TelaLogin extends javax.swing.JFrame {
         pswSenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        mnuSair = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pnlLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlLogin.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setText("Farmacia");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -116,19 +121,36 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(pswSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(119, 119, 119))
         );
 
+        jMenu3.setText("File");
+
+        mnuSair.setText("Sair");
+        mnuSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuSairActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnuSair);
+
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Edit");
+        jMenuBar2.add(jMenu4);
+
+        setJMenuBar(jMenuBar2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(492, Short.MAX_VALUE)
+                .addContainerGap(490, Short.MAX_VALUE)
                 .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -153,26 +175,26 @@ public class TelaLogin extends javax.swing.JFrame {
         
         if(login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")){
             TelaAdmin telaAdm = new TelaAdmin();
-            
-            telaAdm.setVisible(true);
-            this.dispose();
+            TelaUtils.abrirNovaTela(this, telaAdm);
         } else if (login.equalsIgnoreCase("vendedor") && senha.equalsIgnoreCase("123")){
             TelaVendedor telaVend = new TelaVendedor();
-            
-            telaVend.setVisible(true);
-            this.dispose();
+            TelaUtils.abrirNovaTela(this, telaVend);
         } else {
             JOptionPane.showMessageDialog(rootPane, "Senha incorreta. Tente Novamente!");
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCancelarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseMoved
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarMouseMoved
+
+    private void mnuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSairActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnuSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,6 +221,10 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem mnuSair;
     private javax.swing.JPanel pnlLogin;
     private javax.swing.JPasswordField pswSenha;
     private javax.swing.JTextField txtLogin;
