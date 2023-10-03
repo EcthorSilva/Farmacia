@@ -1,5 +1,7 @@
 package controller;
 
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import javax.swing.UIManager;
 import view.TelaLogin;
 
 public class main {
@@ -9,5 +11,12 @@ public class main {
         
         TelaLogin login = new TelaLogin(); // Instancia
         login.setVisible(true);
+        
+        // Muda o visual do Java Swing
+        try {
+            UIManager.setLookAndFeel(new FlatMacLightLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
     }
 }

@@ -1,3 +1,11 @@
+view\TelaLogin.class
 controller\main.class
 view\TelaLogin$1.class
-view\TelaLogin.class
+view\TelaAdmin$1.class
+view\TelaLogin$3.class
+view\TelaLogin$2.class
+view\TelaLogin$5.class
+view\TelaVendedor$1.class
+view\TelaVendedor.class
+view\TelaAdmin.class
+view\TelaLogin$4.class
