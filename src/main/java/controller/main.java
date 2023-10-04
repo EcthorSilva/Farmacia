@@ -17,7 +17,7 @@ public class main {
         System.out.println("Pronto!");
         
         TelaLogin login = new TelaLogin(); // Instancia
-        login.setLocationRelativeTo(null);
+        login.setLocationRelativeTo(null); // Faz a tela login abrir no centro
         login.setVisible(true);
     }
 }

@@ -194,7 +194,7 @@ public class TelaVendedor extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "Código", "Nome", "Categoria", "Preço", "Quantidade"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
