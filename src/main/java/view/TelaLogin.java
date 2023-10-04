@@ -45,7 +45,6 @@ public class TelaLogin extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         mnuSair = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -130,7 +129,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jMenu3.setText("File");
 
-        mnuSair.setText("Sair");
+        mnuSair.setText("Exit");
         mnuSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuSairActionPerformed(evt);
@@ -139,9 +138,6 @@ public class TelaLogin extends javax.swing.JFrame {
         jMenu3.add(mnuSair);
 
         jMenuBar2.add(jMenu3);
-
-        jMenu4.setText("Edit");
-        jMenuBar2.add(jMenu4);
 
         setJMenuBar(jMenuBar2);
 
@@ -193,7 +189,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarMouseMoved
 
     private void mnuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSairActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_mnuSairActionPerformed
 
     /**
@@ -222,7 +218,6 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem mnuSair;
     private javax.swing.JPanel pnlLogin;
