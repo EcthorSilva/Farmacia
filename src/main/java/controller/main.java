@@ -17,6 +17,7 @@ public class main {
         System.out.println("Pronto!");
         
         TelaLogin login = new TelaLogin(); // Instancia
+        login.setLocationRelativeTo(null);
         login.setVisible(true);
     }
 }

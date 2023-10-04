@@ -127,7 +127,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGap(119, 119, 119))
         );
 
-        jMenu3.setText("File");
+        jMenu3.setText("Option");
 
         mnuSair.setText("Exit");
         mnuSair.addActionListener(new java.awt.event.ActionListener() {

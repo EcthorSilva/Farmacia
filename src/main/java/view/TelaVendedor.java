@@ -584,7 +584,7 @@ public class TelaVendedor extends javax.swing.JFrame {
 
         jTabbedPane3.addTab("Cadastrar Cliente", pnlCadastroCliente);
 
-        jMenu3.setText("File");
+        jMenu3.setText("Menu");
 
         mnuSair.setText("Logout");
         mnuSair.addActionListener(new java.awt.event.ActionListener() {
