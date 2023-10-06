@@ -4,6 +4,7 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
 import util.TelaUtils;
 
 /**
@@ -17,8 +18,8 @@ public class TelaVendedor extends javax.swing.JFrame {
      */
     public TelaVendedor() {
         initComponents();
-        
-        setSize(1000,600);
+
+        setSize(1000, 600);
         setResizable(false);
     }
 
@@ -639,8 +640,14 @@ public class TelaVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void mnuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSairActionPerformed
-        TelaLogin TelaLogin = new TelaLogin();
-        TelaUtils.abrirNovaTela(this, TelaLogin);
+        int opt = JOptionPane.showConfirmDialog(null,
+                "Deseja realmente sair do aplicativo?",
+                "Selecione uma Opção",
+                JOptionPane.OK_CANCEL_OPTION);
+        if (opt == JOptionPane.OK_OPTION) {
+            TelaLogin TelaLogin = new TelaLogin();
+            TelaUtils.abrirNovaTela(this, TelaLogin);
+        }
     }//GEN-LAST:event_mnuSairActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

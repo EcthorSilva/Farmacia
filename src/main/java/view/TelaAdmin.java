@@ -4,6 +4,7 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
 import util.TelaUtils;
 
 /**
@@ -17,8 +18,8 @@ public class TelaAdmin extends javax.swing.JFrame {
      */
     public TelaAdmin() {
         initComponents();
-        
-        setSize(1000,600);
+
+        setSize(1000, 600);
         setResizable(false);
     }
 
@@ -774,8 +775,17 @@ public class TelaAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSairActionPerformed
-        TelaLogin TelaLogin = new TelaLogin();
-        TelaUtils.abrirNovaTela(this, TelaLogin);
+        int opt = JOptionPane.showConfirmDialog(null,
+                "Deseja realmente sair do aplicativo?",
+                "Selecione uma Opção",
+                JOptionPane.OK_CANCEL_OPTION);
+        
+        if (opt == JOptionPane.OK_OPTION) {
+            TelaLogin TelaLogin = new TelaLogin();
+            TelaUtils.abrirNovaTela(this, TelaLogin);
+        }
+
+
     }//GEN-LAST:event_mnuSairActionPerformed
 
     private void txtComplementoVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComplementoVendedorActionPerformed
