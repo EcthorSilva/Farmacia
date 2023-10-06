@@ -189,7 +189,14 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarMouseMoved
 
     private void mnuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSairActionPerformed
-        this.dispose();
+        int opt = JOptionPane.showConfirmDialog(null,
+                "Deseja realmente fechar o aplicativo?",
+                "Selecione uma Opção",
+                JOptionPane.OK_CANCEL_OPTION);
+        
+        if (opt == JOptionPane.OK_OPTION) {
+            this.dispose();
+        }
     }//GEN-LAST:event_mnuSairActionPerformed
 
     /**
