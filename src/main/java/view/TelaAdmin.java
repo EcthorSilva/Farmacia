@@ -31,7 +31,8 @@ public class TelaAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroupCadastrarVendedor = new javax.swing.ButtonGroup();
+        buttonGroupRelatórios = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -92,15 +93,15 @@ public class TelaAdmin extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
+        rbtnSintetico = new javax.swing.JRadioButton();
+        rbtnAnaltico = new javax.swing.JRadioButton();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        cbxFiltrar = new javax.swing.JComboBox<>();
+        cbxCategoriaDeProduto = new javax.swing.JComboBox<>();
+        cbxPeriodoDeAnalise = new javax.swing.JComboBox<>();
+        btnGerarRelatorio = new javax.swing.JButton();
+        btnCancelarRelatorios = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
@@ -299,10 +300,10 @@ public class TelaAdmin extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        buttonGroup1.add(rbtnMVendedor);
+        buttonGroupCadastrarVendedor.add(rbtnMVendedor);
         rbtnMVendedor.setText("Masculino");
 
-        buttonGroup1.add(rbtnFVendedor);
+        buttonGroupCadastrarVendedor.add(rbtnFVendedor);
         rbtnFVendedor.setText("Feminino");
 
         jLabel3.setText("Sexo:");
@@ -605,19 +606,21 @@ public class TelaAdmin extends javax.swing.JFrame {
 
         jLabel21.setText("Tipo de Relatório:");
 
-        jRadioButton5.setText("Sintético");
+        buttonGroupRelatórios.add(rbtnSintetico);
+        rbtnSintetico.setText("Sintético");
 
-        jRadioButton6.setText("Analítico");
+        buttonGroupRelatórios.add(rbtnAnaltico);
+        rbtnAnaltico.setText("Analítico");
 
         jLabel22.setText("Categoria de Produto:");
 
         jLabel23.setText("Filtrar:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vendas", "Estoque", "Ambos" }));
+        cbxFiltrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vendas", "Estoque", "Ambos" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas as categorias", "Medicamentos", "Produtos de cuidados pessoais", "Suplementos nutricionais" }));
+        cbxCategoriaDeProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas as categorias", "Medicamentos", "Produtos de cuidados pessoais", "Suplementos nutricionais" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diário", "Semanal", "Mensal", "Anual" }));
+        cbxPeriodoDeAnalise.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diário", "Semanal", "Mensal", "Anual" }));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -631,19 +634,19 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jRadioButton5)
+                        .addComponent(rbtnSintetico)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton6)
+                        .addComponent(rbtnAnaltico)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel23))
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxPeriodoDeAnalise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(160, 160, 160)
                         .addComponent(jLabel22)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxCategoriaDeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
@@ -652,27 +655,27 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxPeriodoDeAnalise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxCategoriaDeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jRadioButton6)
+                    .addComponent(rbtnSintetico)
+                    .addComponent(rbtnAnaltico)
                     .addComponent(jLabel23)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jButton3.setText("Gerar Relatório");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnGerarRelatorio.setText("Gerar Relatório");
+        btnGerarRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnGerarRelatorioActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Cancelar");
+        btnCancelarRelatorios.setText("Cancelar");
 
         jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -718,8 +721,8 @@ public class TelaAdmin extends javax.swing.JFrame {
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnGerarRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                            .addComponent(btnCancelarRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 44, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -729,9 +732,9 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelarRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -803,9 +806,9 @@ public class TelaAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCategoriaProdutoActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarRelatorioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnGerarRelatorioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -845,19 +848,20 @@ public class TelaAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarProduto;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton btnCancelarRelatorios;
+    private javax.swing.JButton btnGerarRelatorio;
+    private javax.swing.ButtonGroup buttonGroupCadastrarVendedor;
+    private javax.swing.ButtonGroup buttonGroupRelatórios;
     private javax.swing.JComboBox<String> cbxCargoVendedor;
+    private javax.swing.JComboBox<String> cbxCategoriaDeProduto;
+    private javax.swing.JComboBox<String> cbxFiltrar;
     private javax.swing.JComboBox<String> cbxHorarioDeTrabalhoVendedor;
+    private javax.swing.JComboBox<String> cbxPeriodoDeAnalise;
     private javax.swing.JFormattedTextField ftxtCEPVendedor;
     private javax.swing.JFormattedTextField ftxtCPFVendedor;
     private javax.swing.JFormattedTextField ftxtDataNascimentoVendedor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JFormattedTextField jFormattedTextField4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -895,8 +899,6 @@ public class TelaAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -905,8 +907,10 @@ public class TelaAdmin extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JMenuItem mnuSair;
+    private javax.swing.JRadioButton rbtnAnaltico;
     private javax.swing.JRadioButton rbtnFVendedor;
     private javax.swing.JRadioButton rbtnMVendedor;
+    private javax.swing.JRadioButton rbtnSintetico;
     private javax.swing.JSpinner spnQuantidade;
     private javax.swing.JTextField txtBairroVendedor;
     private javax.swing.JTextField txtCategoriaProduto;
