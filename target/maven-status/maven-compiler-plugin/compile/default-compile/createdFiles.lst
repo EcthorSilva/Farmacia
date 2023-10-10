@@ -1,14 +1,17 @@
 view\TelaAdmin$10.class
 controller\main.class
 view\TelaAdmin$5.class
+controller\ProdutoController.class
 view\TelaLogin$3.class
 view\TelaLogin$5.class
 view\TelaVendedor$8.class
 view\TelaVendedor$4.class
+model\Produto.class
 view\TelaLogin$2.class
 view\TelaVendedor$2.class
 view\TelaAdmin$7.class
 view\TelaVendedor.class
+view\TelaAdmin$11.class
 view\TelaAdmin$2.class
 view\TelaAdmin$6.class
 view\TelaLogin.class
