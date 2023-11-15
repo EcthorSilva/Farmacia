@@ -12,24 +12,22 @@ public class Cliente {
     private String sexo;
     private String email;
     private String celular;
-    private String telefone;
     
     // Construtor Vazio
     public Cliente() {
         
     }
     // Construtor sem o ID do Cliente
-    public Cliente(String nome, String dataNascimento, String cpf, String sexo, String email, String celular, String telefone) {
+    public Cliente(String nome, String dataNascimento, String cpf, String sexo, String email, String celular) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.cpf = cpf;
         this.sexo = sexo;
         this.email = email;
         this.celular = celular;
-        this.telefone = telefone;
     }
     // Construtor com o ID do Cliente
-    public Cliente(int idCliente, String nome, String dataNascimento, String cpf, String sexo, String email, String celular, String telefone) {
+    public Cliente(int idCliente, String nome, String dataNascimento, String cpf, String sexo, String email, String celular) {
         this.idCliente = idCliente;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
@@ -37,7 +35,6 @@ public class Cliente {
         this.sexo = sexo;
         this.email = email;
         this.celular = celular;
-        this.telefone = telefone;
     }
     
     // Getters e Setters
@@ -96,14 +93,4 @@ public class Cliente {
     public void setCelular(String celular) {
         this.celular = celular;
     }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-    
-    
 }
