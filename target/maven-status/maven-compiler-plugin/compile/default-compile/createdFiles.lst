@@ -1,11 +1,11 @@
 view\TelaAdmin$10.class
 controller\main.class
 view\TelaAdmin$5.class
-controller\ProdutoController.class
 view\TelaLogin$3.class
 view\TelaLogin$5.class
 view\TelaVendedor$8.class
 view\TelaVendedor$4.class
+model\Cliente.class
 model\Produto.class
 view\TelaLogin$2.class
 view\TelaVendedor$2.class
@@ -18,6 +18,7 @@ view\TelaLogin.class
 view\TelaVendedor$7.class
 view\TelaAdmin$1.class
 view\TelaVendedor$5.class
+model\Vendedor.class
 view\TelaAdmin$8.class
 view\TelaAdmin$4.class
 view\TelaAdmin.class
@@ -25,7 +26,10 @@ view\TelaLogin$4.class
 view\TelaAdmin$3.class
 view\TelaAdmin$9.class
 view\TelaVendedor$3.class
+view\TelaVendedor$9.class
 view\TelaLogin$1.class
+view\TelaAdmin$12.class
+model\pedido.class
 view\TelaVendedor$1.class
 view\TelaLogin$6.class
 util\TelaUtils.class

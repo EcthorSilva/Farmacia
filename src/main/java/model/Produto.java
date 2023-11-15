@@ -1,13 +1,22 @@
 package model;
 
+/**
+ *
+ * @author Ectho
+ */
 public class Produto {
+    private int idProduto;
     private String nomeProduto;
     private String categoriaProduto;
     private String fabricante;
     private double preco;
     private int quantidade;
     
-    // Construtor
+    // Construtor Vazio
+    public Produto(){ 
+        
+    }
+    // Construtor sem o ID do Produto
     public Produto(String nomeProduto, String categoriaProduto, String fabricante, double preco, int quantidade) {
         this.nomeProduto = nomeProduto;
         this.categoriaProduto = categoriaProduto;
@@ -15,14 +24,25 @@ public class Produto {
         this.preco = preco;
         this.quantidade = quantidade;
     }
-    
-    // Método estático para criar um novo produto com código auto incrementado
-    public static Produto criarProduto(String nomeProduto, String categoriaProduto, String fabricante, double preco, int quantidade) {
-        Produto novoProduto = new Produto(nomeProduto, categoriaProduto, fabricante, preco, quantidade);
-        return novoProduto;
+    // Construtor com o ID do Produto
+    public Produto(int idProduto, String nomeProduto, String categoriaProduto, String fabricante, double preco, int quantidade) {
+        this.idProduto = idProduto;
+        this.nomeProduto = nomeProduto;
+        this.categoriaProduto = categoriaProduto;
+        this.fabricante = fabricante;
+        this.preco = preco;
+        this.quantidade = quantidade;
     }
-           
-    // Getters e setters
+    
+    // Getters e Setters
+    public int getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
+    }
+
     public String getNomeProduto() {
         return nomeProduto;
     }
