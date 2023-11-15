@@ -6,8 +6,12 @@ package util;
  * @author Ectho
  */
 
+import dao.ProdutoDAO;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Produto;
 import view.TelaLogin;
 
 public class TelaUtils {
@@ -18,9 +22,6 @@ public class TelaUtils {
     * @param novaTela  A nova tela que será aberta.
     */
     public static void abrirNovaTela(JFrame telaAtual, JFrame novaTela) {
-        
-        
-
         // Obtém a posição da tela atual
         int x = telaAtual.getLocation().x;
         int y = telaAtual.getLocation().y;
