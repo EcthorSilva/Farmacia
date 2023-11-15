@@ -19,7 +19,7 @@ public class TelaVendedor extends javax.swing.JFrame {
     public TelaVendedor() {
         initComponents();
 
-        setSize(1000, 600);
+        //setSize(1000, 600);
         setResizable(false);
     }
 

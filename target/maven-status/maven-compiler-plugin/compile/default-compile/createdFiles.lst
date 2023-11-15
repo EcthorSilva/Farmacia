@@ -18,6 +18,7 @@ view\TelaLogin.class
 view\TelaVendedor$7.class
 view\TelaAdmin$1.class
 view\TelaVendedor$5.class
+model\Pedido.class
 model\Vendedor.class
 view\TelaAdmin$8.class
 view\TelaAdmin$4.class
@@ -29,7 +30,6 @@ view\TelaVendedor$3.class
 view\TelaVendedor$9.class
 view\TelaLogin$1.class
 view\TelaAdmin$12.class
-model\pedido.class
 view\TelaVendedor$1.class
 view\TelaLogin$6.class
 util\TelaUtils.class

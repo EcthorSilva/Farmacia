@@ -11,8 +11,6 @@ import javax.swing.JOptionPane;
 import view.TelaLogin;
 
 public class TelaUtils {
-    
-    
     /**
     * Esta função faz com que a nova tela abra no mesmo lugar que a tela atual e fecha a tela atual.
     * 
