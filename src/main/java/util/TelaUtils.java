@@ -5,13 +5,8 @@ package util;
  * 
  * @author Ectho
  */
-
-import dao.ProdutoDAO;
-import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import model.Produto;
 import view.TelaLogin;
 
 public class TelaUtils {

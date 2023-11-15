@@ -3,6 +3,7 @@ package view;
 import util.TelaUtils;
 import dao.ProdutoDAO;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Produto;
@@ -60,6 +61,7 @@ public class TelaAdmin extends javax.swing.JFrame {
         btnCadastrarProduto = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         cboxCategoria = new javax.swing.JComboBox<>();
+        btnAtualizar = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jtblProdutos = new javax.swing.JTable();
@@ -139,6 +141,12 @@ public class TelaAdmin extends javax.swing.JFrame {
             }
         });
 
+        txtFabricante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFabricanteActionPerformed(evt);
+            }
+        });
+
         txtPreco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecoActionPerformed(evt);
@@ -161,6 +169,13 @@ public class TelaAdmin extends javax.swing.JFrame {
 
         cboxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Medicamentos sem Prescrição", "Cuidados Pessoais", "Vitaminas e Suplementos", "Saúde Sexual", "Primeiros Socorros", "Cuidados com o Bebê" }));
 
+        btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -168,26 +183,26 @@ public class TelaAdmin extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel19))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtNomeProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                                .addComponent(txtFabricante)
-                                .addComponent(cboxCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(79, 79, 79))
+                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtNomeProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                        .addComponent(txtFabricante)
+                        .addComponent(cboxCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(spnQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(62, 62, 62))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +230,8 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31))
         );
 
@@ -237,7 +253,7 @@ public class TelaAdmin extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -281,7 +297,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                     .addComponent(jLabel24))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(14, 14, 14))
         );
 
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar Produto"));
@@ -304,9 +320,9 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -816,7 +832,6 @@ public class TelaAdmin extends javax.swing.JFrame {
     private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
         if(obj == null){
             // Resgatar dados da interface e passar para o objeto
-            // nomeProduto, categoriaProduto, fabricante, preco e quantidade
             String nomeProduto = txtNomeProduto.getText();
             String categoriaProduto = (String) cboxCategoria.getSelectedItem();
             String fabricante = txtFabricante.getText();
@@ -844,18 +859,139 @@ public class TelaAdmin extends javax.swing.JFrame {
             }
         }else{
             // modo de alteração
+            
+            // Resgatar dados da interface e passar para o objeto
+            String nomeProduto = txtNomeProduto.getText();
+            String categoriaProduto = (String) cboxCategoria.getSelectedItem();
+            String fabricante = txtFabricante.getText();
+            double preco = Double.parseDouble(txtPreco.getText());
+            int quantidade = (int) spnQuantidade.getValue();
+            
+            obj.setNomeProduto(nomeProduto);
+            obj.setCategoriaProduto(categoriaProduto);
+            obj.setFabricante(fabricante);
+            obj.setPreco(preco);
+            obj.setQuantidade(quantidade);
+            
+            // TODO: chamar a DAO para alterar o banco
+            boolean retorno = ProdutoDAO.alterar(obj);
+            
+            if (retorno){
+                JOptionPane.showConfirmDialog(rootPane, "Sucesso menozinho.");
+            }else{
+                JOptionPane.showConfirmDialog(rootPane, "Não foi dessa vez baixinho");
+            }
         }
-        
+        limparCampos();
         atualizarTabelaProduto();
     }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
+        String textoId = txtCodigoExcluir.getText();
+        
+        // Verifica se o campo esta vazio
+        if(textoId.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Informe o ID do produto antes de excluir!", "Atenção", JOptionPane.WARNING_MESSAGE);
+        }else{
+            try{
+                // 1 - Passo Resgatar o ID do produto para um objeto
+                int idSelecionado = Integer.parseInt(txtCodigoExcluir.getText());
+                
+                int option = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja excluir o produto selecionado?", "Atenção", JOptionPane.YES_NO_OPTION);
+                
+                if(option == JOptionPane.YES_OPTION){
+                    boolean retorno = ProdutoDAO.excluir(idSelecionado);
+                    
+                    if (retorno) {
+                        JOptionPane.showMessageDialog(rootPane, "Produto excluído com sucesso!");
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir o produto selecionado.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else {
+                    JOptionPane.showMessageDialog(rootPane, "Exclusão cancelada.");
+                }
+                txtCodigoExcluir.setText("");
+                atualizarTabelaProduto();
+            }catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(rootPane, "Informe um ID válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+        if(txtCodigoBuscar.getText().trim().equals("")){
+            atualizarTabelaProduto();
+        }else{
+            try{
+                int id = Integer.parseInt(txtCodigoBuscar.getText());
+
+                // Chamar a DAO para filtrar pelo ID do produto
+                ArrayList<Produto> produtos = ProdutoDAO.buscarPorID(id);
+
+                DefaultTableModel modelo = (DefaultTableModel) jtblProdutos.getModel();
+                modelo.setRowCount(0);
+
+                if (produtos.isEmpty()) {
+                    JOptionPane.showMessageDialog(rootPane, "Produto com ID " + id + " não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    for (Produto produto : produtos) {
+                        modelo.addRow(new String[]{
+                            String.valueOf(produto.getIdProduto()),
+                            String.valueOf(produto.getNomeProduto()),
+                            String.valueOf(produto.getCategoriaProduto()),
+                            String.valueOf(produto.getFabricante()),
+                            String.valueOf(produto.getPreco()),
+                            String.valueOf(produto.getQuantidade())
+                        });
+                    }
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(rootPane, "Informe um ID válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        txtCodigoBuscar.setText("");
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        // 1 - Passo Resgatar a linha e mandar para um objeto
+        int linhaSelecionada = jtblProdutos.getSelectedRow();
+        
+        // 2 - acessar a camada model da tabela
+        DefaultTableModel modelo = (DefaultTableModel)jtblProdutos.getModel();
+        
+        // 3 - resgatar valores da linha selecionada
+        String nomeSelecionado = modelo.getValueAt(linhaSelecionada, 1).toString();
+        String categoriaSelecionado = modelo.getValueAt(linhaSelecionada, 2).toString();
+        String fabricanteSelecionado = modelo.getValueAt(linhaSelecionada, 3).toString();
+        double precoSelecionado = Double.parseDouble(modelo.getValueAt(linhaSelecionada, 4).toString());
+        int quantidadeSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 5).toString());
+        
+        // Obtém o modelo do ComboBox
+        DefaultComboBoxModel<String> modeloCombo = (DefaultComboBoxModel<String>) cboxCategoria.getModel();
+        // Pega o valor String compara no combobox e retorna o index dele
+        int i;
+        // Itera sobre as opções do ComboBox para encontrar o índice correspondente à categoriaSelecionado
+        for (i = 0; i < modeloCombo.getSize(); i++) {
+            if (modeloCombo.getElementAt(i).equals(categoriaSelecionado)) {
+                // Define o item selecionado no ComboBox
+                cboxCategoria.setSelectedIndex(i);
+                break;
+            }
+        }
+        Produto objAlterar = new Produto(nomeSelecionado, categoriaSelecionado, fabricanteSelecionado, precoSelecionado, quantidadeSelecionado);
+        
+        // passar os valores do objeto para a tela
+        txtNomeProduto.setText(String.valueOf(nomeSelecionado));
+        cboxCategoria.setSelectedIndex(i);
+        txtFabricante.setText(String.valueOf(fabricanteSelecionado));
+        txtPreco.setText(String.valueOf(precoSelecionado));
+        spnQuantidade.setValue(quantidadeSelecionado);
+        
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void txtFabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFabricanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFabricanteActionPerformed
     
     /**
     * Atualiza a tabela de produtos com as informações do banco de dados.
@@ -929,6 +1065,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCadastrarProduto;
     private javax.swing.JButton btnCancelar;
