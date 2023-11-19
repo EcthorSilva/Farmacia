@@ -11,6 +11,7 @@ public class Produto {
     private String fabricante;
     private double preco;
     private int quantidade;
+    private int indiceCategoria;
     
     // Construtor Vazio
     public Produto(){ 
@@ -35,6 +36,14 @@ public class Produto {
     }
     
     // Getters e Setters
+    public int getIndiceCategoria() {
+        return indiceCategoria;
+    }
+
+    public void setIndiceCategoria(int indiceCategoria) {
+        this.indiceCategoria = indiceCategoria;
+    }
+    
     public int getIdProduto() {
         return idProduto;
     }
