@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 /**
  * Resposnavel para fazer o insert no banco de dados
  * 
- * @author Ectho
+ * @author Ecthor
  */
 public class ProdutoDAO {
     // variaveis para acessar o banco

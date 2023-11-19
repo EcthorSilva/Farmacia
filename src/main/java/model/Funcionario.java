@@ -4,8 +4,8 @@ package model;
  *
  * @author Ectho
  */
-public class Vendedor {
-    private int idVendedor;
+public class Funcionario {
+    private int idFuncionario;
     private String nome;
     private String dataNascimento;
     private String sexo;
@@ -15,11 +15,11 @@ public class Vendedor {
     private String periodo;
     
     // Construtor Vazio
-    public Vendedor() {
+    public Funcionario() {
         
     }
-    // Construtor sem o ID do Vendedor
-    public Vendedor(String nome, String dataNascimento, String sexo, String cpf, String cargo, double salario, String periodo) {
+    // Construtor sem o ID do Funcionario
+    public Funcionario(String nome, String dataNascimento, String sexo, String cpf, String cargo, double salario, String periodo) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.sexo = sexo;
@@ -28,25 +28,32 @@ public class Vendedor {
         this.salario = salario;
         this.periodo = periodo;
     }
-    // Construtor com o ID do Vendedor
-    public Vendedor(int idVendedor, String nome, String dataNascimento, String sexo, String cpf, String cargo, double salario, String periodo) {
-        this.idVendedor = idVendedor;
+    // Construtor com o ID do Funcionario
+    public Funcionario(int idFuncionario, String nome, String dataNascimento, String sexo, String cpf, String cargo, double salario, String periodo) {
+        this.idFuncionario = idFuncionario;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.sexo = sexo;
         this.cpf = cpf;
         this.cargo = cargo;
         this.salario = salario;
+        this.periodo = periodo;
+    }
+    // construtor para exibir só algumas informações sobre o cliente!!!!!!!
+    public Funcionario(int idFuncionario, String nome, String cargo, String periodo) {
+        this.idFuncionario = idFuncionario;
+        this.nome = nome;
+        this.cargo = cargo;
         this.periodo = periodo;
     }
     
     // Getters e Setters
-    public int getIdVendedor() {
-        return idVendedor;
+    public int getIdFuncionario() {
+        return idFuncionario;
     }
 
-    public void setIdVendedor(int idVendedor) {
-        this.idVendedor = idVendedor;
+    public void setIdFuncionario(int idFuncionario) {
+        this.idFuncionario = idFuncionario;
     }
 
     public String getNome() {

@@ -1,11 +1,13 @@
 package view;
 
+import dao.FuncionarioDAO;
 import util.TelaUtils;
 import dao.ProdutoDAO;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Funcionario;
 import model.Produto;
 
 /**
@@ -23,6 +25,7 @@ public class TelaAdmin extends javax.swing.JFrame {
         setResizable(false);
         
         atualizarTabelaProduto();
+        atualizarTabelaFuncionario();
     }
     
     /**
@@ -34,8 +37,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroupCadastrarVendedor = new javax.swing.ButtonGroup();
-        buttonGroupRelatórios = new javax.swing.ButtonGroup();
+        buttonGroupSexo = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -67,31 +69,33 @@ public class TelaAdmin extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtblFuncionarios = new javax.swing.JTable();
         jPanel13 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtNomeCompletoVendedor = new javax.swing.JTextField();
+        txtNomeCompletoFuncionario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        ftxtDataNascimentoVendedor = new javax.swing.JFormattedTextField();
-        rbtnMVendedor = new javax.swing.JRadioButton();
-        rbtnFVendedor = new javax.swing.JRadioButton();
+        ftxtDataNascimentoFuncionario = new javax.swing.JFormattedTextField();
+        rbtnMFuncionario = new javax.swing.JRadioButton();
+        rbtnFFuncionario = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        ftxtCPFVendedor = new javax.swing.JFormattedTextField();
+        ftxtCPFFuncionario = new javax.swing.JFormattedTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        cbxCargoVendedor = new javax.swing.JComboBox<>();
+        cbxCargoFuncionario = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         txtSalarioVendedor = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        cbxHorarioDeTrabalhoVendedor = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        cbxHorarioDeTrabalhoFuncionario = new javax.swing.JComboBox<>();
+        btnCadastrarFuncionario = new javax.swing.JButton();
+        btnCancelar2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        btnExcluirFuncionario = new javax.swing.JButton();
+        jPanel16 = new javax.swing.JPanel();
+        btnAtualizarFuncionario = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
@@ -236,7 +240,7 @@ public class TelaAdmin extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -384,7 +388,7 @@ public class TelaAdmin extends javax.swing.JFrame {
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Vendedores"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtblFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -397,7 +401,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                 "Código", "Nome", "Cargo", "Periodo"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtblFuncionarios);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -405,14 +409,14 @@ public class TelaAdmin extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -425,23 +429,23 @@ public class TelaAdmin extends javax.swing.JFrame {
         jLabel2.setText("Data de nascimento:");
 
         try {
-            ftxtDataNascimentoVendedor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            ftxtDataNascimentoFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####/##/##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
-        buttonGroupCadastrarVendedor.add(rbtnMVendedor);
-        rbtnMVendedor.setText("Masculino");
+        buttonGroupSexo.add(rbtnMFuncionario);
+        rbtnMFuncionario.setText("Masculino");
 
-        buttonGroupCadastrarVendedor.add(rbtnFVendedor);
-        rbtnFVendedor.setText("Feminino");
+        buttonGroupSexo.add(rbtnFFuncionario);
+        rbtnFFuncionario.setText("Feminino");
 
         jLabel3.setText("Sexo:");
 
         jLabel4.setText("CPF:");
 
         try {
-            ftxtCPFVendedor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            ftxtCPFFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -460,45 +464,45 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(rbtnMVendedor)
+                        .addComponent(rbtnMFuncionario)
                         .addGap(18, 18, 18)
-                        .addComponent(rbtnFVendedor))
-                    .addComponent(ftxtCPFVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNomeCompletoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ftxtDataNascimentoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(rbtnFFuncionario))
+                    .addComponent(ftxtCPFFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomeCompletoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ftxtDataNascimentoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtNomeCompletoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNomeCompletoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(ftxtDataNascimentoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ftxtDataNascimentoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbtnMVendedor)
-                    .addComponent(rbtnFVendedor)
+                    .addComponent(rbtnMFuncionario)
+                    .addComponent(rbtnFFuncionario)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(ftxtCPFVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ftxtCPFFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Informações Profissionais"));
 
         jLabel12.setText("Cargo:");
 
-        cbxCargoVendedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vendedor", "Admin" }));
-        cbxCargoVendedor.addActionListener(new java.awt.event.ActionListener() {
+        cbxCargoFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vendedor", "Admin" }));
+        cbxCargoFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxCargoVendedorActionPerformed(evt);
+                cbxCargoFuncionarioActionPerformed(evt);
             }
         });
 
@@ -506,14 +510,14 @@ public class TelaAdmin extends javax.swing.JFrame {
 
         jLabel14.setText("Horário de trabalho");
 
-        cbxHorarioDeTrabalhoVendedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matutino", "Vespertino", "Noturno" }));
+        cbxHorarioDeTrabalhoFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matutino", "Vespertino", "Noturno" }));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel13)
                     .addComponent(jLabel12)
@@ -521,17 +525,17 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtSalarioVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxCargoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxHorarioDeTrabalhoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxCargoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxHorarioDeTrabalhoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(23, 23, 23)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(cbxCargoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxCargoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -539,16 +543,21 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(cbxHorarioDeTrabalhoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(cbxHorarioDeTrabalhoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Cadastrar");
-
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrarFuncionario.setText("Cadastrar");
+        btnCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCadastrarFuncionarioActionPerformed(evt);
+            }
+        });
+
+        btnCancelar2.setText("Cancelar");
+        btnCancelar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelar2ActionPerformed(evt);
             }
         });
 
@@ -558,9 +567,9 @@ public class TelaAdmin extends javax.swing.JFrame {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(103, 103, 103)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCancelar2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(87, Short.MAX_VALUE))
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
@@ -578,8 +587,8 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
 
@@ -587,30 +596,51 @@ public class TelaAdmin extends javax.swing.JFrame {
 
         jLabel5.setText("Código do Vendedor:");
 
-        jButton4.setText("Excluir");
+        btnExcluirFuncionario.setText("Excluir");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addGap(18, 18, 18)
+                .addComponent(btnExcluirFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluirFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
+        );
+
+        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder("Atualizar"));
+
+        btnAtualizarFuncionario.setText("Atualizar");
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnAtualizarFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(btnAtualizarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -620,10 +650,15 @@ public class TelaAdmin extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18))
         );
         jPanel2Layout.setVerticalGroup(
@@ -634,13 +669,15 @@ public class TelaAdmin extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(3, 3, 3))
                     .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Vendedores", jPanel2);
+        jTabbedPane1.addTab("Funcionarios", jPanel2);
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados"));
 
@@ -648,10 +685,8 @@ public class TelaAdmin extends javax.swing.JFrame {
 
         jLabel21.setText("Tipo de Relatório:");
 
-        buttonGroupRelatórios.add(rbtnSintetico);
         rbtnSintetico.setText("Sintético");
 
-        buttonGroupRelatórios.add(rbtnAnaltico);
         rbtnAnaltico.setText("Analítico");
 
         jLabel22.setText("Categoria de Produto:");
@@ -761,11 +796,11 @@ public class TelaAdmin extends javax.swing.JFrame {
                     .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnGerarRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                             .addComponent(btnCancelarRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 59, Short.MAX_VALUE)))
+                        .addGap(0, 60, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -819,13 +854,13 @@ public class TelaAdmin extends javax.swing.JFrame {
         TelaUtils.logout(this);
     }//GEN-LAST:event_mnuSairActionPerformed
 
-    private void cbxCargoVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCargoVendedorActionPerformed
+    private void cbxCargoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCargoFuncionarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxCargoVendedorActionPerformed
+    }//GEN-LAST:event_cbxCargoFuncionarioActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCancelar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnCancelar2ActionPerformed
 
     private void txtNomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeProdutoActionPerformed
         // TODO add your handling code here:
@@ -986,6 +1021,43 @@ public class TelaAdmin extends javax.swing.JFrame {
     private void txtFabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFabricanteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFabricanteActionPerformed
+
+    private void btnCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFuncionarioActionPerformed
+        if(obj == null){
+            // Resgatar dados da interface e passar para o objeto
+            
+            // Dados pessoais
+            String nomeFuncionario = txtNomeCompletoFuncionario.getText();
+            String dataNascimento = ftxtDataNascimentoFuncionario.getText();
+            // Sexo Funcionario
+            String sexoSelecionado;
+            if(rbtnMFuncionario.isSelected()){
+                sexoSelecionado = "Masculino";
+            }else if(rbtnFFuncionario.isSelected()){
+                sexoSelecionado = "Feminino";
+            }else{
+                sexoSelecionado = "Nenhum selecionado";
+            }
+            String CPF = ftxtCPFFuncionario.getText();
+            // Informações profissionais
+            String cargoFuncionario = (String) cbxCargoFuncionario.getSelectedItem();
+            double salarioVendedor = Double.parseDouble(txtSalarioVendedor.getText());
+            String horarioDeTrabalho = (String) cbxHorarioDeTrabalhoFuncionario.getSelectedItem();
+            
+            Funcionario novoFuncionario = new Funcionario(nomeFuncionario, dataNascimento, sexoSelecionado, CPF, cargoFuncionario, salarioVendedor, horarioDeTrabalho);
+            
+            // Mandar o objeto pra a classe DAO
+            boolean retorno = FuncionarioDAO.salvar(novoFuncionario);
+            
+            if (retorno == true){
+                JOptionPane.showMessageDialog(rootPane, "Sucesso! Produto cadastrado: " + novoFuncionario.getIdFuncionario());
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Não foi possivel cadastrar o produto. Tente Novamente!");
+                limparCampos();
+            }
+        }
+        atualizarTabelaFuncionario();
+    }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
     
     /**
     * Atualiza a tabela de produtos com as informações do banco de dados.
@@ -1012,7 +1084,26 @@ public class TelaAdmin extends javax.swing.JFrame {
                     String.valueOf(item.getQuantidade())
             });
         }
-    }    
+    }
+
+    public void atualizarTabelaFuncionario() {
+        DefaultTableModel modelo = (DefaultTableModel) jtblFuncionarios.getModel();
+        // Limpar todas as linhas da tabela
+        modelo.setRowCount(0);
+
+        // Obter a lista atualizada de produtos
+        ArrayList<Funcionario> listaRetorno = FuncionarioDAO.listar();
+
+        // Para cada item na lista, vou adicionar na tabela
+        for (Funcionario item : listaRetorno) {
+            modelo.addRow(new String[]{
+                    String.valueOf(item.getIdFuncionario()),
+                    String.valueOf(item.getNome()),
+                    String.valueOf(item.getCargo()),
+                    String.valueOf(item.getPeriodo()),
+            });
+        }
+    }
     // Limpa os campos do formulario de criar produtos
     private void limparCampos() {
         txtNomeProduto.setText("");
@@ -1060,25 +1151,25 @@ public class TelaAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizar;
+    private javax.swing.JButton btnAtualizarFuncionario;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCadastrarFuncionario;
     private javax.swing.JButton btnCadastrarProduto;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnCancelar2;
     private javax.swing.JButton btnCancelarRelatorios;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnExcluirFuncionario;
     private javax.swing.JButton btnGerarRelatorio;
-    private javax.swing.ButtonGroup buttonGroupCadastrarVendedor;
-    private javax.swing.ButtonGroup buttonGroupRelatórios;
+    private javax.swing.ButtonGroup buttonGroupSexo;
     private javax.swing.JComboBox<String> cboxCategoria;
-    private javax.swing.JComboBox<String> cbxCargoVendedor;
+    private javax.swing.JComboBox<String> cbxCargoFuncionario;
     private javax.swing.JComboBox<String> cbxCategoriaDeProduto;
     private javax.swing.JComboBox<String> cbxFiltrar;
-    private javax.swing.JComboBox<String> cbxHorarioDeTrabalhoVendedor;
+    private javax.swing.JComboBox<String> cbxHorarioDeTrabalhoFuncionario;
     private javax.swing.JComboBox<String> cbxPeriodoDeAnalise;
-    private javax.swing.JFormattedTextField ftxtCPFVendedor;
-    private javax.swing.JFormattedTextField ftxtDataNascimentoVendedor;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JFormattedTextField ftxtCPFFuncionario;
+    private javax.swing.JFormattedTextField ftxtDataNascimentoFuncionario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -1107,6 +1198,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1119,20 +1211,20 @@ public class TelaAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable jtblFuncionarios;
     private javax.swing.JTable jtblProdutos;
     private javax.swing.JMenuItem mnuSair;
     private javax.swing.JRadioButton rbtnAnaltico;
-    private javax.swing.JRadioButton rbtnFVendedor;
-    private javax.swing.JRadioButton rbtnMVendedor;
+    private javax.swing.JRadioButton rbtnFFuncionario;
+    private javax.swing.JRadioButton rbtnMFuncionario;
     private javax.swing.JRadioButton rbtnSintetico;
     private javax.swing.JSpinner spnQuantidade;
     private javax.swing.JTextField txtCodigoBuscar;
     private javax.swing.JTextField txtCodigoExcluir;
     private javax.swing.JTextField txtFabricante;
-    private javax.swing.JTextField txtNomeCompletoVendedor;
+    private javax.swing.JTextField txtNomeCompletoFuncionario;
     private javax.swing.JTextField txtNomeProduto;
     private javax.swing.JTextField txtPreco;
     private javax.swing.JTextField txtSalarioVendedor;
