@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 /**
  * Resposnavel para fazer o insert no banco de dados
  * 
- * @author Ectho
+ * @author Ecthor
  */
 public class ProdutoDAO {
     // variaveis para acessar o banco
@@ -156,6 +156,8 @@ public class ProdutoDAO {
             // pega o quantidade
             comandoSQL.setInt(5, obj.getQuantidade());
             
+            comandoSQL.setInt(6, obj.getIdProduto());
+            
             // Passo4 - Executar o comando
             int linhasAfetadas = comandoSQL.executeUpdate();
             // se as linhas afetadas forem maior que 0 
@@ -166,7 +168,9 @@ public class ProdutoDAO {
         }catch(ClassNotFoundException ex){
             retorno = false;
         } catch (SQLException ex) {
+            ex.printStackTrace();
             retorno = false;
+            System.out.println("SQLException: " + ex.getMessage());
         }
         
         return retorno;

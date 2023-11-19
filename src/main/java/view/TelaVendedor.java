@@ -16,7 +16,7 @@ import util.TelaUtils;
 
 /**
  *
- * @author Ectho
+ * @author Ecthor
  */
 public class TelaVendedor extends javax.swing.JFrame {
 
