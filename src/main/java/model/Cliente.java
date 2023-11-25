@@ -7,9 +7,8 @@ package model;
 public class Cliente {
     private int idCliente;
     private String nome;
-    private String dataNascimento;
     private String cpf;
-    private String sexo;
+    private int sexo;
     private String email;
     private String celular;
     
@@ -18,19 +17,17 @@ public class Cliente {
         
     }
     // Construtor sem o ID do Cliente
-    public Cliente(String nome, String dataNascimento, String cpf, String sexo, String email, String celular) {
+    public Cliente(String nome, String cpf, int sexo, String email, String celular) {
         this.nome = nome;
-        this.dataNascimento = dataNascimento;
         this.cpf = cpf;
         this.sexo = sexo;
         this.email = email;
         this.celular = celular;
     }
     // Construtor com o ID do Cliente
-    public Cliente(int idCliente, String nome, String dataNascimento, String cpf, String sexo, String email, String celular) {
+    public Cliente(int idCliente, String nome, String cpf, int sexo, String email, String celular) {
         this.idCliente = idCliente;
         this.nome = nome;
-        this.dataNascimento = dataNascimento;
         this.cpf = cpf;
         this.sexo = sexo;
         this.email = email;
@@ -53,15 +50,7 @@ public class Cliente {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public String getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
+    
     public String getCpf() {
         return cpf;
     }
@@ -70,11 +59,11 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public String getSexo() {
+    public int getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(int sexo) {
         this.sexo = sexo;
     }
 

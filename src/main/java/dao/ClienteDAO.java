@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Cliente;
 
+
 /**
  *
  * @author guilh
@@ -39,21 +40,19 @@ public class ClienteDAO {
             // Passo2 - abrir a conexão com o banco
             conexao = DriverManager.getConnection(url, login, senha);
             // Passo3 - Preparar o comando SQL
-            comandoSQL = conexao.prepareStatement("INSERT INTO Cliente (nomeCompleto, dataNascimento, cpf, sexo, email, celular) VALUES (?, ?, ?,?, ?, ?)",
+            comandoSQL = conexao.prepareStatement("INSERT INTO clientes (nome, cpf, id_genero, email, telefone) VALUES (?, ?, ?, ?, ?)",
         PreparedStatement.RETURN_GENERATED_KEYS);
 
             // pega o NOME COMPLETO
             comandoSQL.setString(1, obj.getNome());
-            // pega o CELULAR
-            comandoSQL.setString(2, obj.getDataNascimento());
             // pega o CPF
-            comandoSQL.setString(3, obj.getCpf());
-            // pega o EMAIL
-            comandoSQL.setString(4, obj.getSexo());
-            // pega a DATA DE NASCIMENTO
-            comandoSQL.setString(5, obj.getEmail());
+            comandoSQL.setString(2, obj.getCpf());
             // pega o SEXO
-            comandoSQL.setString(6, obj.getCelular());
+            comandoSQL.setInt(3, obj.getSexo());
+            // pega o EMAIL
+            comandoSQL.setString(4, obj.getEmail());
+            // pega o CELULAR
+            comandoSQL.setString(5, obj.getCelular());
             
             // Passo4 - Executar o comando
             int linhasAfetadas = comandoSQL.executeUpdate();
@@ -94,20 +93,18 @@ public class ClienteDAO {
             // Passo2 - abrir a conexão com o banco
             conexao = DriverManager.getConnection(url, login, senha);
             // Passo3 - Preparar o comando SQL
-            comandoSQL = conexao.prepareStatement("UPDATE Cliente SET nomeCompleto = ?, dataNascimento = ?, cpf = ?, sexo = ?, email = ?, celular = ? WHERE idCliente = ?");
+            comandoSQL = conexao.prepareStatement("UPDATE clientes SET nome = ?, cpf = ?, id_genero = ?, email = ?, telefone = ? WHERE id = ?");
             
             // pega o nome
             comandoSQL.setString(1, obj.getNome());
-            // pega a data de nascimento
-            comandoSQL.setString(2, obj.getDataNascimento());
             // pega o cpf
-            comandoSQL.setString(3, obj.getCpf());
+            comandoSQL.setString(2, obj.getCpf());
             // pega o sexo
-            comandoSQL.setString(4, obj.getSexo());
+            comandoSQL.setInt(3, obj.getSexo());
             // pega o email
-            comandoSQL.setString(5, obj.getEmail());
+            comandoSQL.setString(4, obj.getEmail());
             // pega o celular.
-            comandoSQL.setString(6, obj.getCelular());
+            comandoSQL.setString(5, obj.getCelular());
             
             // Passo4 - Executar o comando
             int linhasAfetadas = comandoSQL.executeUpdate();
@@ -140,8 +137,13 @@ public class ClienteDAO {
             // Passo2 - abrir a conexão com o banco
             conexao = DriverManager.getConnection(url, login, senha);
             
-            // Passo3 - Preparar o comando SQL
-            comandoSQL = conexao.prepareStatement("SELECT * FROM Cliente");
+            // Adicionando JOIN com a tabela generos.
+            String query = "SELECT c.id, c.nome, c.cpf, g.nome as generos, c.email, c.telefone " +
+                    "FROM clientes c " +
+                    "JOIN generos g ON c.id_genero = g.id";
+            
+            //Passo 3 - preparar o comando SQL
+            comandoSQL = conexao.prepareStatement(query);
             
             // Passo4 - Executar a CONSULTA
             rs = comandoSQL.executeQuery();
@@ -150,15 +152,14 @@ public class ClienteDAO {
             if (rs != null){
                 while(rs.next()){
                     // cada volta do while cria um objeto para cada linha da lista
-                    int id = rs.getInt("idCliente");
-                    String nome = rs.getString("nomeCompleto");
-                    String dataNascimento = rs.getString("dataNascimento");
+                    int id = rs.getInt("id");
+                    String nome = rs.getString("nome");
                     String cpf = rs.getString("cpf");
-                    String sexo = rs.getString("sexo");
+                    int sexo = rs.getInt("id_genero");
                     String email = rs.getString("email");                   
-                    String celular = rs.getString("celular");
+                    String celular = rs.getString("telefone");
                     
-                    Cliente item = new Cliente(id, nome, dataNascimento, cpf, sexo, email, celular);
+                    Cliente item = new Cliente(id, nome, cpf, sexo, email, celular);
                     
                     lista.add(item);
                 }
@@ -193,7 +194,7 @@ public class ClienteDAO {
             // Passo2 - abrir a conexão com o banco
             conexao = DriverManager.getConnection(url, login, senha);
             // Passo3 - Preparar o comando SQL
-            comandoSQL = conexao.prepareStatement("DELETE FROM Cliente WHERE idCliente = ?");
+            comandoSQL = conexao.prepareStatement("DELETE FROM clientes WHERE id = ?");
             
             // pega o valor do ID
             comandoSQL.setInt(1, idExcluir);
@@ -230,7 +231,7 @@ public class ClienteDAO {
             conexao = DriverManager.getConnection(url, login, senha);
             
             // Passo3 - Preparar o comando SQL
-            comandoSQL = conexao.prepareStatement("SELECT * FROM Cliente WHERE cpf = ? ");
+            comandoSQL = conexao.prepareStatement("SELECT * FROM clientes WHERE cpf = ? ");
             
             comandoSQL.setString(1, cpf);
             
@@ -241,15 +242,14 @@ public class ClienteDAO {
             if (rs != null){
                 while(rs.next()){
                     // cada volta do while cria um objeto para cada linha da lista
-                    int id = rs.getInt("idCliente");
-                    String nome = rs.getString("nomeCompleto");
-                    String celular = rs.getString("celular");
+                    int id = rs.getInt("id");
+                    String nome = rs.getString("nome");
+                    String celular = rs.getString("telefone");
                     String cpfBusca = rs.getString("cpf");
                     String email = rs.getString("email");
-                    String dataNascimento = rs.getString("data_nascimento");
-                    String sexo = rs.getString("sexo");
+                    int sexo = rs.getInt("id_genero");
                     
-                   Cliente item = new Cliente(id, nome, celular, cpfBusca, email, dataNascimento, sexo);
+                    Cliente item = new Cliente(id, nome, cpf, sexo, email, celular);
                     
                     lista.add(item);
                 }

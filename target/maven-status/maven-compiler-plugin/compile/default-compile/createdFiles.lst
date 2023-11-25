@@ -3,7 +3,6 @@ controller\main.class
 view\TelaVendedor$10.class
 view\TelaLogin$5.class
 view\TelaVendedor$8.class
-view\TelaUpdateCliente$3.class
 view\TelaVendedor$4.class
 view\TelaUpdateProduto$2.class
 view\TelaAdmin$13.class
@@ -23,7 +22,6 @@ view\TelaAdmin$4.class
 view\TelaLogin$4.class
 view\TelaVendedor$3.class
 view\TelaVendedor$9.class
-view\TelaVendedor$13.class
 view\TelaLogin$1.class
 view\TelaUpdateProduto$5.class
 view\TelaVendedor$6.class
