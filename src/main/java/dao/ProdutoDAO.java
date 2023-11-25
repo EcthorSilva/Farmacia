@@ -37,13 +37,13 @@ public class ProdutoDAO {
             // Passo2 - abrir a conexão com o banco
             conexao = DriverManager.getConnection(url, login, senha);
             // Passo3 - Preparar o comando SQL
-            comandoSQL = conexao.prepareStatement("INSERT INTO Produto (nomeProduto, categoriaProduto, fabricante, preco, quantidade) VALUES (?, ?, ?, ?, ?)",
-        PreparedStatement.RETURN_GENERATED_KEYS);
+            comandoSQL = conexao.prepareStatement("INSERT INTO produtos (nome, id_categoria, fabricante, preco_unitario, quantidade_estoque) VALUES (?, ?, ?, ?, ?)",
+        PreparedStatement.RETURN_GENERATED_KEYS); //INSERT INTO produtos (nome, id_categoria, fabricante, preco_unitario, quantidade_estoque)VALUES ('Nome do Produto', id_da_categoria, 'Fabricante do Produto', preço_do_produto, quantidade_em_estoque);
 
             // pega o nomeProduto
             comandoSQL.setString(1, obj.getNomeProduto());
             // pega o categoriaProduto
-            comandoSQL.setString(2, obj.getCategoriaProduto());
+            comandoSQL.setInt(2, obj.getCategoria());
             // pega o fabricante
             comandoSQL.setString(3, obj.getFabricante());
             // pega o preco
@@ -91,8 +91,13 @@ public class ProdutoDAO {
             // Passo2 - abrir a conexão com o banco
             conexao = DriverManager.getConnection(url, login, senha);
             
+            // Adicionando JOIN com a tabela categoriaprodutos
+            String query = "SELECT p.id, p.nome, c.desccricao as categoria, p.fabricante, p.preco_unitario, p.quantidade_estoque " +
+                       "FROM produtos p " +
+                       "JOIN categoriaProdutos c ON p.id_categoria = c.id";
+            
             // Passo3 - Preparar o comando SQL
-            comandoSQL = conexao.prepareStatement("SELECT * FROM Produto");
+            comandoSQL = conexao.prepareStatement(query);
             
             // Passo4 - Executar a CONSULTA
             rs = comandoSQL.executeQuery();
@@ -101,16 +106,16 @@ public class ProdutoDAO {
             if (rs != null){
                 while(rs.next()){
                     // cada volta do while cria um objeto para cada linha da lista
-                    int id = rs.getInt("idProduto");
-                    String nome = rs.getString("nomeProduto");
-                    String categoria = rs.getString("categoriaProduto");
+                    int id = rs.getInt("id");
+                    String nome = rs.getString("nome");
+                    String categoria = rs.getString("categoria");
                     String fabricante = rs.getString("fabricante");
-                    double preco = rs.getDouble("preco");
-                    int quantidade = rs.getInt("quantidade");
-                    
+                    double preco = rs.getDouble("preco_unitario");
+                    int quantidade = rs.getInt("quantidade_estoque");
+
                     Produto item = new Produto(id, nome, categoria, fabricante, preco, quantidade);
-                    
                     lista.add(item);
+                    
                 }
             }
             
@@ -143,12 +148,12 @@ public class ProdutoDAO {
             // Passo2 - abrir a conexão com o banco
             conexao = DriverManager.getConnection(url, login, senha);
             // Passo3 - Preparar o comando SQL
-            comandoSQL = conexao.prepareStatement("UPDATE Produto SET nomeProduto = ?, categoriaProduto = ?, fabricante = ?, preco = ?, quantidade = ? WHERE idProduto = ?");
+            comandoSQL = conexao.prepareStatement("UPDATE produtos SET nome = ?, id_categoria = ?, fabricante = ?, preco_unitario = ?, quantidade_estoque = ? WHERE id = ?");
             
             // pega o nomeProduto
             comandoSQL.setString(1, obj.getNomeProduto());
             // pega o categoriaProduto
-            comandoSQL.setString(2, obj.getCategoriaProduto());
+            comandoSQL.setInt(2, obj.getCategoria());
             // pega o fabricante
             comandoSQL.setString(3, obj.getFabricante());
             // pega o preco
@@ -192,7 +197,7 @@ public class ProdutoDAO {
             // Passo2 - abrir a conexão com o banco
             conexao = DriverManager.getConnection(url, login, senha);
             // Passo3 - Preparar o comando SQL
-            comandoSQL = conexao.prepareStatement("DELETE FROM Produto WHERE idProduto = ?");
+            comandoSQL = conexao.prepareStatement("DELETE FROM produtos WHERE id = ?");
             
             // pega o valor do ID
             comandoSQL.setInt(1, idExcluir);
@@ -230,7 +235,7 @@ public class ProdutoDAO {
             conexao = DriverManager.getConnection(url, login, senha);
             
             // Passo3 - Preparar o comando SQL
-            comandoSQL = conexao.prepareStatement("SELECT * FROM Produto WHERE idProduto = ? ");
+            comandoSQL = conexao.prepareStatement("SELECT * FROM produtos WHERE id = ? ");
             
             comandoSQL.setInt(1, idProduto);
             
@@ -241,12 +246,12 @@ public class ProdutoDAO {
             if (rs != null){
                 while(rs.next()){
                     // cada volta do while cria um objeto para cada linha da lista
-                    int id = rs.getInt("idProduto");
-                    String nome = rs.getString("nomeProduto");
-                    String categoria = rs.getString("categoriaProduto");
+                    int id = rs.getInt("id");
+                    String nome = rs.getString("nome");
+                    int categoria = rs.getInt("id_categoria");
                     String fabricante = rs.getString("fabricante");
-                    double preco = rs.getDouble("preco");
-                    int quantidade = rs.getInt("quantidade");
+                    double preco = rs.getDouble("preco_unitario");
+                    int quantidade = rs.getInt("quantidade_estoque");
                     
                     Produto item = new Produto(id, nome, categoria, fabricante, preco, quantidade);
                     
@@ -268,5 +273,4 @@ public class ProdutoDAO {
         
         return lista;
     }
-    
 }

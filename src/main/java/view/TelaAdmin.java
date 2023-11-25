@@ -25,7 +25,7 @@ public class TelaAdmin extends javax.swing.JFrame {
         setResizable(false);
         
         atualizarTabelaProduto();
-        atualizarTabelaFuncionario();
+        //atualizarTabelaFuncionario();
     }
     
     /**
@@ -882,20 +882,20 @@ public class TelaAdmin extends javax.swing.JFrame {
         if(obj == null){
             // Resgatar dados da interface e passar para o objeto
             String nomeProduto = txtNomeProduto.getText();
-            String categoriaProduto = (String) cboxCategoria.getSelectedItem();
+            int idCategoria = cboxCategoria.getSelectedIndex() + 1; // Adicionar 1 para corresponder aos IDs (que começam em 1)
             String fabricante = txtFabricante.getText();
             double preco = Double.parseDouble(txtPreco.getText());
             int quantidade = (int) spnQuantidade.getValue();
             
             // Verificar se a categoria não é nula antes de usar
-            if (categoriaProduto != null) {
-            // Faça algo com a variável categoriaProduto
-                System.out.println("Categoria selecionada: " + categoriaProduto);
+            if (idCategoria > 0) {
+                // Faça algo com a variável idCategoriaProduto
+                System.out.println("ID da Categoria selecionada: " + idCategoria);
             } else {
                 System.out.println("Nenhuma categoria selecionada.");
             }
             
-            Produto novoProduto = new Produto(nomeProduto, categoriaProduto, fabricante, preco, quantidade);
+            Produto novoProduto = new Produto(nomeProduto, idCategoria, fabricante, preco, quantidade);
             
             // Mandar o objeto pra a classe DAO
             boolean retorno = ProdutoDAO.salvar(novoProduto);
@@ -963,7 +963,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                         modelo.addRow(new String[]{
                             String.valueOf(produto.getIdProduto()),
                             String.valueOf(produto.getNomeProduto()),
-                            String.valueOf(produto.getCategoriaProduto()),
+                            String.valueOf(produto.getCategoria()),
                             String.valueOf(produto.getFabricante()),
                             String.valueOf(produto.getPreco()),
                             String.valueOf(produto.getQuantidade())
@@ -1075,10 +1075,10 @@ public class TelaAdmin extends javax.swing.JFrame {
 
         // Para cada item na lista, vou adicionar na tabela
         for (Produto item : listaRetorno) {
-            modelo.addRow(new String[]{
+           modelo.addRow(new String[]{
                     String.valueOf(item.getIdProduto()),
                     String.valueOf(item.getNomeProduto()),
-                    String.valueOf(item.getCategoriaProduto()),
+                    item.getNomeCategoria(),
                     String.valueOf(item.getFabricante()),
                     String.valueOf(item.getPreco()),
                     String.valueOf(item.getQuantidade())

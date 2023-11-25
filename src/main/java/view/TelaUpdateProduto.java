@@ -233,13 +233,15 @@ public class TelaUpdateProduto extends javax.swing.JFrame {
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         // Resgatar dados da interface e passar para o objeto
         String nomeProduto = txtNomeProduto.getText();
-        String categoriaProduto = (String) cboxCategoria.getSelectedItem();
+        // Modificação: Obter o ID da categoria selecionada
+        int idCategoria = cboxCategoria.getSelectedIndex() + 1; // Adicionar 1 para corresponder aos IDs (que começam em 1)
         String fabricante = txtFabricante.getText();
         double preco = Double.parseDouble(txtPreco.getText());
         int quantidade = (int) spnQuantidade.getValue();
         
         obj.setNomeProduto(nomeProduto);
-        obj.setCategoriaProduto(categoriaProduto);
+        // Modificação: Alterar para o ID da categoria
+        obj.setCategoria(idCategoria);
         obj.setFabricante(fabricante);
         obj.setPreco(preco);
         obj.setQuantidade(quantidade);

@@ -1,69 +1,56 @@
 view\TelaAdmin$10.class
-<<<<<<< HEAD
-view\TelaUpdateCliente.class
 controller\main.class
 view\TelaVendedor$10.class
-=======
-view\TelaUpdateProduto.class
-controller\main.class
-model\Funcionario.class
->>>>>>> 097a6baa21f6d8ba00cbbb4332aa5570178b81d7
-view\TelaAdmin$5.class
-view\TelaLogin$3.class
 view\TelaLogin$5.class
 view\TelaVendedor$8.class
 view\TelaUpdateCliente$3.class
 view\TelaVendedor$4.class
 view\TelaUpdateProduto$2.class
 view\TelaAdmin$13.class
-<<<<<<< HEAD
-view\TelaVendedor$12.class
-=======
 view\TelaUpdateProduto$6.class
-view\TelaUpdateProduto$1.class
->>>>>>> 097a6baa21f6d8ba00cbbb4332aa5570178b81d7
 model\Cliente.class
 model\Produto.class
 view\TelaLogin$2.class
 dao\ClienteDAO.class
-view\TelaVendedor$2.class
 view\TelaAdmin$7.class
+dao\FuncionarioDAO.class
+dao\ProdutoDAO.class
+view\TelaAdmin$1.class
+view\TelaAdmin$8.class
+view\TelaAdmin$14.class
+view\TelaUpdateCliente$2.class
+view\TelaAdmin$4.class
+view\TelaLogin$4.class
+view\TelaVendedor$3.class
+view\TelaVendedor$9.class
+view\TelaVendedor$13.class
+view\TelaLogin$1.class
+view\TelaUpdateProduto$5.class
+view\TelaVendedor$6.class
+view\TelaUpdateProduto.class
+view\TelaUpdateCliente.class
+model\Funcionario.class
+view\TelaAdmin$5.class
+view\TelaLogin$3.class
+view\TelaVendedor$12.class
+view\TelaUpdateProduto$1.class
+view\TelaVendedor$2.class
 view\TelaVendedor.class
 view\TelaAdmin$11.class
 view\TelaAdmin$2.class
 view\TelaUpdateProduto$4.class
 view\TelaAdmin$6.class
 view\TelaLogin.class
-dao\FuncionarioDAO.class
 view\TelaVendedor$7.class
-dao\ProdutoDAO.class
-view\TelaAdmin$1.class
 view\TelaVendedor$5.class
 model\Pedido.class
 view\TelaUpdateProduto$3.class
-view\TelaAdmin$8.class
-<<<<<<< HEAD
-view\TelaUpdateCliente$2.class
-=======
-view\TelaAdmin$14.class
->>>>>>> 097a6baa21f6d8ba00cbbb4332aa5570178b81d7
-view\TelaAdmin$4.class
 view\TelaAdmin.class
-view\TelaLogin$4.class
 view\TelaAdmin$3.class
 view\TelaAdmin$9.class
 view\TelaUpdateCliente$1.class
-view\TelaVendedor$3.class
-view\TelaVendedor$9.class
-view\TelaVendedor$13.class
-view\TelaLogin$1.class
-<<<<<<< HEAD
 view\TelaVendedor$11.class
-=======
-view\TelaUpdateProduto$5.class
->>>>>>> 097a6baa21f6d8ba00cbbb4332aa5570178b81d7
 view\TelaAdmin$12.class
 view\TelaVendedor$1.class
 view\TelaLogin$6.class
 util\TelaUtils.class
-view\TelaVendedor$6.class

@@ -7,7 +7,8 @@ package model;
 public class Produto {
     private int idProduto;
     private String nomeProduto;
-    private String categoriaProduto;
+    private int categoria;
+    private String nomeCategoria;
     private String fabricante;
     private double preco;
     private int quantidade;
@@ -18,18 +19,28 @@ public class Produto {
         
     }
     // Construtor sem o ID do Produto
-    public Produto(String nomeProduto, String categoriaProduto, String fabricante, double preco, int quantidade) {
+    public Produto(String nomeProduto, int categoria, String fabricante, double preco, int quantidade) {
         this.nomeProduto = nomeProduto;
-        this.categoriaProduto = categoriaProduto;
+        this.categoria = categoria;
         this.fabricante = fabricante;
         this.preco = preco;
         this.quantidade = quantidade;
     }
     // Construtor com o ID do Produto
-    public Produto(int idProduto, String nomeProduto, String categoriaProduto, String fabricante, double preco, int quantidade) {
+    public Produto(int idProduto, String nomeProduto, int categoria, String fabricante, double preco, int quantidade) {
         this.idProduto = idProduto;
         this.nomeProduto = nomeProduto;
-        this.categoriaProduto = categoriaProduto;
+        this.categoria = categoria;
+        this.fabricante = fabricante;
+        this.preco = preco;
+        this.quantidade = quantidade;
+    }
+    
+    // Construtor para a categoria
+    public Produto(int idProduto, String nomeProduto, String nomeCategoria, String fabricante, double preco, int quantidade) {
+        this.idProduto = idProduto;
+        this.nomeProduto = nomeProduto;
+        this.nomeCategoria = nomeCategoria;
         this.fabricante = fabricante;
         this.preco = preco;
         this.quantidade = quantidade;
@@ -60,12 +71,20 @@ public class Produto {
         this.nomeProduto = nomeProduto;
     }
 
-    public String getCategoriaProduto() {
-        return categoriaProduto;
+    public int getCategoria() {
+        return categoria;
     }
 
-    public void setCategoriaProduto(String categoriaProduto) {
-        this.categoriaProduto = categoriaProduto;
+    public void setCategoria(int categoria) {
+        this.categoria = categoria;
+    }
+    
+    public String getNomeCategoria() {
+        return nomeCategoria;
+    }
+
+    public void setNomeCategoria(String nomeCategoria) {
+        this.nomeCategoria = nomeCategoria;
     }
 
     public String getFabricante() {

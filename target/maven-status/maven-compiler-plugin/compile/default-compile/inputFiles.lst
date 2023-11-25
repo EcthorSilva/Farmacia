@@ -1,27 +1,14 @@
-<<<<<<< HEAD
-C:\Users\guilh\Documents\Farmacia\src\main\java\controller\main.java
-C:\Users\guilh\Documents\Farmacia\src\main\java\model\Cliente.java
-C:\Users\guilh\Documents\Farmacia\src\main\java\view\TelaAdmin.java
-C:\Users\guilh\Documents\Farmacia\src\main\java\view\TelaVendedor.java
-C:\Users\guilh\Documents\Farmacia\src\main\java\model\Pedido.java
-C:\Users\guilh\Documents\Farmacia\src\main\java\dao\ProdutoDAO.java
-C:\Users\guilh\Documents\Farmacia\src\main\java\model\Vendedor.java
-C:\Users\guilh\Documents\Farmacia\src\main\java\util\TelaUtils.java
-C:\Users\guilh\Documents\Farmacia\src\main\java\dao\ClienteDAO.java
-C:\Users\guilh\Documents\Farmacia\src\main\java\model\Produto.java
-C:\Users\guilh\Documents\Farmacia\src\main\java\view\TelaLogin.java
-C:\Users\guilh\Documents\Farmacia\src\main\java\view\TelaUpdateCliente.java
-=======
-C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\model\Funcionario.java
-C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\util\TelaUtils.java
 C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\view\TelaAdmin.java
+C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\view\TelaUpdateCliente.java
 C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\model\Cliente.java
 C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\view\TelaVendedor.java
-C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\controller\main.java
-C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\view\TelaUpdateProduto.java
-C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\model\Produto.java
 C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\model\Pedido.java
 C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\dao\ProdutoDAO.java
 C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\view\TelaLogin.java
 C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\dao\FuncionarioDAO.java
->>>>>>> 097a6baa21f6d8ba00cbbb4332aa5570178b81d7
+C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\model\Funcionario.java
+C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\util\TelaUtils.java
+C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\dao\ClienteDAO.java
+C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\controller\main.java
+C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\view\TelaUpdateProduto.java
+C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\model\Produto.java
