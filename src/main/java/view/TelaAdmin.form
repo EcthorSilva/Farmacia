@@ -2,8 +2,6 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroupSexo">
-    </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar2">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu3">
@@ -579,10 +577,14 @@
                     <Component class="javax.swing.JTable" name="jtblFuncionarios">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="6">
-                            <Column editable="true" title="C&#xf3;digo" type="java.lang.Object"/>
+                          <Table columnCount="8" rowCount="0">
+                            <Column editable="true" title="ID" type="java.lang.Object"/>
                             <Column editable="true" title="Nome" type="java.lang.Object"/>
+                            <Column editable="true" title="Data Nasc." type="java.lang.Object"/>
+                            <Column editable="true" title="Sexo" type="java.lang.Object"/>
+                            <Column editable="true" title="CPF" type="java.lang.Object"/>
                             <Column editable="true" title="Cargo" type="java.lang.Object"/>
+                            <Column editable="true" title="Salario" type="java.lang.Object"/>
                             <Column editable="true" title="Periodo" type="java.lang.Object"/>
                           </Table>
                         </Property>
@@ -628,7 +630,7 @@
                           <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="32" max="32767" attributes="0"/>
+                          <EmptySpace pref="31" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnCadastrarFuncionario" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="btnCancelar2" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
@@ -661,16 +663,12 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="rbtnMFuncionario" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="rbtnFFuncionario" min="-2" max="-2" attributes="0"/>
-                                  </Group>
                                   <Component id="ftxtCPFFuncionario" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                                   <Component id="txtNomeCompletoFuncionario" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                                   <Component id="ftxtDataNascimentoFuncionario" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Component id="cboxSexoFuncionario" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="100" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -689,9 +687,8 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="rbtnMFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="rbtnFFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cboxSexoFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -722,22 +719,9 @@
                           <Format format="####/##/##" subtype="-1" type="5"/>
                         </Property>
                       </Properties>
-                    </Component>
-                    <Component class="javax.swing.JRadioButton" name="rbtnMFuncionario">
-                      <Properties>
-                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="buttonGroupSexo"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Masculino"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JRadioButton" name="rbtnFFuncionario">
-                      <Properties>
-                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="buttonGroupSexo"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Feminino"/>
-                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ftxtDataNascimentoFuncionarioActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel3">
                       <Properties>
@@ -755,6 +739,20 @@
                           <Format format="###.###.###-##" subtype="-1" type="5"/>
                         </Property>
                       </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="cboxSexoFuncionario">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="3">
+                            <StringItem index="0" value="Masculino"/>
+                            <StringItem index="1" value="Feminino"/>
+                            <StringItem index="2" value="Outros"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -820,8 +818,8 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="2">
-                            <StringItem index="0" value="Vendedor"/>
-                            <StringItem index="1" value="Admin"/>
+                            <StringItem index="0" value="Admin"/>
+                            <StringItem index="1" value="Vendedor"/>
                           </StringArray>
                         </Property>
                       </Properties>
@@ -964,6 +962,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Atualizar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtualizarFuncionarioActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

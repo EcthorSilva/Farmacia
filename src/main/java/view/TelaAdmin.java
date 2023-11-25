@@ -5,6 +5,7 @@ import util.TelaUtils;
 import dao.ProdutoDAO;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Funcionario;
@@ -25,7 +26,7 @@ public class TelaAdmin extends javax.swing.JFrame {
         setResizable(false);
         
         atualizarTabelaProduto();
-        //atualizarTabelaFuncionario();
+        atualizarTabelaFuncionario();
     }
     
     /**
@@ -37,7 +38,6 @@ public class TelaAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroupSexo = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -76,11 +76,10 @@ public class TelaAdmin extends javax.swing.JFrame {
         txtNomeCompletoFuncionario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         ftxtDataNascimentoFuncionario = new javax.swing.JFormattedTextField();
-        rbtnMFuncionario = new javax.swing.JRadioButton();
-        rbtnFFuncionario = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         ftxtCPFFuncionario = new javax.swing.JFormattedTextField();
+        cboxSexoFuncionario = new javax.swing.JComboBox<>();
         jPanel6 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         cbxCargoFuncionario = new javax.swing.JComboBox<>();
@@ -390,15 +389,10 @@ public class TelaAdmin extends javax.swing.JFrame {
 
         jtblFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Código", "Nome", "Cargo", "Periodo"
+                "ID", "Nome", "Data Nasc.", "Sexo", "CPF", "Cargo", "Salario", "Periodo"
             }
         ));
         jScrollPane1.setViewportView(jtblFuncionarios);
@@ -433,12 +427,11 @@ public class TelaAdmin extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-
-        buttonGroupSexo.add(rbtnMFuncionario);
-        rbtnMFuncionario.setText("Masculino");
-
-        buttonGroupSexo.add(rbtnFFuncionario);
-        rbtnFFuncionario.setText("Feminino");
+        ftxtDataNascimentoFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ftxtDataNascimentoFuncionarioActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Sexo:");
 
@@ -449,6 +442,8 @@ public class TelaAdmin extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+
+        cboxSexoFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Outros" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -463,14 +458,11 @@ public class TelaAdmin extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(rbtnMFuncionario)
-                        .addGap(18, 18, 18)
-                        .addComponent(rbtnFFuncionario))
                     .addComponent(ftxtCPFFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNomeCompletoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ftxtDataNascimentoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(100, Short.MAX_VALUE))
+                    .addComponent(ftxtDataNascimentoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboxSexoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -485,9 +477,8 @@ public class TelaAdmin extends javax.swing.JFrame {
                     .addComponent(ftxtDataNascimentoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbtnMFuncionario)
-                    .addComponent(rbtnFFuncionario)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(cboxSexoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -499,7 +490,7 @@ public class TelaAdmin extends javax.swing.JFrame {
 
         jLabel12.setText("Cargo:");
 
-        cbxCargoFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vendedor", "Admin" }));
+        cbxCargoFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Vendedor" }));
         cbxCargoFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxCargoFuncionarioActionPerformed(evt);
@@ -585,7 +576,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -625,6 +616,11 @@ public class TelaAdmin extends javax.swing.JFrame {
         jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder("Atualizar"));
 
         btnAtualizarFuncionario.setText("Atualizar");
+        btnAtualizarFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarFuncionarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -888,12 +884,7 @@ public class TelaAdmin extends javax.swing.JFrame {
             int quantidade = (int) spnQuantidade.getValue();
             
             // Verificar se a categoria não é nula antes de usar
-            if (idCategoria > 0) {
-                // Faça algo com a variável idCategoriaProduto
-                System.out.println("ID da Categoria selecionada: " + idCategoria);
-            } else {
-                System.out.println("Nenhuma categoria selecionada.");
-            }
+            validarAlgoNoCbox(idCategoria);
             
             Produto novoProduto = new Produto(nomeProduto, idCategoria, fabricante, preco, quantidade);
             
@@ -997,20 +988,11 @@ public class TelaAdmin extends javax.swing.JFrame {
             double precoSelecionado = Double.parseDouble(modelo.getValueAt(linhaSelecionada, 4).toString());
             int quantidadeSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 5).toString());
 
-            // Obtém o modelo do ComboBox
-            DefaultComboBoxModel<String> modeloCombo = (DefaultComboBoxModel<String>) cboxCategoria.getModel();
-            // Pega o valor String compara no combobox e retorna o index dele
-            int i;
-            // Itera sobre as opções do ComboBox para encontrar o índice correspondente à categoriaSelecionado
-            for (i = 0; i < modeloCombo.getSize(); i++) {
-                if (modeloCombo.getElementAt(i).equals(categoriaSelecionado)) {
-                    // Define o item selecionado no ComboBox
-                    cboxCategoria.setSelectedIndex(i);
-                    break;
-                }
-            }
-            Produto objAlterar = new Produto(idSelecionado, nomeSelecionado, categoriaSelecionado, fabricanteSelecionado, precoSelecionado, quantidadeSelecionado);
-            objAlterar.setIndiceCategoria(i);
+            int indiceCategoria = valorCombobox(cboxCategoria, categoriaSelecionado);
+            
+            Produto objAlterar = new Produto(idSelecionado, nomeSelecionado, categoriaSelecionado, 
+                    fabricanteSelecionado, precoSelecionado, quantidadeSelecionado);
+            objAlterar.setIndiceCategoria(indiceCategoria);
 
             TelaUpdateProduto updateProduto = new TelaUpdateProduto(objAlterar);
             updateProduto.setLocationRelativeTo(null);
@@ -1029,20 +1011,17 @@ public class TelaAdmin extends javax.swing.JFrame {
             // Dados pessoais
             String nomeFuncionario = txtNomeCompletoFuncionario.getText();
             String dataNascimento = ftxtDataNascimentoFuncionario.getText();
-            // Sexo Funcionario
-            String sexoSelecionado;
-            if(rbtnMFuncionario.isSelected()){
-                sexoSelecionado = "Masculino";
-            }else if(rbtnFFuncionario.isSelected()){
-                sexoSelecionado = "Feminino";
-            }else{
-                sexoSelecionado = "Nenhum selecionado";
-            }
+            int sexoSelecionado = cboxCategoria.getSelectedIndex() + 1; // Adicionar 1 para corresponder aos IDs (que começam em 1) // Sexo Funcionario
             String CPF = ftxtCPFFuncionario.getText();
+            
             // Informações profissionais
-            String cargoFuncionario = (String) cbxCargoFuncionario.getSelectedItem();
+            int cargoFuncionario = cbxCargoFuncionario.getSelectedIndex() + 1;
             double salarioVendedor = Double.parseDouble(txtSalarioVendedor.getText());
-            String horarioDeTrabalho = (String) cbxHorarioDeTrabalhoFuncionario.getSelectedItem();
+            int horarioDeTrabalho = cbxHorarioDeTrabalhoFuncionario.getSelectedIndex() + 1;
+
+            validarAlgoNoCbox(sexoSelecionado);
+            validarAlgoNoCbox(cargoFuncionario);
+            validarAlgoNoCbox(horarioDeTrabalho);
             
             Funcionario novoFuncionario = new Funcionario(nomeFuncionario, dataNascimento, sexoSelecionado, CPF, cargoFuncionario, salarioVendedor, horarioDeTrabalho);
             
@@ -1050,20 +1029,90 @@ public class TelaAdmin extends javax.swing.JFrame {
             boolean retorno = FuncionarioDAO.salvar(novoFuncionario);
             
             if (retorno == true){
-                JOptionPane.showMessageDialog(rootPane, "Sucesso! Produto cadastrado: " + novoFuncionario.getIdFuncionario());
+                JOptionPane.showMessageDialog(rootPane, "Sucesso! Funcionario cadastrado: " + novoFuncionario.getIdFuncionario());
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Não foi possivel cadastrar o produto. Tente Novamente!");
+                JOptionPane.showMessageDialog(rootPane, "Não foi possivel cadastrar o funcionario. Tente Novamente!");
                 limparCampos();
             }
         }
         atualizarTabelaFuncionario();
     }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
+
+    private void ftxtDataNascimentoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxtDataNascimentoFuncionarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ftxtDataNascimentoFuncionarioActionPerformed
+
+    private void btnAtualizarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarFuncionarioActionPerformed
+        // 1 - Passo Resgatar a linha e mandar para um objeto
+        int linhaSelecionada = jtblFuncionarios.getSelectedRow();
+        
+        // Verificar se alguma linha está selecionada
+        if (linhaSelecionada == -1) {
+            // Nenhuma linha selecionada, executar a função para atualizar a tabela
+            atualizarTabelaFuncionario();
+        } else {
+            // 2 - acessar a camada model da tabela
+            DefaultTableModel modelo = (DefaultTableModel) jtblFuncionarios.getModel();
+            
+            // 3 - resgatar valores da linha selecionada
+            //dados pessoais
+            int idSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
+            String nomeFuncionario = modelo.getValueAt(linhaSelecionada, 1).toString();
+            String dataNascimento = modelo.getValueAt(linhaSelecionada, 2).toString();
+            String sexoSelecionado = modelo.getValueAt(linhaSelecionada, 3).toString();
+            String CPF = modelo.getValueAt(linhaSelecionada, 4).toString();
+            
+            // dados profissionais
+            String cargoFuncionario = modelo.getValueAt(linhaSelecionada, 5).toString();
+            double salarioFuncionario = Double.parseDouble(modelo.getValueAt(linhaSelecionada, 6).toString());
+            String horarioDeTrabalho = modelo.getValueAt(linhaSelecionada, 7).toString();
+            
+            // Pega o indice do cbox
+            int indiceSexoFuncionario = valorCombobox(cboxSexoFuncionario, sexoSelecionado);
+            int indiceCargoFuncionario = valorCombobox(cbxCargoFuncionario, cargoFuncionario);
+            int indiceHorarioDeTrabalhoFuncionario = valorCombobox(cbxHorarioDeTrabalhoFuncionario, horarioDeTrabalho);
+            
+            Funcionario objAlterar = new Funcionario(idSelecionado, nomeFuncionario, dataNascimento, sexoSelecionado, CPF, cargoFuncionario, salarioFuncionario, horarioDeTrabalho);
+            
+            objAlterar.setIndiceSexoFuncionario(indiceSexoFuncionario);
+            objAlterar.setIndiceCargoFuncionario(indiceCargoFuncionario);
+            objAlterar.setIndiceHorarioDeTrabalhoFuncionario(indiceHorarioDeTrabalhoFuncionario);
+            
+            TelaUpdateFuncionario updateFuncionario = new TelaUpdateFuncionario(objAlterar);
+            updateFuncionario.setLocationRelativeTo(null);
+            updateFuncionario.setVisible(true);
+        }
+    }//GEN-LAST:event_btnAtualizarFuncionarioActionPerformed
+    
+    
+    /*  METODOS AUXILIARES */
+    
+    /**
+    * Configura o valor de um JComboBox com base em uma string e retorna o índice encontrado.
+    *
+    * @param comboBox O JComboBox a ser configurado.
+    * @param valor A string cujo índice correspondente deve ser encontrado e configurado no JComboBox.
+    * @return O índice encontrado da string no JComboBox. Retorna 0 se o valor não for encontrado.
+    */
+    public int valorCombobox(JComboBox<String> comboBox, String valor){
+        // Obtém o modelo do ComboBox
+        DefaultComboBoxModel<String> modeloCombo = (DefaultComboBoxModel<String>) comboBox.getModel();
+        // Itera sobre as opções do ComboBox para encontrar o índice correspondente à categoriaSelecionado
+        for (int i = 0; i < modeloCombo.getSize(); i++) {
+            if (modeloCombo.getElementAt(i).equals(valor)) {
+                // Define o item selecionado no ComboBox
+                comboBox.setSelectedIndex(i);
+                return i; // Retorna o índice encontrado
+            }
+        }
+        return 0; // Retorna 0 se o valor não for encontrado
+    }
     
     /**
     * Atualiza a tabela de produtos com as informações do banco de dados.
     *
-    * @param listaRetorno Um ArrayList contendo os dados do banco de dados.
-    * @param modelo A DefaultTableModel que define qual tabela será atualizada.
+    * listaRetorno Um ArrayList contendo os dados do banco de dados.
+    * modelo A DefaultTableModel que define qual tabela será atualizada.
     */
     public void atualizarTabelaProduto() {
         DefaultTableModel modelo = (DefaultTableModel) jtblProdutos.getModel();
@@ -1085,7 +1134,13 @@ public class TelaAdmin extends javax.swing.JFrame {
             });
         }
     }
-
+    
+    /**
+    * Atualiza a tabela de produtos com as informações do banco de dados.
+    *
+    * listaRetorno Um ArrayList contendo os dados do banco de dados.
+    * modelo A DefaultTableModel que define qual tabela será atualizada.
+    */
     public void atualizarTabelaFuncionario() {
         DefaultTableModel modelo = (DefaultTableModel) jtblFuncionarios.getModel();
         // Limpar todas as linhas da tabela
@@ -1099,8 +1154,12 @@ public class TelaAdmin extends javax.swing.JFrame {
             modelo.addRow(new String[]{
                     String.valueOf(item.getIdFuncionario()),
                     String.valueOf(item.getNome()),
-                    String.valueOf(item.getCargo()),
-                    String.valueOf(item.getPeriodo()),
+                    String.valueOf(item.getDataNascimento()),
+                    String.valueOf(item.getNomeSexo()),
+                    String.valueOf(item.getCpf()),
+                    String.valueOf(item.getNomeCargo()),
+                    String.valueOf(item.getSalario()),
+                    String.valueOf(item.getNomePeriodo())
             });
         }
     }
@@ -1112,7 +1171,21 @@ public class TelaAdmin extends javax.swing.JFrame {
         txtPreco.setText("");
         spnQuantidade.setValue(0);
     }
-
+    
+    /**
+    * Esta função valida um ComboBox, fornecendo uma maneira simplificada de verificar sua seleção
+    * sem duplicar código. Recebe a variável do ComboBox e imprime informações no console.
+    *
+    * @param cboxVariavel O valor do ComboBox a ser validado.
+    */
+    private void validarAlgoNoCbox(int cboxVariavel){
+        if (cboxVariavel > 0) {
+            // Faça algo com a variável idCategoriaProduto
+            System.out.println("Item selecionado: " + cboxVariavel);
+        } else {
+            System.out.println("Nenhuma item selecionado.");
+        }
+    }
     
     /**
      * @param args the command line arguments
@@ -1161,8 +1234,8 @@ public class TelaAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnExcluirFuncionario;
     private javax.swing.JButton btnGerarRelatorio;
-    private javax.swing.ButtonGroup buttonGroupSexo;
     private javax.swing.JComboBox<String> cboxCategoria;
+    private javax.swing.JComboBox<String> cboxSexoFuncionario;
     private javax.swing.JComboBox<String> cbxCargoFuncionario;
     private javax.swing.JComboBox<String> cbxCategoriaDeProduto;
     private javax.swing.JComboBox<String> cbxFiltrar;
@@ -1217,8 +1290,6 @@ public class TelaAdmin extends javax.swing.JFrame {
     private javax.swing.JTable jtblProdutos;
     private javax.swing.JMenuItem mnuSair;
     private javax.swing.JRadioButton rbtnAnaltico;
-    private javax.swing.JRadioButton rbtnFFuncionario;
-    private javax.swing.JRadioButton rbtnMFuncionario;
     private javax.swing.JRadioButton rbtnSintetico;
     private javax.swing.JSpinner spnQuantidade;
     private javax.swing.JTextField txtCodigoBuscar;
