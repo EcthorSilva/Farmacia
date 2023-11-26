@@ -656,18 +656,18 @@ public class TelaAdmin extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("ID do Funcionario:");
+        jLabel7.setText("CPF do Funcionario:");
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
-                .addGap(81, 81, 81)
+                .addGap(54, 54, 54)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(txtIdFuncionarioBuscar)
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addComponent(btnBuscarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66))
         );
