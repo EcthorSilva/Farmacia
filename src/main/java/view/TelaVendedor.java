@@ -9,6 +9,8 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
@@ -833,24 +835,17 @@ public class TelaVendedor extends javax.swing.JFrame {
             int idSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
             String nomeSelecionado = modelo.getValueAt(linhaSelecionada, 1).toString();
             String cpfSelecionado = modelo.getValueAt(linhaSelecionada, 2).toString();
-            int sexoSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 3).toString());
+            String sexoSelecionado = modelo.getValueAt(linhaSelecionada, 3).toString();
             String emailSelecionado = modelo.getValueAt(linhaSelecionada, 4).toString();
             String celularSelecionado = modelo.getValueAt(linhaSelecionada, 5).toString();
             
-            /*if(obj != null){
-            if (sexoSelecionado.equals("Masculino") ){
-                obj.setIdSexo(0);
-            } else if (sexoSelecionado.equals("Feminino") ){    
-                obj.setIdSexo(1);             
-            } else if (sexoSelecionado.equals("Outros") ){
-                obj.setIdSexo(2);             
-            }
-            }*/
-
-
-            Cliente objAlterar = new Cliente( idSelecionado,nomeSelecionado, cpfSelecionado, idSexo, emailSelecionado, celularSelecionado);
+            // Pega o indice do Cbox.
+            int indiceSexoCliente = valorCombobox(cBoxSexoCliente, sexoSelecionado);
             
-
+            Cliente objAlterar = new Cliente(idSelecionado, nomeSelecionado, cpfSelecionado, sexoSelecionado, emailSelecionado, celularSelecionado);
+            
+            objAlterar.setIndiceSexoCliente(indiceSexoCliente);
+                    
             TelaUpdateCliente updateCliente = new TelaUpdateCliente(objAlterar);
             updateCliente.setLocationRelativeTo(null);
             updateCliente.setVisible(true);
@@ -910,6 +905,21 @@ public class TelaVendedor extends javax.swing.JFrame {
             });
         }
     }
+    
+     public int valorCombobox(JComboBox<String> comboBox, String valor){
+        // Obtém o modelo do ComboBox
+        DefaultComboBoxModel<String> modeloCombo = (DefaultComboBoxModel<String>) comboBox.getModel();
+        // Itera sobre as opções do ComboBox para encontrar o índice correspondente à categoriaSelecionado
+        for (int i = 0; i < modeloCombo.getSize(); i++) {
+            if (modeloCombo.getElementAt(i).equals(valor)) {
+                // Define o item selecionado no ComboBox
+                comboBox.setSelectedIndex(i);
+                return i; // Retorna o índice encontrado
+            }
+        }
+        return 0; // Retorna 0 se o valor não for encontrado
+    }
+    
     /**
      * @param args the command line arguments
      */

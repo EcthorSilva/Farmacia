@@ -30,7 +30,7 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
                 // passar os valores do objeto para a tela
         lblIdCliente.setText(String.valueOf(obj.getIdCliente()));
         txtNomeClienteUpdate.setText(String.valueOf(obj.getNome()));
-        cBoxUpdateClienteSexo.setSelectedIndex(obj.getIdSexo());
+        cBoxUpdateClienteSexo.setSelectedIndex(obj.getIndiceSexoCliente());
         ftxtCPFClienteUpdate.setText(String.valueOf(obj.getCpf()));
         txtEmailClienteUpdate.setText(String.valueOf(obj.getEmail()));
         ftxtCelularClienteUpdate.setText(String.valueOf(obj.getCelular()));
