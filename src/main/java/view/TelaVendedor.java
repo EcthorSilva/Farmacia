@@ -9,6 +9,8 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
@@ -18,23 +20,23 @@ import util.TelaUtils;
  *
  * @author Ecthor
  */
-
-    /**
-    * Classe que representa a tela principal para o perfil de vendedor.
-    * 
-    * Esta tela permite a interação do vendedor com as informações de clientes,
-    * incluindo a visualização de uma tabela atualizada de clientes.
-    */   
+/**
+ * Classe que representa a tela principal para o perfil de vendedor.
+ *
+ * Esta tela permite a interação do vendedor com as informações de clientes,
+ * incluindo a visualização de uma tabela atualizada de clientes.
+ */
 public class TelaVendedor extends javax.swing.JFrame {
 
-      // recebe os dados de uma outra tela
+    // recebe os dados de uma outra tela
     Cliente obj = null;
-   /**
-   * Construtor da classe TelaVendedor.
-   * 
-   * Inicializa os componentes gráficos da tela, atualiza a tabela de clientes
-   * e configura a tela para não ser redimensionável.
-   */  
+
+    /**
+     * Construtor da classe TelaVendedor.
+     *
+     * Inicializa os componentes gráficos da tela, atualiza a tabela de clientes
+     * e configura a tela para não ser redimensionável.
+     */
     public TelaVendedor() {
         initComponents();
         atualizarTabelaCliente();
@@ -85,29 +87,25 @@ public class TelaVendedor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtNomeCompleto = new javax.swing.JTextField();
-        ftxtDataNascimento = new javax.swing.JFormattedTextField();
-        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         ftxtCPF = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
-        rbtnMasculino = new javax.swing.JRadioButton();
-        rbtnFeminino = new javax.swing.JRadioButton();
-        rbtnOutros = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         ftxtCelular = new javax.swing.JFormattedTextField();
         btnCadastrar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        cBoxSexoCliente = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
-        ftxtBuscaCpf = new javax.swing.JFormattedTextField();
+        txtBuscaCPFCliente = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCliente = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         mnuSair = new javax.swing.JMenuItem();
@@ -463,14 +461,6 @@ public class TelaVendedor extends javax.swing.JFrame {
             }
         });
 
-        try {
-            ftxtDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jLabel4.setText("Data de nascimento:");
-
         jLabel1.setText("CPF:");
 
         try {
@@ -480,20 +470,6 @@ public class TelaVendedor extends javax.swing.JFrame {
         }
 
         jLabel5.setText("Sexo:");
-
-        grupoSexo.add(rbtnMasculino);
-        rbtnMasculino.setText("Masculino");
-        rbtnMasculino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnMasculinoActionPerformed(evt);
-            }
-        });
-
-        grupoSexo.add(rbtnFeminino);
-        rbtnFeminino.setText("Feminino");
-
-        grupoSexo.add(rbtnOutros);
-        rbtnOutros.setText("Outros");
 
         jLabel2.setText("Email:");
 
@@ -519,32 +495,34 @@ public class TelaVendedor extends javax.swing.JFrame {
             }
         });
 
+        cBoxSexoCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Outros" }));
+        cBoxSexoCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cBoxSexoClienteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel5)))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ftxtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ftxtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(rbtnMasculino)
-                        .addGap(18, 18, 18)
-                        .addComponent(rbtnFeminino)
-                        .addGap(18, 18, 18)
-                        .addComponent(rbtnOutros))
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ftxtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ftxtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(cBoxSexoCliente, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ftxtCPF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
                 .addContainerGap(30, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(79, 79, 79)
@@ -561,19 +539,13 @@ public class TelaVendedor extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(txtNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(ftxtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(ftxtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(rbtnMasculino)
-                    .addComponent(rbtnFeminino)
-                    .addComponent(rbtnOutros))
+                    .addComponent(cBoxSexoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -582,7 +554,7 @@ public class TelaVendedor extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(ftxtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -591,23 +563,12 @@ public class TelaVendedor extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar Cliente"));
 
-        jLabel8.setText("CPF do Cliente:");
+        jLabel8.setText("Nome do Cliente:");
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
-            }
-        });
-
-        try {
-            ftxtBuscaCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        ftxtBuscaCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ftxtBuscaCpfActionPerformed(evt);
             }
         });
 
@@ -618,10 +579,10 @@ public class TelaVendedor extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtBuscaCPFCliente)
                 .addGap(18, 18, 18)
-                .addComponent(ftxtBuscaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
         jPanel3Layout.setVerticalGroup(
@@ -631,7 +592,7 @@ public class TelaVendedor extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(ftxtBuscaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBuscaCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -642,22 +603,22 @@ public class TelaVendedor extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nome", "Data de Nascimento", "CPF", "Sexo", "Email", "Celular"
+                "ID", "Nome", "CPF", "Sexo", "Email", "Telefone"
             }
         ));
         jScrollPane2.setViewportView(tblCliente);
 
-        jButton1.setText("Alterar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAlterarActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Excluir");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -668,9 +629,9 @@ public class TelaVendedor extends javax.swing.JFrame {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(85, 85, 85)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
         );
         jPanel4Layout.setVerticalGroup(
@@ -679,8 +640,8 @@ public class TelaVendedor extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 33, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
         );
 
@@ -746,47 +707,39 @@ public class TelaVendedor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rbtnMasculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMasculinoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbtnMasculinoActionPerformed
-    public String dataNascimento;
-    
+
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-         if(obj == null){
+        if (obj == null) {
             // Resgatar dados da interface e passar para o objeto
             String nomeCompleto = txtNomeCompleto.getText();
-            String dataNascimento = ftxtDataNascimento.getText();
             String cpf = ftxtCPF.getText();
-            String sexoSelecionado;
-                if (rbtnMasculino.isSelected()) {
-                    sexoSelecionado = "Masculino";
-                } else if (rbtnFeminino.isSelected()) {
-                    sexoSelecionado = "Feminino";
-                } else if (rbtnOutros.isSelected()) {
-                    sexoSelecionado = "Outros";
-                } else {
-                    sexoSelecionado = "Nenhum selecionado";
-}
+            int sexoSelecionado = cBoxSexoCliente.getSelectedIndex() + 1;
+
+            if (sexoSelecionado > 0) {
+                System.out.println("ID do Sexo selecionado: " + sexoSelecionado);
+            } else {
+                System.out.println("Nenhum sexo selecionado");
+            }
+
             String email = txtEmail.getText();
             String celular = ftxtCelular.getText();
-            
-            String dataSql = converterDataParaSQL(dataNascimento);
-            
-            Cliente novoCliente = new Cliente(nomeCompleto, dataSql, cpf, sexoSelecionado, email, celular );
-            
+            String celularFormat = celular.replaceAll("[^\\d]", "");
+
+            Cliente novoCliente = new Cliente(nomeCompleto, cpf, sexoSelecionado, email, celularFormat);
+
             // Mandar o objeto pra a classe DAO
             boolean retorno = ClienteDAO.salvar(novoCliente);
-            
-            if (retorno == true){
+
+            if (retorno == true) {
                 JOptionPane.showMessageDialog(rootPane, "Sucesso! Cliente cadastrado: " + novoCliente.getIdCliente());
                 limparCampos();
                 atualizarTabelaCliente();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Não foi possivel cadastrar o Cliente. Tente Novamente!");
                 limparCampos();
                 atualizarTabelaCliente();
             }
-         }
+        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
 
@@ -811,82 +764,89 @@ public class TelaVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-            if(ftxtBuscaCpf.getText().trim().equals(" ")){
+        if (txtBuscaCPFCliente.getText().trim().equals("")) {
             atualizarTabelaCliente();
-        }else{
-            try{
-                String cpf = ftxtBuscaCpf.getText();
+        } else {
+            try {
+                String cpf = txtBuscaCPFCliente.getText();
 
-                // Chamar a DAO para filtrar pelo ID do produto
-                ArrayList<Cliente> clientes = ClienteDAO.buscarPorCpf(cpf);
+                // Remover caracteres não numéricos
+                cpf = cpf.replaceAll("[^0-9]", "");
 
-                DefaultTableModel modelo = (DefaultTableModel) tblCliente.getModel();
-                modelo.setRowCount(0);
+                // Verificar se o CPF possui 11 dígitos
+                if (cpf.length() == 11) {
+                    // Formatar o CPF
+                    cpf = String.format("%s.%s.%s-%s", cpf.substring(0, 3), cpf.substring(3, 6), cpf.substring(6, 9), cpf.substring(9, 11));
 
-                if (clientes.isEmpty()) {
-                    JOptionPane.showMessageDialog(rootPane, "Cliente com CPF " + cpf + " não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    for (Cliente cliente : clientes) {
-                        modelo.addRow(new String[]{
-                    String.valueOf(cliente.getIdCliente()),
-                    String.valueOf(cliente.getNome()),
-                    String.valueOf(cliente.getDataNascimento()),
-                    String.valueOf(cliente.getCpf()),
-                    String.valueOf(cliente.getSexo()),
-                    String.valueOf(cliente.getEmail()),
-                    String.valueOf(cliente.getCelular()),
-                        });
+                    // Chamar a DAO para filtrar pelo ID do produto
+                    ArrayList<Cliente> clientes = ClienteDAO.buscarPorCPF(cpf);
+
+                    DefaultTableModel modelo = (DefaultTableModel) tblCliente.getModel();
+                    modelo.setRowCount(0);
+
+                    if (clientes.isEmpty()) {
+                        JOptionPane.showMessageDialog(rootPane, "O cliente com o CPF " + cpf + " não foi encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        for (Cliente cliente : clientes) {
+                            modelo.addRow(new String[]{
+                                String.valueOf(cliente.getIdCliente()),
+                                String.valueOf(cliente.getNome()),
+                                String.valueOf(cliente.getCpf()),
+                                String.valueOf(cliente.getSexoString()),
+                                String.valueOf(cliente.getEmail()),
+                                String.valueOf(cliente.getCelular())
+                            });
+                        }
                     }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Informe um CPF válido.", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
+
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(rootPane, "Informe um CPF válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "Informe um nome válido.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
-        ftxtBuscaCpf.setText("");
+        txtBuscaCPFCliente.setText("");
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         int opcao = JOptionPane.showConfirmDialog(rootPane, "Tem certeza disso?", "Atenção", JOptionPane.YES_NO_OPTION);
-       
-        if(opcao == JOptionPane.YES_OPTION){
-        limparCampos();
+
+        if (opcao == JOptionPane.YES_OPTION) {
+            limparCampos();
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void ftxtBuscaCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxtBuscaCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ftxtBuscaCpfActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        
-         int linhaSelecionada = tblCliente.getSelectedRow();
-        
-        // 2 - acessar a camada model da tabela
-        DefaultTableModel modelo = (DefaultTableModel)tblCliente.getModel();
-        
-        // 3 - resgatar valores da linha selecionada
-        int idSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
-        
-        int option = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja excluir o produto selecionado?", "Atenção", JOptionPane.YES_NO_OPTION);
-                
-                if(option == JOptionPane.YES_OPTION){
-                    boolean retorno = ClienteDAO.excluir(idSelecionado);
-                    
-                    if (retorno) {
-                        JOptionPane.showMessageDialog(rootPane, "Produto excluído com sucesso!");
-                    } else {
-                        JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir o produto selecionado.", "Erro", JOptionPane.ERROR_MESSAGE);
-                    }
-                }else {
-                    JOptionPane.showMessageDialog(rootPane, "Exclusão cancelada.");
-                }
-                atualizarTabelaCliente();
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // 1 - Passo Resgatar a linha e mandar para um objeto
         int linhaSelecionada = tblCliente.getSelectedRow();
 
+        // 2 - acessar a camada model da tabela
+        DefaultTableModel modelo = (DefaultTableModel) tblCliente.getModel();
+
+        // 3 - resgatar valores da linha selecionada
+        int idSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
+
+        int option = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja excluir o produto selecionado?", "Atenção", JOptionPane.YES_NO_OPTION);
+
+        if (option == JOptionPane.YES_OPTION) {
+            boolean retorno = ClienteDAO.excluir(idSelecionado);
+
+            if (retorno) {
+                JOptionPane.showMessageDialog(rootPane, "Produto excluído com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir o produto selecionado.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Exclusão cancelada.");
+        }
+        atualizarTabelaCliente();
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // 1 - Passo Resgatar a linha e mandar para um objeto
+        int linhaSelecionada = tblCliente.getSelectedRow();
+        int idSexo = 0;
         // Verificar se alguma linha está selecionada
         if (linhaSelecionada == -1) {
             // Nenhuma linha selecionada, executar a função para atualizar a tabela
@@ -897,38 +857,47 @@ public class TelaVendedor extends javax.swing.JFrame {
 
             // 3 - resgatar valores da linha selecionada
             int idSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
-            String nomeSelecionado = modelo.getValueAt(linhaSelecionada, 2).toString();
-            String dataSelecionada = modelo.getValueAt(linhaSelecionada, 2).toString();
-            String cpfSelecionado = modelo.getValueAt(linhaSelecionada, 3).toString();
-            String sexoSelecionado = modelo.getValueAt(linhaSelecionada, 4).toString();
-            String emailSelecionado = modelo.getValueAt(linhaSelecionada, 5).toString();
-            String celularSelecionado = modelo.getValueAt(linhaSelecionada, 6).toString();
+            String nomeSelecionado = modelo.getValueAt(linhaSelecionada, 1).toString();
+            String cpfSelecionado = modelo.getValueAt(linhaSelecionada, 2).toString();
+            String sexoSelecionado = modelo.getValueAt(linhaSelecionada, 3).toString();
+            String emailSelecionado = modelo.getValueAt(linhaSelecionada, 4).toString();
+            String celularSelecionado = modelo.getValueAt(linhaSelecionada, 5).toString();
 
+            // Pega o indice do Cbox.
+            int indiceSexoCliente = valorCombobox(cBoxSexoCliente, sexoSelecionado);
 
-            Cliente objAlterar = new Cliente(nomeSelecionado, dataSelecionada, cpfSelecionado, sexoSelecionado, emailSelecionado, celularSelecionado);
-            
+            Cliente objAlterar = new Cliente(idSelecionado, nomeSelecionado, cpfSelecionado, sexoSelecionado, emailSelecionado, celularSelecionado);
+
+            objAlterar.setIndiceSexoCliente(indiceSexoCliente);
 
             TelaUpdateCliente updateCliente = new TelaUpdateCliente(objAlterar);
             updateCliente.setLocationRelativeTo(null);
             updateCliente.setVisible(true);
-            }
-    }//GEN-LAST:event_jButton1ActionPerformed
-    
-        private void limparCampos() {
+        }
+        atualizarTabelaCliente();
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void cBoxSexoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBoxSexoClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cBoxSexoClienteActionPerformed
+
+    private void limparCampos() {
         txtNomeCompleto.setText("");
-        ftxtDataNascimento.setText("");
         ftxtCPF.setText("");
-        grupoSexo.clearSelection();
+        cBoxSexoCliente.setSelectedIndex(0);
         txtEmail.setText("");
         ftxtCelular.setText("");
     }
-        /**
-        * Método estático que converte uma data do formato brasileiro (dd/MM/yyyy) para o formato SQL (yyyy-MM-dd).
-        * 
-        * @param dataBrasileira String contendo a data no formato brasileiro.
-        * @return String contendo a data formatada no formato SQL, ou null em caso de erro.
-        */
-         public static String converterDataParaSQL(String dataBrasileira) {
+
+    /**
+     * Método estático que converte uma data do formato brasileiro (dd/MM/yyyy)
+     * para o formato SQL (yyyy-MM-dd).
+     *
+     * @param dataBrasileira String contendo a data no formato brasileiro.
+     * @return String contendo a data formatada no formato SQL, ou null em caso
+     * de erro.
+     */
+    public static String converterDataParaSQL(String dataBrasileira) {
         try {
             // Criando um objeto SimpleDateFormat para o formato brasileiro
             SimpleDateFormat formatoBrasileiro = new SimpleDateFormat("dd/MM/yyyy");
@@ -948,14 +917,16 @@ public class TelaVendedor extends javax.swing.JFrame {
             return null; // Retorna null em caso de erro de conversão
         }
     }
-        /**
-        * Atualiza a tabela de clientes na interface gráfica.
-        * 
-        * Obtém a lista atualizada de clientes a partir do banco de dados e popula
-        * a tabela com as informações necessárias, como ID, nome, data de nascimento,
-        * CPF, sexo, e-mail e celular.
-        */
-          public void atualizarTabelaCliente() {
+
+    /**
+     * Atualiza a tabela de clientes na interface gráfica.
+     *
+     * Obtém a lista atualizada de clientes a partir do banco de dados e popula
+     * a tabela com as informações necessárias, como ID, nome, data de
+     * nascimento, CPF, sexo, e-mail e celular.
+     */
+
+    public void atualizarTabelaCliente() {
         DefaultTableModel modelo = (DefaultTableModel) tblCliente.getModel();
         // Limpar todas as linhas da tabela
         modelo.setRowCount(0);
@@ -966,23 +937,38 @@ public class TelaVendedor extends javax.swing.JFrame {
         // Para cada item na lista, vou adicionar na tabela
         for (Cliente item : listaRetorno) {
             modelo.addRow(new String[]{
-                    String.valueOf(item.getIdCliente()),
-                    String.valueOf(item.getNome()),
-                    String.valueOf(item.getDataNascimento()),
-                    String.valueOf(item.getCpf()),
-                    String.valueOf(item.getSexo()),
-                    String.valueOf(item.getEmail()),
-                    String.valueOf(item.getCelular())
+                String.valueOf(item.getIdCliente()),
+                String.valueOf(item.getNome()),
+                String.valueOf(item.getCpf()),
+                String.valueOf(item.getSexoString()),
+                String.valueOf(item.getEmail()),
+                String.valueOf(item.getCelular())
             });
         }
     }
+
+    public int valorCombobox(JComboBox<String> comboBox, String valor) {
+        // Obtém o modelo do ComboBox
+        DefaultComboBoxModel<String> modeloCombo = (DefaultComboBoxModel<String>) comboBox.getModel();
+        // Itera sobre as opções do ComboBox para encontrar o índice correspondente à categoriaSelecionado
+        for (int i = 0; i < modeloCombo.getSize(); i++) {
+            if (modeloCombo.getElementAt(i).equals(valor)) {
+                // Define o item selecionado no ComboBox
+                comboBox.setSelectedIndex(i);
+                return i; // Retorna o índice encontrado
+            }
+        }
+        return 0; // Retorna 0 se o valor não for encontrado
+    }
+
     /**
-    * Método main da classe TelaVendedor.
-    * Configura o visual da interface gráfica com o Look and Feel Nimbus e
-    * inicializa a aplicação, tornando a tela visível para o usuário.
-    * 
-    * @param args Argumentos da linha de comando (não são utilizados neste caso).
-    */
+     * Método main da classe TelaVendedor. Configura o visual da interface
+     * gráfica com o Look and Feel Nimbus e inicializa a aplicação, tornando a
+     * tela visível para o usuário.
+     *
+     * @param args Argumentos da linha de comando (não são utilizados neste
+     * caso).
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1015,31 +1001,30 @@ public class TelaVendedor extends javax.swing.JFrame {
         });
     }
     /**
-    * Classe que representa a interface gráfica da aplicação.
-    * Contém componentes como botões, campos de texto e tabelas para interação do usuário.
-    * As funcionalidades específicas de cada componente estão implementadas nos métodos correspondentes.
-    */
+     * Classe que representa a interface gráfica da aplicação. Contém
+     * componentes como botões, campos de texto e tabelas para interação do
+     * usuário. As funcionalidades específicas de cada componente estão
+     * implementadas nos métodos correspondentes.
+     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JFormattedTextField ftxtBuscaCpf;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JComboBox<String> cBoxSexoCliente;
     private javax.swing.JFormattedTextField ftxtCPF;
     private javax.swing.JFormattedTextField ftxtCPFCliente;
     private javax.swing.JFormattedTextField ftxtCelular;
-    private javax.swing.JFormattedTextField ftxtDataNascimento;
     private javax.swing.ButtonGroup grupoSexo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
@@ -1074,10 +1059,8 @@ public class TelaVendedor extends javax.swing.JFrame {
     private javax.swing.JPanel pnlValUni;
     private javax.swing.JPanel pnlVendas;
     private javax.swing.JPanel pnlVendedor;
-    private javax.swing.JRadioButton rbtnFeminino;
-    private javax.swing.JRadioButton rbtnMasculino;
-    private javax.swing.JRadioButton rbtnOutros;
     private javax.swing.JTable tblCliente;
+    private javax.swing.JTextField txtBuscaCPFCliente;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNomeCompleto;
     // End of variables declaration//GEN-END:variables

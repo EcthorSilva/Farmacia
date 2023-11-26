@@ -5,38 +5,61 @@ package model;
  * @author Ectho
  */
 public class Cliente {
+
     private int idCliente;
     private String nome;
-    private String dataNascimento;
     private String cpf;
-    private String sexo;
+    private int sexo;
+    private int idSexo;
+    private String sexoString;
     private String email;
     private String celular;
-    
+
+    private int indiceSexoCliente;
+
     // Construtor Vazio
     public Cliente() {
-        
+
     }
+
     // Construtor sem o ID do Cliente
-    public Cliente(String nome, String dataNascimento, String cpf, String sexo, String email, String celular) {
+    public Cliente(String nome, String cpf, int sexo, String email, String celular) {
         this.nome = nome;
-        this.dataNascimento = dataNascimento;
         this.cpf = cpf;
         this.sexo = sexo;
         this.email = email;
         this.celular = celular;
     }
+
     // Construtor com o ID do Cliente
-    public Cliente(int idCliente, String nome, String dataNascimento, String cpf, String sexo, String email, String celular) {
+    public Cliente(int idCliente, String nome, String cpf, int sexo, String email, String celular) {
         this.idCliente = idCliente;
         this.nome = nome;
-        this.dataNascimento = dataNascimento;
         this.cpf = cpf;
         this.sexo = sexo;
         this.email = email;
         this.celular = celular;
     }
-    
+
+    // Construtor para a função LISTAR da ClienteDAO
+    public Cliente(int idCliente, String nome, String cpf, String sexo, String email, String celular) {
+        this.idCliente = idCliente;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.sexoString = sexo;
+        this.email = email;
+        this.celular = celular;
+    }
+
+    public Cliente(int idCliente, String nome, String cpf, String email, String celular, int idSexo) {
+        this.idCliente = idCliente;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.idSexo = idSexo;
+        this.email = email;
+        this.celular = celular;
+    }
+
     // Getters e Setters
     public int getIdCliente() {
         return idCliente;
@@ -54,14 +77,6 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public String getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
     public String getCpf() {
         return cpf;
     }
@@ -70,11 +85,11 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public String getSexo() {
+    public int getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(int sexo) {
         this.sexo = sexo;
     }
 
@@ -92,5 +107,29 @@ public class Cliente {
 
     public void setCelular(String celular) {
         this.celular = celular;
+    }
+
+    public String getSexoString() {
+        return sexoString;
+    }
+
+    public void setSexoString(String sexoString) {
+        this.sexoString = sexoString;
+    }
+
+    public int getIdSexo() {
+        return idSexo;
+    }
+
+    public void setIdSexo(int idSexo) {
+        this.idSexo = idSexo;
+    }
+
+    public int getIndiceSexoCliente() {
+        return indiceSexoCliente;
+    }
+
+    public void setIndiceSexoCliente(int indiceSexoCliente) {
+        this.indiceSexoCliente = indiceSexoCliente;
     }
 }

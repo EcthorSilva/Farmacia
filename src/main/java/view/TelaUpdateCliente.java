@@ -4,50 +4,50 @@
  */
 package view;
 
+import dao.ClienteDAO;
 import javax.swing.ButtonModel;
+import javax.swing.JOptionPane;
 import model.Cliente;
 
 /**
  * Classe que representa a tela de atualização de dados do cliente.
- * 
+ *
  * Esta tela permite a modificação de informações associadas a um cliente,
  * utilizando campos de entrada e outros componentes gráficos.
- * 
+ *
  * A instância da classe Cliente associada a esta tela é inicializada como null
  * e posteriormente pode ser referenciada para a realização das atualizações.
  */
-
 public class TelaUpdateCliente extends javax.swing.JFrame {
 
-   Cliente obj = null;
-   
-   /**
-     * Construtor da classe. Inicializa os componentes gráficos e configura
-     * a tela para não ser redimensionável.
+    Cliente obj = null;
+
+    /**
+     * Construtor da classe. Inicializa os componentes gráficos e configura a
+     * tela para não ser redimensionável.
      */
-    
     public TelaUpdateCliente() {
         initComponents();
         setResizable(false);
     }
-   
+
     /**
-     * Construtor da classe que recebe um objeto Cliente a ser alterado e inicializa
-     * os componentes gráficos da tela. Configura a tela para não ser redimensionável.
-     * 
+     * Construtor da classe que recebe um objeto Cliente a ser alterado e
+     * inicializa os componentes gráficos da tela. Configura a tela para não ser
+     * redimensionável.
+     *
      * @param objAlterar Objeto Cliente a ser modificado.
      */
-    public TelaUpdateCliente(Cliente objAlterar){
+    public TelaUpdateCliente(Cliente objAlterar) {
         initComponents();
         setResizable(false);
-    
-        
-            this.obj = objAlterar;
-            
-                // passar os valores do objeto para a tela
+
+        this.obj = objAlterar;
+
+        // passar os valores do objeto para a tela
         lblIdCliente.setText(String.valueOf(obj.getIdCliente()));
         txtNomeClienteUpdate.setText(String.valueOf(obj.getNome()));
-        ftxtDataNascimentoClienteUpdate.setText(String.valueOf(obj.getDataNascimento()));
+        cBoxUpdateClienteSexo.setSelectedIndex(obj.getIndiceSexoCliente());
         ftxtCPFClienteUpdate.setText(String.valueOf(obj.getCpf()));
         txtEmailClienteUpdate.setText(String.valueOf(obj.getEmail()));
         ftxtCelularClienteUpdate.setText(String.valueOf(obj.getCelular()));
@@ -63,26 +63,21 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField2 = new javax.swing.JTextField();
-        groupUpdateCliente = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         lblComum = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtNomeClienteUpdate = new javax.swing.JTextField();
-        ftxtDataNascimentoClienteUpdate = new javax.swing.JFormattedTextField();
         ftxtCPFClienteUpdate = new javax.swing.JFormattedTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
         txtEmailClienteUpdate = new javax.swing.JTextField();
         ftxtCelularClienteUpdate = new javax.swing.JFormattedTextField();
         btnGravarClienteUpdate = new javax.swing.JButton();
         btnCancelarClienteUptade = new javax.swing.JButton();
         lblIdCliente = new javax.swing.JLabel();
+        cBoxUpdateClienteSexo = new javax.swing.JComboBox<>();
 
         jTextField2.setText("jTextField2");
 
@@ -91,8 +86,6 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
         lblComum.setText("ID:");
 
         jLabel1.setText("Nome:");
-
-        jLabel2.setText("Data de Nascimento:");
 
         jLabel3.setText("Cpf:");
 
@@ -103,30 +96,10 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
         jLabel6.setText("Celular");
 
         try {
-            ftxtDataNascimentoClienteUpdate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####/##/##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
             ftxtCPFClienteUpdate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-
-        groupUpdateCliente.add(jRadioButton1);
-        jRadioButton1.setText("Masculino");
-
-        groupUpdateCliente.add(jRadioButton2);
-        jRadioButton2.setText("Feminino");
-
-        groupUpdateCliente.add(jRadioButton3);
-        jRadioButton3.setText("Outros");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
-            }
-        });
 
         try {
             ftxtCelularClienteUpdate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) # #### - ####")));
@@ -142,6 +115,15 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
         });
 
         btnCancelarClienteUptade.setText("Cancelar");
+        btnCancelarClienteUptade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarClienteUptadeActionPerformed(evt);
+            }
+        });
+
+        lblIdCliente.setText("0");
+
+        cBoxUpdateClienteSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Outros" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -151,45 +133,34 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNomeClienteUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblComum, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel4))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(8, 8, 8)
+                                            .addComponent(jLabel5))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEmailClienteUpdate))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ftxtCPFClienteUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ftxtDataNascimentoClienteUpdate))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton1)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(jRadioButton2)))
-                                .addGap(40, 40, 40)
-                                .addComponent(jRadioButton3)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtEmailClienteUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNomeClienteUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(cBoxUpdateClienteSexo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(ftxtCPFClienteUpdate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                                    .addComponent(ftxtCelularClienteUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(131, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ftxtCelularClienteUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnGravarClienteUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(63, 63, 63)
+                        .addComponent(btnGravarClienteUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                         .addComponent(btnCancelarClienteUptade, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(93, 93, 93))))
@@ -205,20 +176,14 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtNomeClienteUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(ftxtDataNascimentoClienteUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(ftxtCPFClienteUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
+                    .addComponent(cBoxUpdateClienteSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -227,7 +192,7 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(ftxtCelularClienteUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGravarClienteUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarClienteUptade, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -254,13 +219,33 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
-
     private void btnGravarClienteUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarClienteUpdateActionPerformed
-        
+        String nomeClienteUp = txtNomeClienteUpdate.getText();
+        String cpfClienteUp = ftxtCPFClienteUpdate.getText();
+        int idSexoUp = cBoxUpdateClienteSexo.getSelectedIndex() + 1;
+        String emailClienteUp = txtEmailClienteUpdate.getText();
+        String celularClienteUp = ftxtCelularClienteUpdate.getText();
+
+        obj.setNome(nomeClienteUp);
+        obj.setCpf(cpfClienteUp);
+        obj.setSexo(idSexoUp);
+        obj.setEmail(emailClienteUp);
+        obj.setCelular(celularClienteUp);
+
+        boolean retorno = ClienteDAO.alterar(obj);
+
+        if (retorno) {
+            JOptionPane.showMessageDialog(rootPane, "Sucesso! Cliente atualizado.");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Não foi possivel atualizar o cliente. Tente Novamente!");
+        }
+
+        this.dispose();
     }//GEN-LAST:event_btnGravarClienteUpdateActionPerformed
+
+    private void btnCancelarClienteUptadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClienteUptadeActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarClienteUptadeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,33 +281,30 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
             }
         });
     }
+
     /**
-    * Classe que representa a tela de atualização de dados do cliente.
-    * 
-    * Esta tela permite a modificação de informações associadas a um cliente,
-    * utilizando campos de entrada e outros componentes gráficos.
-    * 
-    * Os componentes gráficos incluem botões para cancelar e gravar as alterações,
-    * campos de texto formatado para CPF, celular e data de nascimento, um grupo de
-    * botões de rádio, rótulos descritivos, e campos de texto para nome e e-mail.
-    */
+     * Classe que representa a tela de atualização de dados do cliente.
+     *
+     * Esta tela permite a modificação de informações associadas a um cliente,
+     * utilizando campos de entrada e outros componentes gráficos.
+     *
+     * Os componentes gráficos incluem botões para cancelar e gravar as
+     * alterações, campos de texto formatado para CPF, celular e data de
+     * nascimento, um grupo de botões de rádio, rótulos descritivos, e campos de
+     * texto para nome e e-mail.
+     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarClienteUptade;
     private javax.swing.JButton btnGravarClienteUpdate;
+    private javax.swing.JComboBox<String> cBoxUpdateClienteSexo;
     private javax.swing.JFormattedTextField ftxtCPFClienteUpdate;
     private javax.swing.JFormattedTextField ftxtCelularClienteUpdate;
-    private javax.swing.JFormattedTextField ftxtDataNascimentoClienteUpdate;
-    private javax.swing.ButtonGroup groupUpdateCliente;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblComum;
     private javax.swing.JLabel lblIdCliente;

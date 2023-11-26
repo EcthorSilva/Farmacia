@@ -714,29 +714,25 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="ftxtDataNascimento" min="-2" pref="100" max="-2" attributes="0"/>
                               <Component id="txtNomeCompleto" min="-2" pref="250" max="-2" attributes="0"/>
-                              <Component id="ftxtCPF" min="-2" pref="100" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="rbtnMasculino" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="rbtnFeminino" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="rbtnOutros" min="-2" max="-2" attributes="0"/>
-                              </Group>
                               <Component id="txtEmail" min="-2" pref="250" max="-2" attributes="0"/>
                               <Component id="ftxtCelular" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="cBoxSexoCliente" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ftxtCPF" alignment="0" pref="100" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace pref="30" max="32767" attributes="0"/>
                       </Group>
@@ -758,11 +754,6 @@
                               <Component id="txtNomeCompleto" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <Component id="ftxtDataNascimento" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="ftxtCPF" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -770,9 +761,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="rbtnMasculino" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="rbtnFeminino" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="rbtnOutros" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cBoxSexoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -784,7 +773,7 @@
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="ftxtCelular" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="42" max="32767" attributes="0"/>
+                          <EmptySpace pref="82" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnCadastrar" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="btnCancelar" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
@@ -805,18 +794,6 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomeCompletoActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="ftxtDataNascimento">
-                  <Properties>
-                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                      <Format format="##/##/####" subtype="-1" type="5"/>
-                    </Property>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel4">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Data de nascimento:"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="CPF:"/>
@@ -832,33 +809,6 @@
                 <Component class="javax.swing.JLabel" name="jLabel5">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Sexo:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JRadioButton" name="rbtnMasculino">
-                  <Properties>
-                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                      <ComponentRef name="grupoSexo"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Masculino"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnMasculinoActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JRadioButton" name="rbtnFeminino">
-                  <Properties>
-                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                      <ComponentRef name="grupoSexo"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Feminino"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JRadioButton" name="rbtnOutros">
-                  <Properties>
-                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                      <ComponentRef name="grupoSexo"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Outros"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel2">
@@ -896,6 +846,23 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="javax.swing.JComboBox" name="cBoxSexoCliente">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="3">
+                        <StringItem index="0" value="Masculino"/>
+                        <StringItem index="1" value="Feminino"/>
+                        <StringItem index="2" value="Outros"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cBoxSexoClienteActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel3">
@@ -913,10 +880,10 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="txtBuscaCPFCliente" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="ftxtBuscaCpf" min="-2" pref="116" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btnBuscar" min="-2" pref="136" max="-2" attributes="0"/>
+                          <Component id="btnBuscar" min="-2" pref="100" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -928,7 +895,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnBuscar" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="ftxtBuscaCpf" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtBuscaCPFCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="27" max="32767" attributes="0"/>
                       </Group>
@@ -938,7 +905,7 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="CPF do Cliente:"/>
+                    <Property name="text" type="java.lang.String" value="Nome do Cliente:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnBuscar">
@@ -949,15 +916,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="ftxtBuscaCpf">
-                  <Properties>
-                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                      <Format format="###.###.###-##" subtype="-1" type="5"/>
-                    </Property>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ftxtBuscaCpfActionPerformed"/>
-                  </Events>
+                <Component class="javax.swing.JTextField" name="txtBuscaCPFCliente">
                 </Component>
               </SubComponents>
             </Container>
@@ -976,9 +935,9 @@
                       <Component id="jScrollPane2" alignment="0" pref="514" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="btnAlterar" min="-2" pref="120" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton5" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="btnExcluir" min="-2" pref="120" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -989,8 +948,8 @@
                           <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" pref="33" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButton5" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
-                              <Component id="jButton1" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
+                              <Component id="btnExcluir" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
+                              <Component id="btnAlterar" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       </Group>
@@ -1008,34 +967,33 @@
                     <Component class="javax.swing.JTable" name="tblCliente">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="7" rowCount="0">
+                          <Table columnCount="6" rowCount="0">
                             <Column editable="true" title="ID" type="java.lang.Object"/>
                             <Column editable="true" title="Nome" type="java.lang.Object"/>
-                            <Column editable="true" title="Data de Nascimento" type="java.lang.Object"/>
                             <Column editable="true" title="CPF" type="java.lang.Object"/>
                             <Column editable="true" title="Sexo" type="java.lang.Object"/>
                             <Column editable="true" title="Email" type="java.lang.Object"/>
-                            <Column editable="true" title="Celular" type="java.lang.Object"/>
+                            <Column editable="true" title="Telefone" type="java.lang.Object"/>
                           </Table>
                         </Property>
                       </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="btnAlterar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Alterar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlterarActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton5">
+                <Component class="javax.swing.JButton" name="btnExcluir">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Excluir"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

@@ -47,7 +47,7 @@ public class Funcionario {
         this.salario = salario;
         this.periodo = periodo;
     }
-
+    // Construtor para a função LISTAR da FuncionarioDAO
     public Funcionario(int idFuncionario, String nome, String dataNascimento, String nomeSexo, String cpf, String nomeCargo, double salario, String nomePeriodo) {
         this.idFuncionario = idFuncionario;
         this.nome = nome;

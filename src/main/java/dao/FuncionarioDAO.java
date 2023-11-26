@@ -257,6 +257,7 @@ public class FuncionarioDAO {
         
         return retorno;
     }
+
     
     /**
     * Busca funcionários no banco de dados com base no CPF fornecido.
@@ -265,6 +266,9 @@ public class FuncionarioDAO {
     * @return Uma ArrayList de objetos Funcionario que correspondem ao CPF, ou null em caso de erro.
     */
     // TODO: SEARCH
+
+    // SEARCH
+
     public static ArrayList<Funcionario> buscarPorCPF(String cpf) {
         ArrayList<Funcionario> lista = new ArrayList<>();
     

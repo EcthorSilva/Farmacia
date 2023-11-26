@@ -16,19 +16,20 @@ import model.Produto;
  * @author Ectho
  */
 public class TelaAdmin extends javax.swing.JFrame {
+
     // recebe os dados de uma outra tela
     Produto obj = null;
-    
+
     public TelaAdmin() {
         initComponents();
 
         //setSize(1000, 600);
         setResizable(false);
-        
+
         atualizarTabelaProduto();
         atualizarTabelaFuncionario();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -172,33 +173,36 @@ public class TelaAdmin extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel7Layout.createSequentialGroup()
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtNomeProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                                .addComponent(txtFabricante)
-                                .addComponent(cboxCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(spnQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel7Layout.createSequentialGroup()
-                            .addGap(52, 52, 52)
-                            .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addContainerGap(85, Short.MAX_VALUE)
+                        .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(211, 211, 211))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addContainerGap(296, Short.MAX_VALUE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(79, 79, 79))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtNomeProduto)
+                    .addComponent(txtFabricante)
+                    .addComponent(cboxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -218,7 +222,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(spnQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(66, 66, 66)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -243,12 +247,12 @@ public class TelaAdmin extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(9, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -269,26 +273,23 @@ public class TelaAdmin extends javax.swing.JFrame {
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(206, 206, 206)
-                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(29, 29, 29)
                 .addComponent(txtCodigoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodigoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24))
-                .addGap(18, 18, 18)
-                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24)
+                    .addComponent(txtCodigoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar Produto"));
@@ -313,7 +314,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,17 +340,17 @@ public class TelaAdmin extends javax.swing.JFrame {
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -365,9 +366,9 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -377,15 +378,16 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(12, 12, 12)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -586,7 +588,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Excluir Vendedor"));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Excluir Funcionario"));
 
         jLabel5.setText("Código do funcionario:");
 
@@ -849,14 +851,13 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelarRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                            .addComponent(btnCancelarRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -900,7 +901,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxCargoFuncionarioActionPerformed
 
     private void btnCancelar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar2ActionPerformed
-        // TODO add your handling code here:
+        limparCamposFuncionarios();
     }//GEN-LAST:event_btnCancelar2ActionPerformed
 
     private void txtNomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeProdutoActionPerformed
@@ -908,7 +909,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeProdutoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        limparCampos();
+        limparCamposProdutos();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoActionPerformed
@@ -920,70 +921,70 @@ public class TelaAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGerarRelatorioActionPerformed
 
     private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
-        if(obj == null){
+        if (obj == null) {
             // Resgatar dados da interface e passar para o objeto
             String nomeProduto = txtNomeProduto.getText();
             int idCategoria = cboxCategoria.getSelectedIndex() + 1; // Adicionar 1 para corresponder aos IDs (que começam em 1)
             String fabricante = txtFabricante.getText();
             double preco = Double.parseDouble(txtPreco.getText());
             int quantidade = (int) spnQuantidade.getValue();
-            
+
             // Verificar se a categoria não é nula antes de usar
             validarAlgoNoCbox(idCategoria);
-            
+
             Produto novoProduto = new Produto(nomeProduto, idCategoria, fabricante, preco, quantidade);
-            
+
             // Mandar o objeto pra a classe DAO
             boolean retorno = ProdutoDAO.salvar(novoProduto);
-            
-            if (retorno == true){
+
+            if (retorno == true) {
                 JOptionPane.showMessageDialog(rootPane, "Sucesso! Produto cadastrado: " + novoProduto.getIdProduto());
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Não foi possivel cadastrar o produto. Tente Novamente!");
-                limparCampos();
+                limparCamposProdutos();
             }
         }
-        limparCampos();
+        limparCamposProdutos();
         atualizarTabelaProduto();
     }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         String textoId = txtCodigoExcluir.getText();
-        
+
         // Verifica se o campo esta vazio
-        if(textoId.isEmpty()){
+        if (textoId.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Informe o ID do produto antes de excluir!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        }else{
-            try{
+        } else {
+            try {
                 // 1 - Passo Resgatar o ID do produto para um objeto
                 int idSelecionado = Integer.parseInt(txtCodigoExcluir.getText());
-                
+
                 int option = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja excluir o produto selecionado?", "Atenção", JOptionPane.YES_NO_OPTION);
-                
-                if(option == JOptionPane.YES_OPTION){
+
+                if (option == JOptionPane.YES_OPTION) {
                     boolean retorno = ProdutoDAO.excluir(idSelecionado);
-                    
+
                     if (retorno) {
                         JOptionPane.showMessageDialog(rootPane, "Produto excluído com sucesso!");
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir o produto selecionado.", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
-                }else {
+                } else {
                     JOptionPane.showMessageDialog(rootPane, "Exclusão cancelada.");
                 }
                 txtCodigoExcluir.setText("");
                 atualizarTabelaProduto();
-            }catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(rootPane, "Informe um ID válido.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        if(txtCodigoBuscar.getText().trim().equals("")){
+        if (txtCodigoBuscar.getText().trim().equals("")) {
             atualizarTabelaProduto();
-        }else{
-            try{
+        } else {
+            try {
                 int id = Integer.parseInt(txtCodigoBuscar.getText());
 
                 // Chamar a DAO para filtrar pelo ID do produto
@@ -1034,15 +1035,15 @@ public class TelaAdmin extends javax.swing.JFrame {
             int quantidadeSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 5).toString());
 
             int indiceCategoria = valorCombobox(cboxCategoria, categoriaSelecionado);
-            
-            Produto objAlterar = new Produto(idSelecionado, nomeSelecionado, categoriaSelecionado, 
+
+            Produto objAlterar = new Produto(idSelecionado, nomeSelecionado, categoriaSelecionado,
                     fabricanteSelecionado, precoSelecionado, quantidadeSelecionado);
             objAlterar.setIndiceCategoria(indiceCategoria);
 
             TelaUpdateProduto updateProduto = new TelaUpdateProduto(objAlterar);
             updateProduto.setLocationRelativeTo(null);
             updateProduto.setVisible(true);
-            }
+        }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void txtFabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFabricanteActionPerformed
@@ -1050,15 +1051,16 @@ public class TelaAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFabricanteActionPerformed
 
     private void btnCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFuncionarioActionPerformed
-        if(obj == null){
+        if (obj == null) {
             // Resgatar dados da interface e passar para o objeto
-            
+
             // Dados pessoais
             String nomeFuncionario = txtNomeCompletoFuncionario.getText();
             String dataNascimento = ftxtDataNascimentoFuncionario.getText();
+            String dataNumerica = dataNascimento.replaceAll("[^\\d]", "");
             int sexoSelecionado = cboxCategoria.getSelectedIndex() + 1; // Adicionar 1 para corresponder aos IDs (que começam em 1) // Sexo Funcionario
             String CPF = ftxtCPFFuncionario.getText();
-            
+
             // Informações profissionais
             int cargoFuncionario = cbxCargoFuncionario.getSelectedIndex() + 1;
             double salarioVendedor = Double.parseDouble(txtSalarioVendedor.getText());
@@ -1067,19 +1069,20 @@ public class TelaAdmin extends javax.swing.JFrame {
             validarAlgoNoCbox(sexoSelecionado);
             validarAlgoNoCbox(cargoFuncionario);
             validarAlgoNoCbox(horarioDeTrabalho);
-            
+
             Funcionario novoFuncionario = new Funcionario(nomeFuncionario, dataNascimento, sexoSelecionado, CPF, cargoFuncionario, salarioVendedor, horarioDeTrabalho);
-            
+
             // Mandar o objeto pra a classe DAO
             boolean retorno = FuncionarioDAO.salvar(novoFuncionario);
-            
-            if (retorno == true){
+
+            if (retorno == true) {
                 JOptionPane.showMessageDialog(rootPane, "Sucesso! Funcionario cadastrado: " + novoFuncionario.getIdFuncionario());
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Não foi possivel cadastrar o funcionario. Tente Novamente!");
-                limparCampos();
+                limparCamposFuncionarios();
             }
         }
+        limparCamposFuncionarios();
         atualizarTabelaFuncionario();
     }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
 
@@ -1090,7 +1093,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     private void btnAtualizarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarFuncionarioActionPerformed
         // 1 - Passo Resgatar a linha e mandar para um objeto
         int linhaSelecionada = jtblFuncionarios.getSelectedRow();
-        
+
         // Verificar se alguma linha está selecionada
         if (linhaSelecionada == -1) {
             // Nenhuma linha selecionada, executar a função para atualizar a tabela
@@ -1098,7 +1101,7 @@ public class TelaAdmin extends javax.swing.JFrame {
         } else {
             // 2 - acessar a camada model da tabela
             DefaultTableModel modelo = (DefaultTableModel) jtblFuncionarios.getModel();
-            
+
             // 3 - resgatar valores da linha selecionada
             //dados pessoais
             int idSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
@@ -1106,23 +1109,23 @@ public class TelaAdmin extends javax.swing.JFrame {
             String dataNascimento = modelo.getValueAt(linhaSelecionada, 2).toString();
             String sexoSelecionado = modelo.getValueAt(linhaSelecionada, 3).toString();
             String CPF = modelo.getValueAt(linhaSelecionada, 4).toString();
-            
+
             // dados profissionais
             String cargoFuncionario = modelo.getValueAt(linhaSelecionada, 5).toString();
             double salarioFuncionario = Double.parseDouble(modelo.getValueAt(linhaSelecionada, 6).toString());
             String horarioDeTrabalho = modelo.getValueAt(linhaSelecionada, 7).toString();
-            
+
             // Pega o indice do cbox
             int indiceSexoFuncionario = valorCombobox(cboxSexoFuncionario, sexoSelecionado);
             int indiceCargoFuncionario = valorCombobox(cbxCargoFuncionario, cargoFuncionario);
             int indiceHorarioDeTrabalhoFuncionario = valorCombobox(cbxHorarioDeTrabalhoFuncionario, horarioDeTrabalho);
-            
+
             Funcionario objAlterar = new Funcionario(idSelecionado, nomeFuncionario, dataNascimento, sexoSelecionado, CPF, cargoFuncionario, salarioFuncionario, horarioDeTrabalho);
-            
+
             objAlterar.setIndiceSexoFuncionario(indiceSexoFuncionario);
             objAlterar.setIndiceCargoFuncionario(indiceCargoFuncionario);
             objAlterar.setIndiceHorarioDeTrabalhoFuncionario(indiceHorarioDeTrabalhoFuncionario);
-            
+
             TelaUpdateFuncionario updateFuncionario = new TelaUpdateFuncionario(objAlterar);
             updateFuncionario.setLocationRelativeTo(null);
             updateFuncionario.setVisible(true);
@@ -1131,31 +1134,31 @@ public class TelaAdmin extends javax.swing.JFrame {
 
     private void btnExcluirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFuncionarioActionPerformed
         String textoId = txtIdFuncionario.getText();
-        
+
         // verifica se o campos esta vazio
-        if(textoId.isEmpty()){
+        if (textoId.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Informe o ID do Funcionario antes de excluir!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        }else{
-            try{
+        } else {
+            try {
                 // 1 - Passo Resgatar o ID do produto para um objeto
                 int idSelecionado = Integer.parseInt(txtIdFuncionario.getText());
-                
+
                 int option = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja excluir o Funcionario selecionado?", "Atenção", JOptionPane.YES_NO_OPTION);
-                
-                if(option == JOptionPane.YES_OPTION){
+
+                if (option == JOptionPane.YES_OPTION) {
                     boolean retorno = FuncionarioDAO.excluir(idSelecionado);
-                    
+
                     if (retorno) {
                         JOptionPane.showMessageDialog(rootPane, "Funcionario excluído com sucesso!");
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir o Funcionario selecionado.", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
-                }else {
+                } else {
                     JOptionPane.showMessageDialog(rootPane, "Exclusão cancelada.");
                 }
                 txtIdFuncionario.setText("");
                 atualizarTabelaFuncionario();
-            }catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(rootPane, "Informe um ID válido.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -1182,7 +1185,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                     modelo.setRowCount(0);
 
                     if (funcionarios.isEmpty()) {
-                        JOptionPane.showMessageDialog(rootPane, "Funcionario com o CPF " + cpf + " não foi encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(rootPane, "O funcionario com o CPF " + cpf + " não foi encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
                     } else {
                         for (Funcionario funcionario : funcionarios) {
                             modelo.addRow(new String[]{
@@ -1206,17 +1209,19 @@ public class TelaAdmin extends javax.swing.JFrame {
             txtIdFuncionarioBuscar.setText("");
         }
     }//GEN-LAST:event_btnBuscarFuncionarioActionPerformed
-    
+
     /*  METODOS AUXILIARES */
-    
     /**
-    * Configura o valor de um JComboBox com base em uma string e retorna o índice encontrado.
-    *
-    * @param comboBox O JComboBox a ser configurado.
-    * @param valor A string cujo índice correspondente deve ser encontrado e configurado no JComboBox.
-    * @return O índice encontrado da string no JComboBox. Retorna 0 se o valor não for encontrado.
-    */
-    public int valorCombobox(JComboBox<String> comboBox, String valor){
+     * Configura o valor de um JComboBox com base em uma string e retorna o
+     * índice encontrado.
+     *
+     * @param comboBox O JComboBox a ser configurado.
+     * @param valor A string cujo índice correspondente deve ser encontrado e
+     * configurado no JComboBox.
+     * @return O índice encontrado da string no JComboBox. Retorna 0 se o valor
+     * não for encontrado.
+     */
+    public int valorCombobox(JComboBox<String> comboBox, String valor) {
         // Obtém o modelo do ComboBox
         DefaultComboBoxModel<String> modeloCombo = (DefaultComboBoxModel<String>) comboBox.getModel();
         // Itera sobre as opções do ComboBox para encontrar o índice correspondente à categoriaSelecionado
@@ -1229,13 +1234,13 @@ public class TelaAdmin extends javax.swing.JFrame {
         }
         return 0; // Retorna 0 se o valor não for encontrado
     }
-    
+
     /**
-    * Atualiza a tabela de produtos com as informações do banco de dados.
-    *
-    * listaRetorno Um ArrayList contendo os dados do banco de dados.
-    * modelo A DefaultTableModel que define qual tabela será atualizada.
-    */
+     * Atualiza a tabela de produtos com as informações do banco de dados.
+     *
+     * listaRetorno Um ArrayList contendo os dados do banco de dados. modelo A
+     * DefaultTableModel que define qual tabela será atualizada.
+     */
     public void atualizarTabelaProduto() {
         DefaultTableModel modelo = (DefaultTableModel) jtblProdutos.getModel();
         // Limpar todas as linhas da tabela
@@ -1246,23 +1251,23 @@ public class TelaAdmin extends javax.swing.JFrame {
 
         // Para cada item na lista, vou adicionar na tabela
         for (Produto item : listaRetorno) {
-           modelo.addRow(new String[]{
-                    String.valueOf(item.getIdProduto()),
-                    String.valueOf(item.getNomeProduto()),
-                    item.getNomeCategoria(),
-                    String.valueOf(item.getFabricante()),
-                    String.valueOf(item.getPreco()),
-                    String.valueOf(item.getQuantidade())
+            modelo.addRow(new String[]{
+                String.valueOf(item.getIdProduto()),
+                String.valueOf(item.getNomeProduto()),
+                item.getNomeCategoria(),
+                String.valueOf(item.getFabricante()),
+                String.valueOf(item.getPreco()),
+                String.valueOf(item.getQuantidade())
             });
         }
     }
-    
+
     /**
-    * Atualiza a tabela de produtos com as informações do banco de dados.
-    *
-    * listaRetorno Um ArrayList contendo os dados do banco de dados.
-    * modelo A DefaultTableModel que define qual tabela será atualizada.
-    */
+     * Atualiza a tabela de produtos com as informações do banco de dados.
+     *
+     * listaRetorno Um ArrayList contendo os dados do banco de dados. modelo A
+     * DefaultTableModel que define qual tabela será atualizada.
+     */
     public void atualizarTabelaFuncionario() {
         DefaultTableModel modelo = (DefaultTableModel) jtblFuncionarios.getModel();
         // Limpar todas as linhas da tabela
@@ -1274,36 +1279,50 @@ public class TelaAdmin extends javax.swing.JFrame {
         // Para cada item na lista, vou adicionar na tabela
         for (Funcionario item : listaRetorno) {
             modelo.addRow(new String[]{
-                    String.valueOf(item.getIdFuncionario()),
-                    String.valueOf(item.getNome()),
-                    String.valueOf(item.getDataNascimento()),
-                    String.valueOf(item.getNomeSexo()),
-                    String.valueOf(item.getCpf()),
-                    String.valueOf(item.getNomeCargo()),
-                    String.valueOf(item.getSalario()),
-                    String.valueOf(item.getNomePeriodo())
+                String.valueOf(item.getIdFuncionario()),
+                String.valueOf(item.getNome()),
+                String.valueOf(item.getDataNascimento()),
+                String.valueOf(item.getNomeSexo()),
+                String.valueOf(item.getCpf()),
+                String.valueOf(item.getNomeCargo()),
+                String.valueOf(item.getSalario()),
+                String.valueOf(item.getNomePeriodo())
             });
         }
     }
+
     /**
-    * Limpa os campos de entrada ou seleção na interface gráfica, 
-    * redefinindo valores padrão.
-    */
-    private void limparCampos() {
+     * Limpa os campos de entrada ou seleção na interface gráfica, redefinindo
+     * valores padrão.
+     */
+    // Limpa os campos do formulario de criar produtos
+    private void limparCamposProdutos() {
         txtNomeProduto.setText("");
         cboxCategoria.setSelectedIndex(0);
         txtFabricante.setText("");
         txtPreco.setText("");
         spnQuantidade.setValue(0);
     }
-    
+
+    // Limpa os campos do formulario de criar produtos
+    private void limparCamposFuncionarios() {
+        txtNomeCompletoFuncionario.setText("");
+        ftxtDataNascimentoFuncionario.setText("");
+        cboxSexoFuncionario.setSelectedIndex(0);
+        ftxtCPFFuncionario.setText("");
+        cbxCargoFuncionario.setSelectedIndex(0);
+        txtSalarioVendedor.setText("");
+        cbxHorarioDeTrabalhoFuncionario.setSelectedIndex(0);
+    }
+
     /**
-    * Esta função valida um ComboBox, fornecendo uma maneira simplificada de verificar sua seleção
-    * sem duplicar código. Recebe a variável do ComboBox e imprime informações no console.
-    *
-    * @param cboxVariavel O valor do ComboBox a ser validado.
-    */
-    private void validarAlgoNoCbox(int cboxVariavel){
+     * Esta função valida um ComboBox, fornecendo uma maneira simplificada de
+     * verificar sua seleção sem duplicar código. Recebe a variável do ComboBox
+     * e imprime informações no console.
+     *
+     * @param cboxVariavel O valor do ComboBox a ser validado.
+     */
+    private void validarAlgoNoCbox(int cboxVariavel) {
         if (cboxVariavel > 0) {
             // Faça algo com a variável idCategoriaProduto
             System.out.println("Item selecionado: " + cboxVariavel);
@@ -1311,7 +1330,7 @@ public class TelaAdmin extends javax.swing.JFrame {
             System.out.println("Nenhuma item selecionado.");
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -1346,28 +1365,28 @@ public class TelaAdmin extends javax.swing.JFrame {
             }
         });
     }
-    
+
     /**
- * Classe que representa a interface gráfica de uma aplicação de gerenciamento
- * de funcionários e produtos.
- * 
- * Esta classe contém declarações de componentes Swing, como botões, caixas de
- * seleção, campos de texto, rótulos e tabelas, que são utilizados para interação
- * do usuário com o sistema.
- * 
- * Os componentes estão organizados em painéis para estruturar a interface de
- * forma hierárquica e mais organizada.
- * 
- * Além disso, a classe inclui a declaração de menus, barras de menus e alguns
- * elementos relacionados à lógica de apresentação da aplicação.
- * 
- * Os nomes das variáveis seguem a convenção de nomenclatura camelCase comumente
- * utilizada em Java.
- * 
- * Esta interface faz parte de uma aplicação destinada ao gerenciamento de
- * informações sobre funcionários e produtos, oferecendo funcionalidades como
- * cadastro, busca, atualização e exclusão de registros.
- */
+     * Classe que representa a interface gráfica de uma aplicação de
+     * gerenciamento de funcionários e produtos.
+     *
+     * Esta classe contém declarações de componentes Swing, como botões, caixas
+     * de seleção, campos de texto, rótulos e tabelas, que são utilizados para
+     * interação do usuário com o sistema.
+     *
+     * Os componentes estão organizados em painéis para estruturar a interface
+     * de forma hierárquica e mais organizada.
+     *
+     * Além disso, a classe inclui a declaração de menus, barras de menus e
+     * alguns elementos relacionados à lógica de apresentação da aplicação.
+     *
+     * Os nomes das variáveis seguem a convenção de nomenclatura camelCase
+     * comumente utilizada em Java.
+     *
+     * Esta interface faz parte de uma aplicação destinada ao gerenciamento de
+     * informações sobre funcionários e produtos, oferecendo funcionalidades
+     * como cadastro, busca, atualização e exclusão de registros.
+     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnAtualizarFuncionario;
