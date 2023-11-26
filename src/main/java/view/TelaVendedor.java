@@ -88,7 +88,7 @@ public class TelaVendedor extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
-        txtBuscaNomeCliente = new javax.swing.JTextField();
+        txtBuscaCPFCliente = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCliente = new javax.swing.JTable();
@@ -568,9 +568,9 @@ public class TelaVendedor extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtBuscaNomeCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtBuscaCPFCliente)
+                .addGap(18, 18, 18)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
         jPanel3Layout.setVerticalGroup(
@@ -580,7 +580,7 @@ public class TelaVendedor extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(txtBuscaNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBuscaCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -752,37 +752,49 @@ public class TelaVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-            if(txtBuscaNomeCliente.getText().trim().equals("")){
+        if (txtBuscaCPFCliente.getText().trim().equals("")) {
             atualizarTabelaCliente();
-        }else{
-            try{
-                String nome = txtBuscaNomeCliente.getText();
+        } else {
+            try {
+                String cpf = txtBuscaCPFCliente.getText();
 
-                // Chamar a DAO para filtrar pelo ID do produto
-                ArrayList<Cliente> clientes = ClienteDAO.buscarPorNome(nome);
+                // Remover caracteres não numéricos
+                cpf = cpf.replaceAll("[^0-9]", "");
 
-                DefaultTableModel modelo = (DefaultTableModel) tblCliente.getModel();
-                modelo.setRowCount(0);
+                // Verificar se o CPF possui 11 dígitos
+                if (cpf.length() == 11) {
+                    // Formatar o CPF
+                    cpf = String.format("%s.%s.%s-%s", cpf.substring(0, 3), cpf.substring(3, 6), cpf.substring(6, 9), cpf.substring(9, 11));
 
-                if (clientes.isEmpty()) {
-                    JOptionPane.showMessageDialog(rootPane, "Cliente com Nome " + nome + " não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    for (Cliente cliente : clientes) {
-                        modelo.addRow(new String[]{
-                    String.valueOf(cliente.getIdCliente()),
-                    String.valueOf(cliente.getNome()),
-                    String.valueOf(cliente.getCpf()),
-                    String.valueOf(cliente.getSexo()),
-                    String.valueOf(cliente.getEmail()),
-                    String.valueOf(cliente.getCelular()),
-                        });
+                    // Chamar a DAO para filtrar pelo ID do produto
+                    ArrayList<Cliente> clientes = ClienteDAO.buscarPorCPF(cpf);
+
+                    DefaultTableModel modelo = (DefaultTableModel) tblCliente.getModel();
+                    modelo.setRowCount(0);
+
+                    if (clientes.isEmpty()) {
+                        JOptionPane.showMessageDialog(rootPane, "O cliente com o CPF " + cpf + " não foi encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        for (Cliente cliente : clientes) {
+                            modelo.addRow(new String[]{
+                                String.valueOf(cliente.getIdCliente()),
+                                String.valueOf(cliente.getNome()),
+                                String.valueOf(cliente.getCpf()),
+                                String.valueOf(cliente.getSexoString()),
+                                String.valueOf(cliente.getEmail()),
+                                String.valueOf(cliente.getCelular())
+                            });
+                        }
                     }
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "Informe um CPF válido.", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
+
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(rootPane, "Informe um nome válido.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
-        txtBuscaNomeCliente.setText("");
+        txtBuscaCPFCliente.setText("");
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -864,27 +876,7 @@ public class TelaVendedor extends javax.swing.JFrame {
         txtEmail.setText("");
         ftxtCelular.setText("");
     }
-
-    /* public static String converterDataParaSQL(String dataBrasileira) {
-        try {
-            // Criando um objeto SimpleDateFormat para o formato brasileiro
-            SimpleDateFormat formatoBrasileiro = new SimpleDateFormat("dd/MM/yyyy");
-
-            // Parse da data do formato brasileiro para um objeto Date
-            java.util.Date data = formatoBrasileiro.parse(dataBrasileira);
-
-            // Criando um objeto SimpleDateFormat para o formato SQL
-            SimpleDateFormat formatoSQL = new SimpleDateFormat("yyyy-MM-dd");
-
-            // Formatando a data para o formato SQL e retornando o resultado
-            return formatoSQL.format(data);
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-            // Tratar exceção apropriadamente ou lançar uma exceção personalizada, se necessário
-            return null; // Retorna null em caso de erro de conversão
-        }
-    }*/
+    
     public void atualizarTabelaCliente() {
         DefaultTableModel modelo = (DefaultTableModel) tblCliente.getModel();
         // Limpar todas as linhas da tabela
@@ -1009,7 +1001,7 @@ public class TelaVendedor extends javax.swing.JFrame {
     private javax.swing.JPanel pnlVendas;
     private javax.swing.JPanel pnlVendedor;
     private javax.swing.JTable tblCliente;
-    private javax.swing.JTextField txtBuscaNomeCliente;
+    private javax.swing.JTextField txtBuscaCPFCliente;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNomeCompleto;
     // End of variables declaration//GEN-END:variables

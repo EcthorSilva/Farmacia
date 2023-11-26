@@ -1184,7 +1184,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                     modelo.setRowCount(0);
 
                     if (funcionarios.isEmpty()) {
-                        JOptionPane.showMessageDialog(rootPane, "Funcionario com o CPF " + cpf + " não foi encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(rootPane, "O funcionario com o CPF " + cpf + " não foi encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
                     } else {
                         for (Funcionario funcionario : funcionarios) {
                             modelo.addRow(new String[]{
