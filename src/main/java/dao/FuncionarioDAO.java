@@ -194,7 +194,94 @@ public class FuncionarioDAO {
         return retorno;
     }
     
-    // TODO: DELETE
-    
+    // DELETE
+    public static boolean excluir(int idExcluir){
+        boolean retorno = false;
+        
+        // instanciando objeto para realizar a conexão
+        Connection conexao = null;
+        // 
+        PreparedStatement comandoSQL = null;
+        
+        // receita de bolo para acessar o banco de dados
+        try {
+            // Passo1 - carregar o driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            // Passo2 - abrir a conexão com o banco
+            conexao = DriverManager.getConnection(url, login, senha);
+            // Passo3 - Preparar o comando SQL
+            comandoSQL = conexao.prepareStatement("DELETE FROM funcionarios WHERE id = ?");
+            
+            // pega o valor do ID
+            comandoSQL.setInt(1, idExcluir);
+            
+            // Passo4 - Executar o comando
+            int linhasAfetadas = comandoSQL.executeUpdate();
+            // se as linhas afetadas forem maior que 0 
+            if(linhasAfetadas > 0){
+                // então foi gravado no bd com sucesso
+                retorno = true;
+            }
+        }catch(ClassNotFoundException ex){
+            retorno = false;
+        } catch (SQLException ex) {
+            retorno = false;
+        }
+        
+        return retorno;
+    }
     // TODO: SEARCH
+    public static ArrayList<Funcionario> buscarPorCPF(String cpf) {
+        ArrayList<Funcionario> lista = new ArrayList<>();
+    
+        Connection conexao = null;
+        PreparedStatement comandoSQL = null;
+        ResultSet rs = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conexao = DriverManager.getConnection(url, login, senha);
+
+            String query = "SELECT f.id, f.nome, f.data_nascimento, g.nome as genero, f.cpf, c.nome as cargo, f.salario, t.turno as horarioDeTrabalho " +
+                           "FROM funcionarios f " +
+                           "JOIN generos g ON f.id_genero = g.id " +
+                           "JOIN cargos c ON f.id_cargo = c.id " +
+                           "JOIN turnos t ON f.id_turno = t.id " +
+                           "WHERE f.cpf = ?";
+
+            comandoSQL = conexao.prepareStatement(query);
+            comandoSQL.setString(1, cpf);
+
+            rs = comandoSQL.executeQuery();
+
+            if (rs != null){
+                while(rs.next()){
+                    int idFuncionario = rs.getInt("id");
+                    String nomeFuncionario = rs.getString("nome");
+                    String dataNascimento = rs.getString("data_nascimento");
+                    String genero = rs.getString("genero");
+                    String cpfFuncionario = rs.getString("cpf");
+                    String cargoFuncionario = rs.getString("cargo");
+                    double salario = rs.getDouble("salario");
+                    String horarioDeTrabalho = rs.getString("horarioDeTrabalho");
+
+                    Funcionario item = new Funcionario(idFuncionario, nomeFuncionario, dataNascimento, genero, cpfFuncionario, cargoFuncionario, salario, horarioDeTrabalho);
+                    lista.add(item);
+                }
+            }
+        } catch (Exception e) {
+            // Tratar exceções
+            lista = null;
+        } finally {
+            // Fechar recursos
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return lista;
+    }
 }

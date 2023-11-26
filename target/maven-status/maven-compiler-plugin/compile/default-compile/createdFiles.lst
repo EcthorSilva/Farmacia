@@ -1,6 +1,7 @@
 view\TelaAdmin$10.class
 controller\main.class
 view\TelaVendedor$10.class
+view\TelaAdmin$17.class
 view\TelaLogin$5.class
 view\TelaUpdateFuncionario$1.class
 view\TelaVendedor$8.class
@@ -50,6 +51,7 @@ view\TelaVendedor$7.class
 view\TelaVendedor$5.class
 model\Pedido.class
 view\TelaUpdateProduto$3.class
+view\TelaAdmin$18.class
 view\TelaAdmin.class
 view\TelaAdmin$3.class
 view\TelaAdmin$9.class
