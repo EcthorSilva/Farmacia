@@ -709,8 +709,9 @@ public class TelaVendedor extends javax.swing.JFrame {
 
             String email = txtEmail.getText();
             String celular = ftxtCelular.getText();
+            String celularFormat = celular.replaceAll("[^\\d]", "");
             
-            Cliente novoCliente = new Cliente(nomeCompleto, cpf, sexoSelecionado, email, celular );
+            Cliente novoCliente = new Cliente(nomeCompleto, cpf, sexoSelecionado, email, celularFormat );
             
             // Mandar o objeto pra a classe DAO
             boolean retorno = ClienteDAO.salvar(novoCliente);

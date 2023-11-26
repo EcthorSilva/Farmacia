@@ -25,7 +25,12 @@ public class ClienteDAO {
     private static String login = "root";
     private static String senha = "root";
     
-    
+    /**
+    * Insere um objeto Cliente no banco de dados.
+    * 
+    * @param obj O objeto Cliente a ser inserido no banco.
+    * @return true se a operação de inserção foi bem-sucedida, false caso contrário.
+    */
     public static boolean salvar(Cliente obj){
         boolean retorno = false;
         
@@ -79,6 +84,12 @@ public class ClienteDAO {
         return retorno;
     }
     
+    /**
+    * Altera as informações de um cliente no banco de dados.
+    * 
+    * @param obj O objeto Cliente contendo as informações a serem atualizadas.
+    * @return Retorna true se a alteração foi realizada com sucesso, false caso contrário.
+    */
     public static boolean alterar(Cliente obj){
         boolean retorno = false;
         // instanciando objeto para realizar a conexão
