@@ -5,6 +5,8 @@ package util;
  * 
  * @author Ectho
  */
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import view.TelaLogin;

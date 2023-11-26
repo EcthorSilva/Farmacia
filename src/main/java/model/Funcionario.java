@@ -8,18 +8,26 @@ public class Funcionario {
     private int idFuncionario;
     private String nome;
     private String dataNascimento;
-    private String sexo;
+    private int sexo;
     private String cpf;
-    private String cargo;
+    private int cargo;
     private double salario;
-    private String periodo;
+    private int periodo;
+    
+    private String nomeSexo;
+    private String nomeCargo;
+    private String nomePeriodo;
+    
+    private int indiceSexoFuncionario;
+    private int indiceCargoFuncionario;
+    private int indiceHorarioDeTrabalhoFuncionario;
     
     // Construtor Vazio
     public Funcionario() {
         
     }
     // Construtor sem o ID do Funcionario
-    public Funcionario(String nome, String dataNascimento, String sexo, String cpf, String cargo, double salario, String periodo) {
+    public Funcionario(String nome, String dataNascimento, int sexo, String cpf, int cargo, double salario, int periodo) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.sexo = sexo;
@@ -29,7 +37,7 @@ public class Funcionario {
         this.periodo = periodo;
     }
     // Construtor com o ID do Funcionario
-    public Funcionario(int idFuncionario, String nome, String dataNascimento, String sexo, String cpf, String cargo, double salario, String periodo) {
+    public Funcionario(int idFuncionario, String nome, String dataNascimento, int sexo, String cpf, int cargo, double salario, int periodo) {
         this.idFuncionario = idFuncionario;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
@@ -39,12 +47,16 @@ public class Funcionario {
         this.salario = salario;
         this.periodo = periodo;
     }
-    // construtor para exibir só algumas informações sobre o cliente!!!!!!!
-    public Funcionario(int idFuncionario, String nome, String cargo, String periodo) {
+
+    public Funcionario(int idFuncionario, String nome, String dataNascimento, String nomeSexo, String cpf, String nomeCargo, double salario, String nomePeriodo) {
         this.idFuncionario = idFuncionario;
         this.nome = nome;
-        this.cargo = cargo;
-        this.periodo = periodo;
+        this.dataNascimento = dataNascimento;
+        this.nomeSexo = nomeSexo;
+        this.cpf = cpf;
+        this.nomeCargo = nomeCargo;
+        this.salario = salario;
+        this.nomePeriodo = nomePeriodo;
     }
     
     // Getters e Setters
@@ -72,11 +84,11 @@ public class Funcionario {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getSexo() {
+    public int getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(int sexo) {
         this.sexo = sexo;
     }
 
@@ -88,11 +100,11 @@ public class Funcionario {
         this.cpf = cpf;
     }
 
-    public String getCargo() {
+    public int getCargo() {
         return cargo;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(int cargo) {
         this.cargo = cargo;
     }
 
@@ -104,11 +116,59 @@ public class Funcionario {
         this.salario = salario;
     }
 
-    public String getPeriodo() {
+    public int getPeriodo() {
         return periodo;
     }
 
-    public void setPeriodo(String periodo) {
+    public void setPeriodo(int periodo) {
         this.periodo = periodo;
+    }
+    
+    public String getNomeSexo() {
+        return nomeSexo;
+    }
+
+    public void setNomeSexo(String nomeSexo) {
+        this.nomeSexo = nomeSexo;
+    }
+
+    public String getNomeCargo() {
+        return nomeCargo;
+    }
+
+    public void setNomeCargo(String nomeCargo) {
+        this.nomeCargo = nomeCargo;
+    }
+
+    public String getNomePeriodo() {
+        return nomePeriodo;
+    }
+
+    public void setNomePeriodo(String nomePeriodo) {
+        this.nomePeriodo = nomePeriodo;
+    }
+    
+    public int getIndiceSexoFuncionario() {
+        return indiceSexoFuncionario;
+    }
+
+    public void setIndiceSexoFuncionario(int indiceSexoFuncionario) {
+        this.indiceSexoFuncionario = indiceSexoFuncionario;
+    }
+
+    public int getIndiceCargoFuncionario() {
+        return indiceCargoFuncionario;
+    }
+
+    public void setIndiceCargoFuncionario(int indiceCargoFuncionario) {
+        this.indiceCargoFuncionario = indiceCargoFuncionario;
+    }
+
+    public int getIndiceHorarioDeTrabalhoFuncionario() {
+        return indiceHorarioDeTrabalhoFuncionario;
+    }
+
+    public void setIndiceHorarioDeTrabalhoFuncionario(int indiceHorarioDeTrabalhoFuncionario) {
+        this.indiceHorarioDeTrabalhoFuncionario = indiceHorarioDeTrabalhoFuncionario;
     }
 }

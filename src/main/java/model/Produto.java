@@ -2,7 +2,7 @@ package model;
 
 /**
  *
- * @author Ectho
+ * @author Ecthor
  */
 public class Produto {
     private int idProduto;
@@ -36,7 +36,7 @@ public class Produto {
         this.quantidade = quantidade;
     }
     
-    // Construtor para a categoria
+    // Construtor para a função LISTAR da classe ProdutoDAO
     public Produto(int idProduto, String nomeProduto, String nomeCategoria, String fabricante, double preco, int quantidade) {
         this.idProduto = idProduto;
         this.nomeProduto = nomeProduto;
