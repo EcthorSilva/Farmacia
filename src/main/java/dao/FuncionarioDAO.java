@@ -230,7 +230,7 @@ public class FuncionarioDAO {
         
         return retorno;
     }
-    // TODO: SEARCH
+    // SEARCH
     public static ArrayList<Funcionario> buscarPorCPF(String cpf) {
         ArrayList<Funcionario> lista = new ArrayList<>();
     
