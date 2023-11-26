@@ -25,6 +25,13 @@ public class FuncionarioDAO {
     private static String login = "root";
     private static String senha = "root";
     
+    
+    /**
+    * Salva um objeto Funcionario no banco de dados.
+    *
+    * @param obj O objeto Funcionario a ser salvo.
+    * @return true se a operação de salvamento for bem-sucedida, false caso contrário.
+    */
     // CREATE
     public static boolean salvar(Funcionario obj){
         boolean retorno = false;
@@ -82,6 +89,14 @@ public class FuncionarioDAO {
         }
         return retorno;
     }
+    
+    /**
+    * Retorna uma lista de objetos Funcionario contendo informações detalhadas
+    * de todos os funcionários cadastrados no banco de dados, incluindo dados de
+    * gênero, cargo e turno através de operações de JOIN.
+    *
+    * @return Uma ArrayList de objetos Funcionario ou null em caso de erro.
+    */
     // READ
     public static ArrayList<Funcionario> listar(){
         ArrayList<Funcionario> lista = new ArrayList<>();
@@ -142,6 +157,12 @@ public class FuncionarioDAO {
         return lista;
     }
     
+    /**
+    * Altera as informações de um funcionário no banco de dados com base no ID fornecido.
+    *
+    * @param obj O objeto Funcionario contendo as informações atualizadas.
+    * @return true se a operação de alteração for bem-sucedida, false caso contrário.
+    */
     // UPDATE
     public static boolean alterar(Funcionario obj){
         boolean retorno = false;
@@ -194,6 +215,12 @@ public class FuncionarioDAO {
         return retorno;
     }
     
+    /**
+    * Exclui um funcionário do banco de dados com base no ID fornecido.
+    *
+    * @param idExcluir O ID do funcionário a ser excluído.
+    * @return true se a operação de exclusão for bem-sucedida, false caso contrário.
+    */
     // DELETE
     public static boolean excluir(int idExcluir){
         boolean retorno = false;
@@ -230,6 +257,13 @@ public class FuncionarioDAO {
         
         return retorno;
     }
+    
+    /**
+    * Busca funcionários no banco de dados com base no CPF fornecido.
+    *
+    * @param cpf O CPF do funcionário a ser pesquisado.
+    * @return Uma ArrayList de objetos Funcionario que correspondem ao CPF, ou null em caso de erro.
+    */
     // TODO: SEARCH
     public static ArrayList<Funcionario> buscarPorCPF(String cpf) {
         ArrayList<Funcionario> lista = new ArrayList<>();

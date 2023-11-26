@@ -200,8 +200,13 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuSairActionPerformed
 
     /**
-     * @param args the command line arguments
-     */
+    * Ponto de entrada da aplicação Swing. Configura a aparência visual, cria uma
+    * instância da tela de login e a torna visível.
+    *
+    * O método utiliza o FlatLaf (um Look and Feel para Java Swing) para alterar o
+    * visual da interface gráfica para um estilo plano com tema claro do macOS.
+    * Se a configuração falhar, uma mensagem de erro é exibida no console.
+    */
     public static void main(String args[]) {
         // Muda o visual do Java Swing
         try {
@@ -217,7 +222,11 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
     }
-
+    /**
+    * Formulário de login com botões para entrar e cancelar, campos para inserir
+    * login e senha, rótulos descritivos, uma barra de menu com a opção de sair
+    * e um painel que organiza os elementos relacionados ao login.
+    */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEntrar;

@@ -18,11 +18,23 @@ import util.TelaUtils;
  *
  * @author Ecthor
  */
+
+    /**
+    * Classe que representa a tela principal para o perfil de vendedor.
+    * 
+    * Esta tela permite a interação do vendedor com as informações de clientes,
+    * incluindo a visualização de uma tabela atualizada de clientes.
+    */   
 public class TelaVendedor extends javax.swing.JFrame {
 
       // recebe os dados de uma outra tela
     Cliente obj = null;
-    
+   /**
+   * Construtor da classe TelaVendedor.
+   * 
+   * Inicializa os componentes gráficos da tela, atualiza a tabela de clientes
+   * e configura a tela para não ser redimensionável.
+   */  
     public TelaVendedor() {
         initComponents();
         atualizarTabelaCliente();
@@ -910,6 +922,12 @@ public class TelaVendedor extends javax.swing.JFrame {
         txtEmail.setText("");
         ftxtCelular.setText("");
     }
+        /**
+        * Método estático que converte uma data do formato brasileiro (dd/MM/yyyy) para o formato SQL (yyyy-MM-dd).
+        * 
+        * @param dataBrasileira String contendo a data no formato brasileiro.
+        * @return String contendo a data formatada no formato SQL, ou null em caso de erro.
+        */
          public static String converterDataParaSQL(String dataBrasileira) {
         try {
             // Criando um objeto SimpleDateFormat para o formato brasileiro
@@ -930,6 +948,13 @@ public class TelaVendedor extends javax.swing.JFrame {
             return null; // Retorna null em caso de erro de conversão
         }
     }
+        /**
+        * Atualiza a tabela de clientes na interface gráfica.
+        * 
+        * Obtém a lista atualizada de clientes a partir do banco de dados e popula
+        * a tabela com as informações necessárias, como ID, nome, data de nascimento,
+        * CPF, sexo, e-mail e celular.
+        */
           public void atualizarTabelaCliente() {
         DefaultTableModel modelo = (DefaultTableModel) tblCliente.getModel();
         // Limpar todas as linhas da tabela
@@ -952,8 +977,12 @@ public class TelaVendedor extends javax.swing.JFrame {
         }
     }
     /**
-     * @param args the command line arguments
-     */
+    * Método main da classe TelaVendedor.
+    * Configura o visual da interface gráfica com o Look and Feel Nimbus e
+    * inicializa a aplicação, tornando a tela visível para o usuário.
+    * 
+    * @param args Argumentos da linha de comando (não são utilizados neste caso).
+    */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -985,7 +1014,11 @@ public class TelaVendedor extends javax.swing.JFrame {
             }
         });
     }
-
+    /**
+    * Classe que representa a interface gráfica da aplicação.
+    * Contém componentes como botões, campos de texto e tabelas para interação do usuário.
+    * As funcionalidades específicas de cada componente estão implementadas nos métodos correspondentes.
+    */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCadastrar;

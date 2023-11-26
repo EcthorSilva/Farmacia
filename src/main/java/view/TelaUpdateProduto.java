@@ -12,16 +12,34 @@ import model.Produto;
  *
  * @author Ectho
  */
+
+    /**
+     * Classe que representa a tela de atualização de dados do produto.
+     * 
+     * Esta tela permite a modificação de informações associadas a um produto,
+     * sendo inicializada sem dados prévios. Os dados do produto a serem
+     * atualizados podem ser recebidos de outra tela.
+    */
 public class TelaUpdateProduto extends javax.swing.JFrame {
 
     // recebe os dados de uma outra tela
     Produto obj = null;
     
+     /**
+     * Construtor da classe. Inicializa os componentes gráficos da tela e
+     * configura a tela para não ser redimensionável.
+     */
     public TelaUpdateProduto() {
         initComponents();
         setResizable(false);
     }
     
+    /**
+     * Construtor que recebe um objeto Produto a ser alterado e inicializa
+     * os componentes gráficos da tela. Configura a tela para não ser redimensionável.
+     * 
+     * @param objAlterar Objeto Produto a ser modificado.
+     */
     public TelaUpdateProduto(Produto objAlterar) {
         initComponents();
         setResizable(false);
@@ -36,6 +54,7 @@ public class TelaUpdateProduto extends javax.swing.JFrame {
         txtPreco.setText(String.valueOf(obj.getPreco()));
         spnQuantidade.setValue(obj.getQuantidade());
     }
+
     
 
     /**
@@ -292,7 +311,13 @@ public class TelaUpdateProduto extends javax.swing.JFrame {
             }
         });
     }
-
+    /**
+    * Classe que representa a tela de atualização de dados do produto.
+    * 
+    * Esta tela permite a modificação de informações associadas a um produto,
+    * incluindo campos de entrada para o nome, categoria, fabricante, preço e
+    * quantidade do produto, além de botões para atualizar e cancelar a operação.
+    */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCancelar;

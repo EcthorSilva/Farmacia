@@ -13,16 +13,34 @@ import util.TelaUtils;
  *
  * @author Ectho
  */
+
+    /**
+     * Classe que representa a tela de atualização de dados do funcionário.
+     * 
+     * Esta tela permite a modificação de informações associadas a um funcionário,
+     * sendo inicializada sem dados prévios. Os dados do funcionário a serem
+     * atualizados podem ser recebidos de outra tela.
+     */
 public class TelaUpdateFuncionario extends javax.swing.JFrame {
 
     // recebe os dados de uma outra tela
     Funcionario obj = null;
     
+    /**
+     * Construtor da classe. Inicializa os componentes gráficos da tela e
+     * configura a tela para não ser redimensionável.
+     */
     public TelaUpdateFuncionario() {
         initComponents();
         setResizable(false);
     }
     
+    /**
+    * Construtor da classe que recebe um objeto Funcionario a ser alterado e inicializa
+    * os componentes gráficos da tela. Configura a tela para não ser redimensionável.
+    * 
+    * @param objAlterar Objeto Funcionario a ser modificado.
+    */
     public TelaUpdateFuncionario(Funcionario objAlterar) {
         initComponents();
         setResizable(false);
@@ -375,7 +393,18 @@ public class TelaUpdateFuncionario extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    /**
+    * Classe que representa a tela de atualização de dados do funcionário.
+    * 
+    * Esta tela permite a modificação de informações associadas a um funcionário,
+    * utilizando campos de entrada e outros componentes gráficos.
+    * 
+    * Os componentes gráficos incluem botões para atualizar e cancelar a atualização,
+    * campos de seleção para o sexo, cargo e horário de trabalho do funcionário,
+    * campos de texto formatado para CPF e data de nascimento, rótulos descritivos,
+    * e campos de texto para o nome completo e salário do funcionário.
+    */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizarFuncionario2;
     private javax.swing.JButton btnCancelarAtualizacaoFuncionario;

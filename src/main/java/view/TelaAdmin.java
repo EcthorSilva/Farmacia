@@ -1285,7 +1285,10 @@ public class TelaAdmin extends javax.swing.JFrame {
             });
         }
     }
-    // Limpa os campos do formulario de criar produtos
+    /**
+    * Limpa os campos de entrada ou seleção na interface gráfica, 
+    * redefinindo valores padrão.
+    */
     private void limparCampos() {
         txtNomeProduto.setText("");
         cboxCategoria.setSelectedIndex(0);
@@ -1343,7 +1346,28 @@ public class TelaAdmin extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    /**
+ * Classe que representa a interface gráfica de uma aplicação de gerenciamento
+ * de funcionários e produtos.
+ * 
+ * Esta classe contém declarações de componentes Swing, como botões, caixas de
+ * seleção, campos de texto, rótulos e tabelas, que são utilizados para interação
+ * do usuário com o sistema.
+ * 
+ * Os componentes estão organizados em painéis para estruturar a interface de
+ * forma hierárquica e mais organizada.
+ * 
+ * Além disso, a classe inclui a declaração de menus, barras de menus e alguns
+ * elementos relacionados à lógica de apresentação da aplicação.
+ * 
+ * Os nomes das variáveis seguem a convenção de nomenclatura camelCase comumente
+ * utilizada em Java.
+ * 
+ * Esta interface faz parte de uma aplicação destinada ao gerenciamento de
+ * informações sobre funcionários e produtos, oferecendo funcionalidades como
+ * cadastro, busca, atualização e exclusão de registros.
+ */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnAtualizarFuncionario;

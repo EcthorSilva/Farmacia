@@ -7,17 +7,36 @@ package view;
 import javax.swing.ButtonModel;
 import model.Cliente;
 
-
+/**
+ * Classe que representa a tela de atualização de dados do cliente.
+ * 
+ * Esta tela permite a modificação de informações associadas a um cliente,
+ * utilizando campos de entrada e outros componentes gráficos.
+ * 
+ * A instância da classe Cliente associada a esta tela é inicializada como null
+ * e posteriormente pode ser referenciada para a realização das atualizações.
+ */
 
 public class TelaUpdateCliente extends javax.swing.JFrame {
 
    Cliente obj = null;
+   
+   /**
+     * Construtor da classe. Inicializa os componentes gráficos e configura
+     * a tela para não ser redimensionável.
+     */
     
     public TelaUpdateCliente() {
         initComponents();
         setResizable(false);
     }
-    
+   
+    /**
+     * Construtor da classe que recebe um objeto Cliente a ser alterado e inicializa
+     * os componentes gráficos da tela. Configura a tela para não ser redimensionável.
+     * 
+     * @param objAlterar Objeto Cliente a ser modificado.
+     */
     public TelaUpdateCliente(Cliente objAlterar){
         initComponents();
         setResizable(false);
@@ -277,7 +296,16 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
             }
         });
     }
-
+    /**
+    * Classe que representa a tela de atualização de dados do cliente.
+    * 
+    * Esta tela permite a modificação de informações associadas a um cliente,
+    * utilizando campos de entrada e outros componentes gráficos.
+    * 
+    * Os componentes gráficos incluem botões para cancelar e gravar as alterações,
+    * campos de texto formatado para CPF, celular e data de nascimento, um grupo de
+    * botões de rádio, rótulos descritivos, e campos de texto para nome e e-mail.
+    */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarClienteUptade;
     private javax.swing.JButton btnGravarClienteUpdate;
