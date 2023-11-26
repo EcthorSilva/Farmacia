@@ -36,6 +36,7 @@ public class Cliente {
         this.celular = celular;
     }
     
+    // Construtor para a função LISTAR da ClienteDAO
     public Cliente(int idCliente, String nome, String cpf, String sexo, String email, String celular) {
         this.idCliente = idCliente;
         this.nome = nome;

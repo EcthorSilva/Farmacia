@@ -139,7 +139,6 @@ public class ClienteDAO {
     public static ArrayList<Cliente> listar(){
         ArrayList<Cliente> lista = new ArrayList<>();
         
-       String sexoString = null;
         // classes para utilizar
         Connection conexao = null;
         PreparedStatement comandoSQL = null;
@@ -153,10 +152,11 @@ public class ClienteDAO {
             conexao = DriverManager.getConnection(url, login, senha);
             
             // Adicionando JOIN com a tabela generos.
-            /*String consultaComplexa = "SELECT c.id, c.nome, c.cpf, g.nome as generos, c.email, c.telefone FROM clientes c JOIN generos g ON c.id_genero = g.id";*/
-
-            //Passo 3 - preparar o comando SQL
-            comandoSQL = conexao.prepareStatement("SELECT * FROM clientes");
+            String query = "SELECT c.id, c.nome, c.cpf, g.nome as genero, c.email, c.telefone "
+                    + "FROM clientes c JOIN generos g ON c.id_genero = g.id";
+            
+            // Passo3 - Preparar o comando SQL
+            comandoSQL = conexao.prepareStatement(query);
             
             // Passo4 - Executar a CONSULTA
             rs = comandoSQL.executeQuery();
@@ -168,23 +168,15 @@ public class ClienteDAO {
                     int id = rs.getInt("id");
                     String nome = rs.getString("nome");
                     String cpf = rs.getString("cpf");
-                    int sexo = rs.getInt("id_genero");
-                       /* if(sexo == 1){
-                            sexoString = "Masculino";    
-                        } else if (sexo == 2){
-                            sexoString = "Feminino";   
-                        } else if (sexo == 3){
-                            sexoString = "Outros";   
-                        }*/
-                    String email = rs.getString("email");                   
-                    String celular = rs.getString("telefone");
+                    String genero = rs.getString("genero");
+                    String email = rs.getString("email");
+                    String telefone = rs.getString("telefone");
                     
-                    Cliente item = new Cliente(id, nome, cpf, sexo, email, celular);
-                   
+                    Cliente item = new Cliente(id, nome, cpf, genero, email, telefone);
+                    
                     lista.add(item);
                 }
             }
-            
         }catch (Exception e) {
             lista = null;
         }finally{
@@ -196,7 +188,6 @@ public class ClienteDAO {
                 }
             }
         }
-        
         return lista;
     }
     public static boolean excluir(int idExcluir){

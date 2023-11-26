@@ -862,14 +862,15 @@ public class TelaVendedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cBoxSexoClienteActionPerformed
     
-        private void limparCampos() {
+    private void limparCampos() {
         txtNomeCompleto.setText("");
         ftxtCPF.setText("");
         cBoxSexoCliente.setSelectedIndex(0);
         txtEmail.setText("");
         ftxtCelular.setText("");
     }
-        /* public static String converterDataParaSQL(String dataBrasileira) {
+
+    /* public static String converterDataParaSQL(String dataBrasileira) {
         try {
             // Criando um objeto SimpleDateFormat para o formato brasileiro
             SimpleDateFormat formatoBrasileiro = new SimpleDateFormat("dd/MM/yyyy");
@@ -889,7 +890,7 @@ public class TelaVendedor extends javax.swing.JFrame {
             return null; // Retorna null em caso de erro de conversão
         }
     }*/
-          public void atualizarTabelaCliente() {
+    public void atualizarTabelaCliente() {
         DefaultTableModel modelo = (DefaultTableModel) tblCliente.getModel();
         // Limpar todas as linhas da tabela
         modelo.setRowCount(0);
@@ -900,12 +901,12 @@ public class TelaVendedor extends javax.swing.JFrame {
         // Para cada item na lista, vou adicionar na tabela
         for (Cliente item : listaRetorno) {
             modelo.addRow(new String[]{
-                    String.valueOf(item.getIdCliente()),
-                    String.valueOf(item.getNome()),
-                    String.valueOf(item.getCpf()),
-                    String.valueOf(item.getSexo()),
-                    String.valueOf(item.getEmail()),
-                    String.valueOf(item.getCelular())
+                String.valueOf(item.getIdCliente()),
+                String.valueOf(item.getNome()),
+                String.valueOf(item.getCpf()),
+                String.valueOf(item.getSexoString()),
+                String.valueOf(item.getEmail()),
+                String.valueOf(item.getCelular())
             });
         }
     }
