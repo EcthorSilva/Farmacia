@@ -83,7 +83,7 @@
                                       <Component id="txtEmailClienteUpdate" min="-2" pref="320" max="-2" attributes="0"/>
                                       <Component id="txtNomeClienteUpdate" min="-2" pref="316" max="-2" attributes="0"/>
                                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="cBocUpdateClienteSexo" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="cBoxUpdateClienteSexo" alignment="0" max="32767" attributes="0"/>
                                           <Component id="ftxtCPFClienteUpdate" alignment="0" pref="130" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="ftxtCelularClienteUpdate" min="-2" pref="130" max="-2" attributes="0"/>
@@ -124,7 +124,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cBocUpdateClienteSexo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cBoxUpdateClienteSexo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -207,10 +207,16 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarClienteUptadeActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblIdCliente">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0"/>
+          </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cBocUpdateClienteSexo">
+        <Component class="javax.swing.JComboBox" name="cBoxUpdateClienteSexo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">

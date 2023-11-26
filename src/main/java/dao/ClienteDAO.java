@@ -100,11 +100,14 @@ public class ClienteDAO {
             // pega o cpf
             comandoSQL.setString(2, obj.getCpf());
             // pega o sexo
+          
             comandoSQL.setInt(3, obj.getSexo());
             // pega o email
             comandoSQL.setString(4, obj.getEmail());
             // pega o celular.
             comandoSQL.setString(5, obj.getCelular());
+            // pega o ID.
+            comandoSQL.setInt(6, obj.getIdCliente());
             
             // Passo4 - Executar o comando
             int linhasAfetadas = comandoSQL.executeUpdate();
@@ -125,6 +128,7 @@ public class ClienteDAO {
     public static ArrayList<Cliente> listar(){
         ArrayList<Cliente> lista = new ArrayList<>();
         
+       String sexoString = null;
         // classes para utilizar
         Connection conexao = null;
         PreparedStatement comandoSQL = null;
@@ -138,12 +142,10 @@ public class ClienteDAO {
             conexao = DriverManager.getConnection(url, login, senha);
             
             // Adicionando JOIN com a tabela generos.
-            String query = "SELECT c.id, c.nome, c.cpf, g.nome as generos, c.email, c.telefone " +
-                    "FROM clientes c " +
-                    "JOIN generos g ON c.id_genero = g.id";
-            
+            /*String consultaComplexa = "SELECT c.id, c.nome, c.cpf, g.nome as generos, c.email, c.telefone FROM clientes c JOIN generos g ON c.id_genero = g.id";*/
+
             //Passo 3 - preparar o comando SQL
-            comandoSQL = conexao.prepareStatement(query);
+            comandoSQL = conexao.prepareStatement("SELECT * FROM clientes");
             
             // Passo4 - Executar a CONSULTA
             rs = comandoSQL.executeQuery();
@@ -156,11 +158,18 @@ public class ClienteDAO {
                     String nome = rs.getString("nome");
                     String cpf = rs.getString("cpf");
                     int sexo = rs.getInt("id_genero");
+                       /* if(sexo == 1){
+                            sexoString = "Masculino";    
+                        } else if (sexo == 2){
+                            sexoString = "Feminino";   
+                        } else if (sexo == 3){
+                            sexoString = "Outros";   
+                        }*/
                     String email = rs.getString("email");                   
                     String celular = rs.getString("telefone");
                     
                     Cliente item = new Cliente(id, nome, cpf, sexo, email, celular);
-                    
+                   
                     lista.add(item);
                 }
             }
@@ -215,7 +224,7 @@ public class ClienteDAO {
         return retorno;
     }
     
-        public static ArrayList<Cliente> buscarPorCpf(String cpf){
+        public static ArrayList<Cliente> buscarPorNome(String nomeCliente){
         ArrayList<Cliente> lista = new ArrayList<>();
         
         // classes para utilizar
@@ -231,9 +240,11 @@ public class ClienteDAO {
             conexao = DriverManager.getConnection(url, login, senha);
             
             // Passo3 - Preparar o comando SQL
-            comandoSQL = conexao.prepareStatement("SELECT * FROM clientes WHERE cpf = ? ");
+            comandoSQL = conexao.prepareStatement("SELECT * FROM clientes WHERE nome LIKE ?");
             
-            comandoSQL.setString(1, cpf);
+            // Concatenação para que seja encontrado o sobrenome sem ser propriamente digitado.
+            comandoSQL.setString(1, nomeCliente + "%");
+
             
             // Passo4 - Executar a CONSULTA
             rs = comandoSQL.executeQuery();
@@ -245,7 +256,7 @@ public class ClienteDAO {
                     int id = rs.getInt("id");
                     String nome = rs.getString("nome");
                     String celular = rs.getString("telefone");
-                    String cpfBusca = rs.getString("cpf");
+                    String cpf = rs.getString("cpf");
                     String email = rs.getString("email");
                     int sexo = rs.getInt("id_genero");
                     

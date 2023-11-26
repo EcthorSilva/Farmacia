@@ -9,9 +9,11 @@ public class Cliente {
     private String nome;
     private String cpf;
     private int sexo;
+    private int idSexo;
+    private String sexoString;
     private String email;
     private String celular;
-    
+   
     // Construtor Vazio
     public Cliente() {
         
@@ -30,6 +32,23 @@ public class Cliente {
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;
+        this.email = email;
+        this.celular = celular;
+    }
+    
+    public Cliente(int idCliente, String nome, String cpf, String sexo, String email, String celular) {
+        this.idCliente = idCliente;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.sexoString = sexo;
+        this.email = email;
+        this.celular = celular;
+    }
+    public Cliente(int idCliente, String nome, String cpf, String email, String celular, int idSexo) {
+        this.idCliente = idCliente;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.idSexo = idSexo;
         this.email = email;
         this.celular = celular;
     }
@@ -82,4 +101,21 @@ public class Cliente {
     public void setCelular(String celular) {
         this.celular = celular;
     }
+     
+    public String getSexoString() {
+        return sexoString;
+    }
+
+    public void setSexoString(String sexoString) {
+        this.sexoString = sexoString;
+    }
+    
+     public int getIdSexo() {
+        return idSexo;
+    }
+
+    public void setIdSexo(int idSexo) {
+        this.idSexo = idSexo;
+    }
+    
 }

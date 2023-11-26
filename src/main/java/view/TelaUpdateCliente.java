@@ -4,7 +4,9 @@
  */
 package view;
 
+import dao.ClienteDAO;
 import javax.swing.ButtonModel;
+import javax.swing.JOptionPane;
 import model.Cliente;
 
 
@@ -28,7 +30,7 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
                 // passar os valores do objeto para a tela
         lblIdCliente.setText(String.valueOf(obj.getIdCliente()));
         txtNomeClienteUpdate.setText(String.valueOf(obj.getNome()));
-        cBocUpdateClienteSexo.setSelectedIndex(obj.getSexo());
+        cBoxUpdateClienteSexo.setSelectedIndex(obj.getIdSexo());
         ftxtCPFClienteUpdate.setText(String.valueOf(obj.getCpf()));
         txtEmailClienteUpdate.setText(String.valueOf(obj.getEmail()));
         ftxtCelularClienteUpdate.setText(String.valueOf(obj.getCelular()));
@@ -58,7 +60,7 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
         btnGravarClienteUpdate = new javax.swing.JButton();
         btnCancelarClienteUptade = new javax.swing.JButton();
         lblIdCliente = new javax.swing.JLabel();
-        cBocUpdateClienteSexo = new javax.swing.JComboBox<>();
+        cBoxUpdateClienteSexo = new javax.swing.JComboBox<>();
 
         jTextField2.setText("jTextField2");
 
@@ -96,8 +98,15 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
         });
 
         btnCancelarClienteUptade.setText("Cancelar");
+        btnCancelarClienteUptade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarClienteUptadeActionPerformed(evt);
+            }
+        });
 
-        cBocUpdateClienteSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Outros" }));
+        lblIdCliente.setText("0");
+
+        cBoxUpdateClienteSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Outros" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -128,7 +137,7 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
                                     .addComponent(txtEmailClienteUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtNomeClienteUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(cBocUpdateClienteSexo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cBoxUpdateClienteSexo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(ftxtCPFClienteUpdate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
                                     .addComponent(ftxtCelularClienteUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(131, Short.MAX_VALUE))
@@ -157,7 +166,7 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(cBocUpdateClienteSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cBoxUpdateClienteSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -194,8 +203,32 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGravarClienteUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarClienteUpdateActionPerformed
+        String nomeClienteUp = txtNomeClienteUpdate.getText();
+        String cpfClienteUp = ftxtCPFClienteUpdate.getText();
+        int idSexoUp = cBoxUpdateClienteSexo.getSelectedIndex() + 1;
+        String emailClienteUp = txtEmailClienteUpdate.getText();
+        String celularClienteUp = ftxtCelularClienteUpdate.getText();
         
+        obj.setNome(nomeClienteUp);
+        obj.setCpf(cpfClienteUp);
+        obj.setSexo(idSexoUp);
+        obj.setEmail(emailClienteUp);
+        obj.setCelular(celularClienteUp);
+        
+        boolean retorno = ClienteDAO.alterar(obj);
+        
+        if (retorno){
+            JOptionPane.showMessageDialog(rootPane, "Sucesso! Cliente atualizado.");
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Não foi possivel atualizar o cliente. Tente Novamente!");
+        }
+  
+        this.dispose();
     }//GEN-LAST:event_btnGravarClienteUpdateActionPerformed
+
+    private void btnCancelarClienteUptadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClienteUptadeActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarClienteUptadeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,11 +264,12 @@ public class TelaUpdateCliente extends javax.swing.JFrame {
             }
         });
     }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarClienteUptade;
     private javax.swing.JButton btnGravarClienteUpdate;
-    private javax.swing.JComboBox<String> cBocUpdateClienteSexo;
+    private javax.swing.JComboBox<String> cBoxUpdateClienteSexo;
     private javax.swing.JFormattedTextField ftxtCPFClienteUpdate;
     private javax.swing.JFormattedTextField ftxtCelularClienteUpdate;
     private javax.swing.JLabel jLabel1;
