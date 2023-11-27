@@ -6,20 +6,13 @@ package view;
 
 import dao.ClienteDAO;
 import dao.ProdutoDAO;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
-import model.Funcionario;
-import model.ItemPedido;
-import model.Pedido;
 import model.Produto;
 import util.TelaUtils;
 
@@ -30,6 +23,10 @@ import util.TelaUtils;
 public class TelaVendedor extends javax.swing.JFrame {
     // recebe os dados de uma outra tela
     Cliente obj = null;
+    
+    private double totalCompra = 0;
+    private int clienteId = -1;
+    private String clienteNome;
     
     public List<Produto> listaProdutos = new ArrayList<>();
     
@@ -72,11 +69,11 @@ public class TelaVendedor extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         pnlListaProduto = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtblItensCarrinho = new javax.swing.JTable();
+        jtblListaProdutos = new javax.swing.JTable();
         btnAdicionarItem = new javax.swing.JButton();
         btnRemoverItem = new javax.swing.JButton();
         pnlSubtotal = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        lblPrecoTotal = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -140,7 +137,7 @@ public class TelaVendedor extends javax.swing.JFrame {
 
         pnlListaProduto.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Produtos"));
 
-        jtblItensCarrinho.setModel(new javax.swing.table.DefaultTableModel(
+        jtblListaProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -148,7 +145,7 @@ public class TelaVendedor extends javax.swing.JFrame {
                 "Código", "Nome", "Categoria", "Valor Unitario", "Quantidade"
             }
         ));
-        jScrollPane1.setViewportView(jtblItensCarrinho);
+        jScrollPane1.setViewportView(jtblListaProdutos);
 
         javax.swing.GroupLayout pnlListaProdutoLayout = new javax.swing.GroupLayout(pnlListaProduto);
         pnlListaProduto.setLayout(pnlListaProdutoLayout);
@@ -208,11 +205,11 @@ public class TelaVendedor extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pnlSubtotal.setBorder(javax.swing.BorderFactory.createTitledBorder("Total da Compra "));
+        pnlSubtotal.setBorder(javax.swing.BorderFactory.createTitledBorder("Preço Total"));
         pnlSubtotal.setToolTipText("SubTotal");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setText("Valor total da compra");
+        lblPrecoTotal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblPrecoTotal.setText("0");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel10.setText("R$:");
@@ -225,17 +222,17 @@ public class TelaVendedor extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addComponent(lblPrecoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(95, 95, 95))
         );
         pnlSubtotalLayout.setVerticalGroup(
             pnlSubtotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSubtotalLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+            .addGroup(pnlSubtotalLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
                 .addGroup(pnlSubtotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPrecoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addGap(17, 17, 17))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jButton7.setText("Finalizar Compra ");
@@ -264,9 +261,9 @@ public class TelaVendedor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlVendedorLayout.createSequentialGroup()
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(lblVendedor)
-                .addGap(79, 79, 79)
+                .addGap(51, 51, 51)
                 .addComponent(lblNomeVendedor)
-                .addGap(81, 81, 81))
+                .addGap(109, 109, 109))
         );
         pnlVendedorLayout.setVerticalGroup(
             pnlVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -750,14 +747,14 @@ public class TelaVendedor extends javax.swing.JFrame {
     private void btnAdicionarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarItemActionPerformed
         try{
             // 1 - Passo Resgatar a linha e mandar para um objeto
-            int linhaSelecionada = jtblItensCarrinho.getSelectedRow();
+            int linhaSelecionada = jtblListaProdutos.getSelectedRow();
 
             if(linhaSelecionada == -1){
                 // Nenhuma linha selecionada, executar a função para atualizar a tabela
                 atualizarTabelaProduto();
             }else{
                 // 2 - acessar a camada model da tabela
-                DefaultTableModel modelo = (DefaultTableModel) jtblItensCarrinho.getModel();
+                DefaultTableModel modelo = (DefaultTableModel) jtblListaProdutos.getModel();
 
                 // 3 - resgatar valores da linha selecionada
                 int idSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
@@ -780,6 +777,7 @@ public class TelaVendedor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Não foi possivel adicionar o item ao carrinho", "Erro", JOptionPane.ERROR_MESSAGE);
         }
         atualizarTabelaListaDeCompras();
+        calcularEMostrarTotal();
     }//GEN-LAST:event_btnAdicionarItemActionPerformed
     
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -911,9 +909,6 @@ public class TelaVendedor extends javax.swing.JFrame {
             // Remover caracteres não numéricos
             cpf = cpf.replaceAll("[^0-9]", "");
             
-            int clienteId = -1;
-            String clienteNome;
-            
             if (cpf.length() == 11) {
                 // Formatar o CPF
                 cpf = String.format("%s.%s.%s-%s", cpf.substring(0, 3), cpf.substring(3, 6), cpf.substring(6, 9), cpf.substring(9, 11));
@@ -955,18 +950,56 @@ public class TelaVendedor extends javax.swing.JFrame {
             // Obter o ID do produto associado à linha selecionada
             int idProdutoExcluir = Integer.parseInt(jtblCarrinhoDeCompras.getValueAt(linhaSelecionada, 0).toString());
 
-            // Remover o produto correspondente da lista listaProdutos
-            removerProdutoDaLista(idProdutoExcluir);
+            // Confirmar se o cliente realmente deseja excluir o item
+            int opcao = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja remover este item?", "Confirmação", JOptionPane.YES_NO_OPTION);
 
-            // Atualizar a tabela após a remoção
-            atualizarTabelaListaDeCompras();
+            if (opcao == JOptionPane.YES_OPTION) {
+                // Remover o produto correspondente da lista listaProdutos
+                removerProdutoDaLista(idProdutoExcluir);
 
-            JOptionPane.showMessageDialog(rootPane, "Item removido com sucesso!");
+                // Atualizar a tabela após a remoção
+                atualizarTabelaListaDeCompras();
+                calcularEMostrarTotal();
+
+                JOptionPane.showMessageDialog(rootPane, "Item removido com sucesso!");
+            }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, "Erro ao remover o item.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnRemoverItemActionPerformed
-    
+    /**
+     * Calcula o valor total dos produtos presentes na listaProdutos,
+     * multiplicando o preço de cada produto pela sua quantidade e somando-os.
+     *
+     * @return O valor total da compra.
+     */
+    private double calcularTotal() {
+        double total = 0.0;
+
+        for (Produto produto : listaProdutos) {
+            total += produto.getPreco() * produto.getQuantidade();
+        }
+
+        return total;
+    }
+
+    /**
+     * Calcula o total da compra chamando a função calcularTotal(), atualiza a
+     * variável totalCompra e exibe o total na interface gráfica.
+     */
+    private void calcularEMostrarTotal() {
+        totalCompra = calcularTotal();
+        // Faça o que precisar com a variável totalCompra, como exibi-la ou usá-la em outro lugar.
+        String totalComoString = String.valueOf(totalCompra);
+
+        lblPrecoTotal.setText(totalComoString);
+    }
+
+    /**
+     * Remove um produto da listaProdutos com base no ID do produto fornecido.
+     *
+     * @param idProduto O ID do produto a ser removido.
+     */
     private void removerProdutoDaLista(int idProduto) {
         for (Produto produto : listaProdutos) {
             if (produto.getIdProduto() == idProduto) {
@@ -975,17 +1008,25 @@ public class TelaVendedor extends javax.swing.JFrame {
             }
         }
     }
-   
+
+    /**
+     * Limpa os campos de entrada na interface gráfica, como campos de texto e
+     * combobox.
+     */
     private void limparCampos() {
         txtNomeCompleto.setText("");
         ftxtCPF.setText("");
         cBoxSexoCliente.setSelectedIndex(0);
         txtEmail.setText("");
         ftxtCelular.setText("");
-    }   
-          
+    }
+
+    /**
+     * Atualiza a tabela de produtos na interface gráfica com os dados mais
+     * recentes do banco de dados.
+     */
     public void atualizarTabelaProduto() {
-        DefaultTableModel modelo = (DefaultTableModel) jtblItensCarrinho.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) jtblListaProdutos.getModel();
         // Limpar todas as linhas da tabela
         modelo.setRowCount(0);
 
@@ -994,17 +1035,21 @@ public class TelaVendedor extends javax.swing.JFrame {
 
         // Para cada item na lista, vou adicionar na tabela
         for (Produto item : listaRetorno) {
-           modelo.addRow(new String[]{
-                    String.valueOf(item.getIdProduto()),
-                    String.valueOf(item.getNomeProduto()),
-                    item.getNomeCategoria(),
-                    String.valueOf(item.getFabricante()),
-                    String.valueOf(item.getPreco()),
-                    String.valueOf(item.getQuantidade())
+            modelo.addRow(new String[]{
+                String.valueOf(item.getIdProduto()),
+                String.valueOf(item.getNomeProduto()),
+                item.getNomeCategoria(),
+                String.valueOf(item.getFabricante()),
+                String.valueOf(item.getPreco()),
+                String.valueOf(item.getQuantidade())
             });
         }
     }
-    
+
+    /**
+     * Atualiza a tabela de carrinho de compras na interface gráfica com os
+     * dados mais recentes da listaProdutos.
+     */
     public void atualizarTabelaListaDeCompras() {
         DefaultTableModel modelo = (DefaultTableModel) jtblCarrinhoDeCompras.getModel();
         // Limpar todas as linhas da tabela
@@ -1015,15 +1060,19 @@ public class TelaVendedor extends javax.swing.JFrame {
 
         // Para cada item na lista, vou adicionar na tabela
         for (Produto item : listaProdutos) {
-           modelo.addRow(new String[]{
-                    String.valueOf(item.getIdProduto()),
-                    String.valueOf(item.getNomeProduto()),
-                    String.valueOf(item.getQuantidade()),
-                   String.valueOf(item.getPreco())
+            modelo.addRow(new String[]{
+                String.valueOf(item.getIdProduto()),
+                String.valueOf(item.getNomeProduto()),
+                String.valueOf(item.getQuantidade()),
+                String.valueOf(item.getPreco())
             });
         }
     }
-    
+
+    /**
+     * Atualiza a tabela de clientes na interface gráfica com os dados mais
+     * recentes do banco de dados.
+     */
     public void atualizarTabelaCliente() {
         DefaultTableModel modelo = (DefaultTableModel) tblCliente.getModel();
         // Limpar todas as linhas da tabela
@@ -1044,8 +1093,16 @@ public class TelaVendedor extends javax.swing.JFrame {
             });
         }
     }
-    
-     public int valorCombobox(JComboBox<String> comboBox, String valor){
+
+    /**
+     * Retorna o índice da opção desejada em um ComboBox com base no valor
+     * fornecido.
+     *
+     * @param comboBox O ComboBox a ser pesquisado.
+     * @param valor O valor a ser encontrado no ComboBox.
+     * @return O índice da opção no ComboBox ou 0 se o valor não for encontrado.
+     */
+    public int valorCombobox(JComboBox<String> comboBox, String valor) {
         // Obtém o modelo do ComboBox
         DefaultComboBoxModel<String> modeloCombo = (DefaultComboBoxModel<String>) comboBox.getModel();
         // Itera sobre as opções do ComboBox para encontrar o índice correspondente à categoriaSelecionado
@@ -1115,7 +1172,6 @@ public class TelaVendedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
@@ -1134,10 +1190,11 @@ public class TelaVendedor extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jtblCarrinhoDeCompras;
-    private javax.swing.JTable jtblItensCarrinho;
+    private javax.swing.JTable jtblListaProdutos;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblNomeCliente;
     private javax.swing.JLabel lblNomeVendedor;
+    private javax.swing.JLabel lblPrecoTotal;
     private javax.swing.JLabel lblVendedor;
     private javax.swing.JMenuItem mnuSair;
     private javax.swing.JPanel pnlCPFcliente;
