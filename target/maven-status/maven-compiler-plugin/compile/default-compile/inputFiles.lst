@@ -4,6 +4,7 @@ C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\model\Cliente.
 C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\view\TelaVendedor.java
 C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\model\Pedido.java
 C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\dao\ProdutoDAO.java
+C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\model\ItemPedido.java
 C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\view\TelaLogin.java
 C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\dao\FuncionarioDAO.java
 C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\model\Funcionario.java
@@ -13,3 +14,4 @@ C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\dao\ClienteDAO
 C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\controller\main.java
 C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\view\TelaUpdateProduto.java
 C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\model\Produto.java
+C:\Users\Ectho\OneDrive\Documents\Projetos\Farmacia\src\main\java\dao\PedidoDAO.java

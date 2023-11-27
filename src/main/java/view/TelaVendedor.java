@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
 import model.Funcionario;
+import model.Pedido;
 import util.TelaUtils;
 
 /**
@@ -42,6 +43,7 @@ public class TelaVendedor extends javax.swing.JFrame {
         atualizarTabelaCliente();
         
         lblNomeVendedor.setText(nomeVendedor);
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,22 +58,14 @@ public class TelaVendedor extends javax.swing.JFrame {
         jTabbedPane3 = new javax.swing.JTabbedPane();
         pnlVendas = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        pnlProduto = new javax.swing.JPanel();
-        lblProduto = new javax.swing.JLabel();
-        pnlQuantidade = new javax.swing.JPanel();
-        lblQuantidade = new javax.swing.JLabel();
-        pnlValUni = new javax.swing.JPanel();
-        lblValUni = new javax.swing.JLabel();
-        pnlDescPerc = new javax.swing.JPanel();
-        lblDescPerc = new javax.swing.JLabel();
-        pnlDescReal = new javax.swing.JPanel();
-        lblDescReal = new javax.swing.JLabel();
         pnlListaProduto = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         pnlSubtotal = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         pnlVendedor = new javax.swing.JPanel();
@@ -79,8 +73,10 @@ public class TelaVendedor extends javax.swing.JFrame {
         lblNomeVendedor = new javax.swing.JLabel();
         pnlCliente = new javax.swing.JPanel();
         lblCliente = new javax.swing.JLabel();
+        lblNomeCliente = new javax.swing.JLabel();
         pnlCPFcliente = new javax.swing.JPanel();
         ftxtCPFCliente = new javax.swing.JFormattedTextField();
+        btnBuscarCliente = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         pnlCadastroCliente = new javax.swing.JPanel();
@@ -114,113 +110,14 @@ public class TelaVendedor extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        pnlProduto.setBorder(javax.swing.BorderFactory.createTitledBorder("Produto"));
-
-        javax.swing.GroupLayout pnlProdutoLayout = new javax.swing.GroupLayout(pnlProduto);
-        pnlProduto.setLayout(pnlProdutoLayout);
-        pnlProdutoLayout.setHorizontalGroup(
-            pnlProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlProdutoLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(lblProduto)
-                .addContainerGap(85, Short.MAX_VALUE))
-        );
-        pnlProdutoLayout.setVerticalGroup(
-            pnlProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlProdutoLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(lblProduto)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        pnlQuantidade.setBorder(javax.swing.BorderFactory.createTitledBorder("Quantidade"));
-
-        javax.swing.GroupLayout pnlQuantidadeLayout = new javax.swing.GroupLayout(pnlQuantidade);
-        pnlQuantidade.setLayout(pnlQuantidadeLayout);
-        pnlQuantidadeLayout.setHorizontalGroup(
-            pnlQuantidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlQuantidadeLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(lblQuantidade)
-                .addContainerGap(56, Short.MAX_VALUE))
-        );
-        pnlQuantidadeLayout.setVerticalGroup(
-            pnlQuantidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlQuantidadeLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(lblQuantidade)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        pnlValUni.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor Unitario "));
-
-        javax.swing.GroupLayout pnlValUniLayout = new javax.swing.GroupLayout(pnlValUni);
-        pnlValUni.setLayout(pnlValUniLayout);
-        pnlValUniLayout.setHorizontalGroup(
-            pnlValUniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlValUniLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(lblValUni)
-                .addContainerGap(61, Short.MAX_VALUE))
-        );
-        pnlValUniLayout.setVerticalGroup(
-            pnlValUniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlValUniLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(lblValUni)
-                .addContainerGap(89, Short.MAX_VALUE))
-        );
-
-        pnlDescPerc.setBorder(javax.swing.BorderFactory.createTitledBorder("Desc.%"));
-
-        javax.swing.GroupLayout pnlDescPercLayout = new javax.swing.GroupLayout(pnlDescPerc);
-        pnlDescPerc.setLayout(pnlDescPercLayout);
-        pnlDescPercLayout.setHorizontalGroup(
-            pnlDescPercLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDescPercLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(lblDescPerc)
-                .addContainerGap(58, Short.MAX_VALUE))
-        );
-        pnlDescPercLayout.setVerticalGroup(
-            pnlDescPercLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDescPercLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(lblDescPerc)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        pnlDescReal.setBorder(javax.swing.BorderFactory.createTitledBorder("Desc.R$"));
-
-        javax.swing.GroupLayout pnlDescRealLayout = new javax.swing.GroupLayout(pnlDescReal);
-        pnlDescReal.setLayout(pnlDescRealLayout);
-        pnlDescRealLayout.setHorizontalGroup(
-            pnlDescRealLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDescRealLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(lblDescReal)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlDescRealLayout.setVerticalGroup(
-            pnlDescRealLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDescRealLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(lblDescReal)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         pnlListaProduto.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Produtos"));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Código", "Nome", "Categoria", "Preço", "Quantidade"
+                "Código", "Nome", "Categoria", "Valor Unitario", "Quantidade"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -237,7 +134,7 @@ public class TelaVendedor extends javax.swing.JFrame {
         pnlListaProdutoLayout.setVerticalGroup(
             pnlListaProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlListaProdutoLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -256,59 +153,55 @@ public class TelaVendedor extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(pnlListaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(pnlProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnlQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(pnlValUni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(pnlDescPerc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pnlListaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlDescReal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))))
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlDescReal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlValUni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlQuantidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlDescPerc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(pnlListaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlListaProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pnlSubtotal.setBorder(javax.swing.BorderFactory.createTitledBorder("Total da Compra "));
         pnlSubtotal.setToolTipText("SubTotal");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setText("Valor total da compra");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel10.setText("R$:");
+
         javax.swing.GroupLayout pnlSubtotalLayout = new javax.swing.GroupLayout(pnlSubtotal);
         pnlSubtotal.setLayout(pnlSubtotalLayout);
         pnlSubtotalLayout.setHorizontalGroup(
             pnlSubtotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSubtotalLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
         pnlSubtotalLayout.setVerticalGroup(
             pnlSubtotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 59, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSubtotalLayout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addGroup(pnlSubtotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addGap(17, 17, 17))
         );
 
         jButton7.setText("Finalizar Compra ");
@@ -328,7 +221,7 @@ public class TelaVendedor extends javax.swing.JFrame {
         pnlVendedor.setBorder(javax.swing.BorderFactory.createTitledBorder("Vendedor "));
 
         lblNomeVendedor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblNomeVendedor.setText("Nome Aqui");
+        lblNomeVendedor.setText("Nome do vendedor");
 
         javax.swing.GroupLayout pnlVendedorLayout = new javax.swing.GroupLayout(pnlVendedor);
         pnlVendedor.setLayout(pnlVendedorLayout);
@@ -337,9 +230,9 @@ public class TelaVendedor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlVendedorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblVendedor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNomeVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGap(79, 79, 79)
+                .addComponent(lblNomeVendedor)
+                .addGap(81, 81, 81))
         );
         pnlVendedorLayout.setVerticalGroup(
             pnlVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,20 +246,27 @@ public class TelaVendedor extends javax.swing.JFrame {
 
         pnlCliente.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente "));
 
+        lblNomeCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblNomeCliente.setText("Nome do cliente");
+
         javax.swing.GroupLayout pnlClienteLayout = new javax.swing.GroupLayout(pnlCliente);
         pnlCliente.setLayout(pnlClienteLayout);
         pnlClienteLayout.setHorizontalGroup(
             pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlClienteLayout.createSequentialGroup()
-                .addGap(134, 134, 134)
+                .addGap(90, 90, 90)
+                .addComponent(lblNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(lblCliente)
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         pnlClienteLayout.setVerticalGroup(
             pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlClienteLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(lblCliente)
+                .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNomeCliente)
+                    .addComponent(lblCliente))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -377,22 +277,38 @@ public class TelaVendedor extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        ftxtCPFCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ftxtCPFClienteActionPerformed(evt);
+            }
+        });
+
+        btnBuscarCliente.setText("Buscar");
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlCPFclienteLayout = new javax.swing.GroupLayout(pnlCPFcliente);
         pnlCPFcliente.setLayout(pnlCPFclienteLayout);
         pnlCPFclienteLayout.setHorizontalGroup(
             pnlCPFclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCPFclienteLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(ftxtCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCPFclienteLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(ftxtCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
         pnlCPFclienteLayout.setVerticalGroup(
             pnlCPFclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCPFclienteLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(ftxtCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addGroup(pnlCPFclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ftxtCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pix", "Cartão de Crédito", "Cartão de Débito" }));
@@ -404,15 +320,13 @@ public class TelaVendedor extends javax.swing.JFrame {
         pnlVendasLayout.setHorizontalGroup(
             pnlVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlVendasLayout.createSequentialGroup()
-                .addGroup(pnlVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlVendasLayout.createSequentialGroup()
-                        .addGap(354, 354, 354)
+                        .addComponent(pnlCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(pnlVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlVendasLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pnlCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(pnlVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlVendasLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -429,7 +343,7 @@ public class TelaVendedor extends javax.swing.JFrame {
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(8, Short.MAX_VALUE))))
         );
         pnlVendasLayout.setVerticalGroup(
             pnlVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -441,9 +355,8 @@ public class TelaVendedor extends javax.swing.JFrame {
                     .addComponent(pnlVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlVendasLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 265, Short.MAX_VALUE)
                         .addGroup(pnlVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
@@ -452,7 +365,8 @@ public class TelaVendedor extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(pnlVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -759,7 +673,7 @@ public class TelaVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void mnuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSairActionPerformed
@@ -887,6 +801,48 @@ public class TelaVendedor extends javax.swing.JFrame {
     private void cBoxSexoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBoxSexoClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cBoxSexoClienteActionPerformed
+
+    private void ftxtCPFClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxtCPFClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ftxtCPFClienteActionPerformed
+
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        try {
+            String cpf = ftxtCPFCliente.getText();
+
+            // Remover caracteres não numéricos
+            cpf = cpf.replaceAll("[^0-9]", "");
+            
+            int clienteId = -1;
+            String clienteNome;
+            
+            if (cpf.length() == 11) {
+                // Formatar o CPF
+                cpf = String.format("%s.%s.%s-%s", cpf.substring(0, 3), cpf.substring(3, 6), cpf.substring(6, 9), cpf.substring(9, 11));
+
+                // Chama o método buscarPorCPF para obter informações do funcionário
+                ArrayList<Cliente> clientes = ClienteDAO.buscarPorCPF(cpf);
+                
+                if (!clientes.isEmpty()) {
+                    Cliente clienteEncontrado = clientes.get(0); // Vamos assumir que o CPF é único, então pegamos o primeiro cliente retornado
+                    clienteId = clienteEncontrado.getIdCliente();
+                    clienteNome = clienteEncontrado.getNome();
+                    
+                    JOptionPane.showMessageDialog(rootPane, "ID do cliente é " + clienteId + "!");
+                    lblNomeCliente.setText(clienteNome);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Cliente não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    return; // Se o cliente não for encontrado, sai do método
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Informe um CPF válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(rootPane, "Informe um CPF válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        ftxtCPFCliente.setText("");
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
     
     private void limparCampos() {
         txtNomeCompleto.setText("");
@@ -969,6 +925,7 @@ public class TelaVendedor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
@@ -983,8 +940,10 @@ public class TelaVendedor extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
@@ -1000,24 +959,15 @@ public class TelaVendedor extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCliente;
-    private javax.swing.JLabel lblDescPerc;
-    private javax.swing.JLabel lblDescReal;
+    private javax.swing.JLabel lblNomeCliente;
     private javax.swing.JLabel lblNomeVendedor;
-    private javax.swing.JLabel lblProduto;
-    private javax.swing.JLabel lblQuantidade;
-    private javax.swing.JLabel lblValUni;
     private javax.swing.JLabel lblVendedor;
     private javax.swing.JMenuItem mnuSair;
     private javax.swing.JPanel pnlCPFcliente;
     private javax.swing.JPanel pnlCadastroCliente;
     private javax.swing.JPanel pnlCliente;
-    private javax.swing.JPanel pnlDescPerc;
-    private javax.swing.JPanel pnlDescReal;
     private javax.swing.JPanel pnlListaProduto;
-    private javax.swing.JPanel pnlProduto;
-    private javax.swing.JPanel pnlQuantidade;
     private javax.swing.JPanel pnlSubtotal;
-    private javax.swing.JPanel pnlValUni;
     private javax.swing.JPanel pnlVendas;
     private javax.swing.JPanel pnlVendedor;
     private javax.swing.JTable tblCliente;
