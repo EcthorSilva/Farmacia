@@ -1235,7 +1235,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                         for (Pedido pedido : pedidos) {
                             modelo.addRow(new String[]{
                                 String.valueOf(pedido.getIdVenda()),
-                                pedido.getDataHora().toString(), // ou use um formato específico de data
+                                pedido.getDataHora().toString(),
                                 pedido.getFormaPagamento1(),
                                 String.valueOf(pedido.getTotalCompra1()),
                                 pedido.getNomeCliente(),
@@ -1322,7 +1322,7 @@ public class TelaAdmin extends javax.swing.JFrame {
         for (Pedido pedido : listaRetorno) {
             modelo.addRow(new String[]{
                 String.valueOf(pedido.getIdVenda()),
-                pedido.getDataHora().toString(), // ou use um formato específico de data
+                pedido.getDataHora(), // ou use um formato específico de data
                 pedido.getFormaPagamento1(),
                 String.valueOf(pedido.getTotalCompra1()),
                 pedido.getNomeCliente(),

@@ -26,79 +26,6 @@ public class Pedido {
     private int totalQuantidade;
     private double totalValor;
 
-    public int getIdVenda() {
-        return idVenda;
-    }
-
-    public void setIdVenda(int idVenda) {
-        this.idVenda = idVenda;
-    }
-
-    public String getDataHora() {
-        return dataHora;
-    }
-
-    public void setDataHora(String dataHora) {
-        this.dataHora = dataHora;
-    }
-
-    public String getFormaPagamento1() {
-        return formaPagamento1;
-    }
-
-    public void setFormaPagamento1(String formaPagamento1) {
-        this.formaPagamento1 = formaPagamento1;
-    }
-
-    public double getTotalCompra1() {
-        return totalCompra1;
-    }
-
-    public void setTotalCompra1(double totalCompra1) {
-        this.totalCompra1 = totalCompra1;
-    }
-
-    public String getNomeCliente() {
-        return nomeCliente;
-    }
-
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
-    }
-
-    public String getNomeFuncionario() {
-        return nomeFuncionario;
-    }
-
-    public void setNomeFuncionario(String nomeFuncionario) {
-        this.nomeFuncionario = nomeFuncionario;
-    }
-
-    public String getNomeProduto() {
-        return nomeProduto;
-    }
-
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
-    }
-
-    public int getTotalQuantidade() {
-        return totalQuantidade;
-    }
-
-    public void setTotalQuantidade(int totalQuantidade) {
-        this.totalQuantidade = totalQuantidade;
-    }
-
-    public double getTotalValor() {
-        return totalValor;
-    }
-
-    public void setTotalValor(double totalValor) {
-        this.totalValor = totalValor;
-    }
-            
-    
     // Construtor Vazio
     public Pedido() {
         
@@ -184,5 +111,79 @@ public class Pedido {
 
     public void setTotalCompra(double totalCompra) {
         this.totalCompra = totalCompra;
+    }
+    
+    // para o relatorio 
+    
+    public int getIdVenda() {
+        return idVenda;
+    }
+
+    public void setIdVenda(int idVenda) {
+        this.idVenda = idVenda;
+    }
+
+    public String getDataHora() {
+        return dataHora;
+    }
+
+    public void setDataHora(String dataHora) {
+        this.dataHora = dataHora;
+    }
+
+    public String getFormaPagamento1() {
+        return formaPagamento1;
+    }
+
+    public void setFormaPagamento1(String formaPagamento1) {
+        this.formaPagamento1 = formaPagamento1;
+    }
+
+    public double getTotalCompra1() {
+        return totalCompra1;
+    }
+
+    public void setTotalCompra1(double totalCompra1) {
+        this.totalCompra1 = totalCompra1;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public String getNomeFuncionario() {
+        return nomeFuncionario;
+    }
+
+    public void setNomeFuncionario(String nomeFuncionario) {
+        this.nomeFuncionario = nomeFuncionario;
+    }
+
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
+
+    public int getTotalQuantidade() {
+        return totalQuantidade;
+    }
+
+    public void setTotalQuantidade(int totalQuantidade) {
+        this.totalQuantidade = totalQuantidade;
+    }
+
+    public double getTotalValor() {
+        return totalValor;
+    }
+
+    public void setTotalValor(double totalValor) {
+        this.totalValor = totalValor;
     }
 }
