@@ -154,7 +154,7 @@ public class TelaVendedor extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Nome", "Categoria", "Valor Unitario", "Quantidade"
+                "ID", "Nome", "Categoria", "Fabricante", "Preço Uni.", "Quantidade"
             }
         ));
         jScrollPane1.setViewportView(jtblListaProdutos);
@@ -997,6 +997,7 @@ public class TelaVendedor extends javax.swing.JFrame {
         }
 
         ftxtCPFCliente.setText("");
+        atualizarTabelaProduto();
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void btnRemoverItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverItemActionPerformed
@@ -1086,17 +1087,21 @@ public class TelaVendedor extends javax.swing.JFrame {
     /**
      * Atualiza a tabela de produtos na interface gráfica com os dados mais
      * recentes do banco de dados.
+     * 
+     * Caso o item tenha uma quantidade igual ou inferior a 0 no estoque ele não
+     * aparecerá na lsita 
      */
     public void atualizarTabelaProduto() {
-        DefaultTableModel modelo = (DefaultTableModel) jtblListaProdutos.getModel();
-        // Limpar todas as linhas da tabela
-        modelo.setRowCount(0);
+    DefaultTableModel modelo = (DefaultTableModel) jtblListaProdutos.getModel();
+    // Limpar todas as linhas da tabela
+    modelo.setRowCount(0);
 
-        // Obter a lista atualizada de produtos
-        ArrayList<Produto> listaRetorno = ProdutoDAO.listar();
+    // Obter a lista atualizada de produtos
+    ArrayList<Produto> listaRetorno = ProdutoDAO.listar();
 
-        // Para cada item na lista, vou adicionar na tabela
-        for (Produto item : listaRetorno) {
+    // Para cada item na lista, vou adicionar na tabela, apenas se a quantidade for maior que 0
+    for (Produto item : listaRetorno) {
+        if (item.getQuantidade() > 0) {
             modelo.addRow(new String[]{
                 String.valueOf(item.getIdProduto()),
                 String.valueOf(item.getNomeProduto()),
@@ -1107,6 +1112,7 @@ public class TelaVendedor extends javax.swing.JFrame {
             });
         }
     }
+}
 
     /**
      * Atualiza a tabela de carrinho de compras na interface gráfica com os

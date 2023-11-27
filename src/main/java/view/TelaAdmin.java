@@ -1,6 +1,7 @@
 package view;
 
 import dao.FuncionarioDAO;
+import dao.PedidoDAO;
 import util.TelaUtils;
 import dao.ProdutoDAO;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Funcionario;
+import model.Pedido;
 import model.Produto;
 
 /**
@@ -27,6 +29,7 @@ public class TelaAdmin extends javax.swing.JFrame {
         
         atualizarTabelaProduto();
         atualizarTabelaFuncionario();
+        atualizarTabelaRelatorioVendas();
     }
     
     /**
@@ -96,21 +99,17 @@ public class TelaAdmin extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtIdFuncionarioBuscar = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        rbtnSintetico = new javax.swing.JRadioButton();
-        rbtnAnaltico = new javax.swing.JRadioButton();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        cbxFiltrar = new javax.swing.JComboBox<>();
-        cbxCategoriaDeProduto = new javax.swing.JComboBox<>();
-        cbxPeriodoDeAnalise = new javax.swing.JComboBox<>();
-        btnGerarRelatorio = new javax.swing.JButton();
-        btnCancelarRelatorios = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        jtblRelatorioVendas = new javax.swing.JTable();
+        jPanel18 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        txtIDVenda = new javax.swing.JTextField();
+        btnFiltrarPorID = new javax.swing.JButton();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        ftxtFiltrarPorData = new javax.swing.JFormattedTextField();
+        btnFiltrarPorData = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         mnuSair = new javax.swing.JMenuItem();
@@ -697,95 +696,17 @@ public class TelaAdmin extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Funcionarios", jPanel2);
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados"));
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder("Relatorio de Vendas"));
 
-        jLabel20.setText("Período de Análise:");
-
-        jLabel21.setText("Tipo de Relatório:");
-
-        rbtnSintetico.setText("Sintético");
-
-        rbtnAnaltico.setText("Analítico");
-
-        jLabel22.setText("Categoria de Produto:");
-
-        jLabel23.setText("Filtrar:");
-
-        cbxFiltrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vendas", "Estoque", "Ambos" }));
-
-        cbxCategoriaDeProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas as categorias", "Medicamentos", "Produtos de cuidados pessoais", "Suplementos nutricionais" }));
-
-        cbxPeriodoDeAnalise.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diário", "Semanal", "Mensal", "Anual" }));
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel20))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(rbtnSintetico)
-                        .addGap(18, 18, 18)
-                        .addComponent(rbtnAnaltico)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel23))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(cbxPeriodoDeAnalise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(160, 160, 160)
-                        .addComponent(jLabel22)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbxCategoriaDeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(cbxPeriodoDeAnalise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel22)
-                    .addComponent(cbxCategoriaDeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(rbtnSintetico)
-                    .addComponent(rbtnAnaltico)
-                    .addComponent(jLabel23)
-                    .addComponent(cbxFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
-        btnGerarRelatorio.setText("Gerar Relatório");
-        btnGerarRelatorio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGerarRelatorioActionPerformed(evt);
-            }
-        });
-
-        btnCancelarRelatorios.setText("Cancelar");
-
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        jtblRelatorioVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID Venda", "Data e Hora", "Forma de Pagamento", "Total da Compra", "Nome do Cliente", "Nome do Vendedor", "Nome do Produto", "Quantidade vendida", "Valor por Quantidade Vendida"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(jtblRelatorioVendas);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -800,8 +721,84 @@ public class TelaAdmin extends javax.swing.JFrame {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
                 .addContainerGap())
+        );
+
+        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtrar por ID"));
+
+        jLabel5.setText("ID da Venda:");
+
+        btnFiltrarPorID.setText("Filtrar");
+        btnFiltrarPorID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarPorIDActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(txtIDVenda, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnFiltrarPorID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtIDVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFiltrarPorID))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtrar por Data"));
+
+        jLabel8.setText("Data da Venda");
+
+        try {
+            ftxtFiltrarPorData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####/##/##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        btnFiltrarPorData.setText("Filtrar");
+        btnFiltrarPorData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarPorDataActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ftxtFiltrarPorData, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnFiltrarPorData, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(ftxtFiltrarPorData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFiltrarPorData))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -812,28 +809,19 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
-                        .addComponent(btnGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                        .addComponent(btnCancelarRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60))))
+                        .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelarRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -892,10 +880,6 @@ public class TelaAdmin extends javax.swing.JFrame {
     private void txtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecoActionPerformed
-
-    private void btnGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarRelatorioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGerarRelatorioActionPerformed
 
     private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
         if(obj == null){
@@ -1184,6 +1168,96 @@ public class TelaAdmin extends javax.swing.JFrame {
             txtIdFuncionarioBuscar.setText("");
         }
     }//GEN-LAST:event_btnBuscarFuncionarioActionPerformed
+
+    private void btnFiltrarPorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarPorIDActionPerformed
+        if (txtIDVenda.getText().trim().equals("")) {
+            atualizarTabelaRelatorioVendas();
+        } else {
+            try {
+                int idVenda = Integer.parseInt(txtIDVenda.getText());
+
+                // Chamar a DAO para filtrar pelo ID da venda
+                ArrayList<Pedido> pedidos = PedidoDAO.buscarPorID(idVenda);
+
+                DefaultTableModel modelo = (DefaultTableModel) jtblRelatorioVendas.getModel();
+                modelo.setRowCount(0);
+
+                if (pedidos.isEmpty()) {
+                    JOptionPane.showMessageDialog(rootPane, "Venda com ID " + idVenda + " não encontrada.", "Erro", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    for (Pedido pedido : pedidos) {
+                        modelo.addRow(new String[]{
+                            String.valueOf(pedido.getIdVenda()),
+                            pedido.getDataHora().toString(), // ou use um formato específico de data
+                            pedido.getFormaPagamento1(),
+                            String.valueOf(pedido.getTotalCompra1()),
+                            pedido.getNomeCliente(),
+                            pedido.getNomeFuncionario(),
+                            pedido.getNomeProduto(),
+                            String.valueOf(pedido.getTotalQuantidade()),
+                            String.valueOf(pedido.getTotalValor())
+                        });
+                    }
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(rootPane, "Informe um ID válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        txtIDVenda.setText("");
+    }//GEN-LAST:event_btnFiltrarPorIDActionPerformed
+
+    private void btnFiltrarPorDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarPorDataActionPerformed
+        if (ftxtFiltrarPorData.getText().trim().equals("")) {
+            atualizarTabelaRelatorioVendas();
+        } else {
+            try {
+                // Obter a data do campo formatado
+                String dataInformada = ftxtFiltrarPorData.getText();
+
+                // Remover caracteres não numéricos
+                dataInformada = dataInformada.replaceAll("[^0-9]", "");
+
+                // Verificar se a data possui a quantidade correta de dígitos
+                if (dataInformada.length() == 8) {
+                    // Formatar a data para o formato 'yyyy-MM-dd'
+                    String dataFormatada = String.format("%s-%s-%s", dataInformada.substring(0, 4), dataInformada.substring(4, 6), dataInformada.substring(6, 8));
+
+                    // Chamar a função para buscar por data
+                    ArrayList<Pedido> pedidos = PedidoDAO.buscarPorData(dataFormatada);
+
+                    DefaultTableModel modelo = (DefaultTableModel) jtblRelatorioVendas.getModel();
+                    modelo.setRowCount(0);
+
+                    if (pedidos.isEmpty()) {
+                        JOptionPane.showMessageDialog(rootPane, "Não foram encontradas vendas para a data informada.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                        atualizarTabelaRelatorioVendas();
+                    } else {
+                        for (Pedido pedido : pedidos) {
+                            modelo.addRow(new String[]{
+                                String.valueOf(pedido.getIdVenda()),
+                                pedido.getDataHora().toString(), // ou use um formato específico de data
+                                pedido.getFormaPagamento1(),
+                                String.valueOf(pedido.getTotalCompra1()),
+                                pedido.getNomeCliente(),
+                                pedido.getNomeFuncionario(),
+                                pedido.getNomeProduto(),
+                                String.valueOf(pedido.getTotalQuantidade()),
+                                String.valueOf(pedido.getTotalValor())
+                            });
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Informe uma data válida no formato 'AAAA/MM/DD'.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    atualizarTabelaRelatorioVendas();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Informe uma data válida no formato 'AAAA/MM/DD'.", "Erro", JOptionPane.ERROR_MESSAGE);
+                atualizarTabelaRelatorioVendas();
+            }
+            atualizarTabelaRelatorioVendas();
+            ftxtFiltrarPorData.setText("");
+        }
+    }//GEN-LAST:event_btnFiltrarPorDataActionPerformed
     
     /*  METODOS AUXILIARES */
     
@@ -1231,6 +1305,31 @@ public class TelaAdmin extends javax.swing.JFrame {
                     String.valueOf(item.getFabricante()),
                     String.valueOf(item.getPreco()),
                     String.valueOf(item.getQuantidade())
+            });
+        }
+    }
+    
+    
+    public void atualizarTabelaRelatorioVendas() {
+        DefaultTableModel modelo = (DefaultTableModel) jtblRelatorioVendas.getModel();
+        // Limpar todas as linhas da tabela
+        modelo.setRowCount(0);
+
+        // Obter a lista atualizada de pedidos
+        ArrayList<Pedido> listaRetorno = PedidoDAO.listarPedidos();
+
+        // Para cada item na lista, vou adicionar na tabela
+        for (Pedido pedido : listaRetorno) {
+            modelo.addRow(new String[]{
+                String.valueOf(pedido.getIdVenda()),
+                pedido.getDataHora().toString(), // ou use um formato específico de data
+                pedido.getFormaPagamento1(),
+                String.valueOf(pedido.getTotalCompra1()),
+                pedido.getNomeCliente(),
+                pedido.getNomeFuncionario(),
+                pedido.getNomeProduto(),
+                String.valueOf(pedido.getTotalQuantidade()),
+                String.valueOf(pedido.getTotalValor())
             });
         }
     }
@@ -1341,19 +1440,17 @@ public class TelaAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrarProduto;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCancelar2;
-    private javax.swing.JButton btnCancelarRelatorios;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnExcluirFuncionario;
-    private javax.swing.JButton btnGerarRelatorio;
+    private javax.swing.JButton btnFiltrarPorData;
+    private javax.swing.JButton btnFiltrarPorID;
     private javax.swing.JComboBox<String> cboxCategoria;
     private javax.swing.JComboBox<String> cboxSexoFuncionario;
     private javax.swing.JComboBox<String> cbxCargoFuncionario;
-    private javax.swing.JComboBox<String> cbxCategoriaDeProduto;
-    private javax.swing.JComboBox<String> cbxFiltrar;
     private javax.swing.JComboBox<String> cbxHorarioDeTrabalhoFuncionario;
-    private javax.swing.JComboBox<String> cbxPeriodoDeAnalise;
     private javax.swing.JFormattedTextField ftxtCPFFuncionario;
     private javax.swing.JFormattedTextField ftxtDataNascimentoFuncionario;
+    private javax.swing.JFormattedTextField ftxtFiltrarPorData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -1364,14 +1461,12 @@ public class TelaAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
@@ -1383,6 +1478,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1395,15 +1491,14 @@ public class TelaAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTable jtblFuncionarios;
     private javax.swing.JTable jtblProdutos;
+    private javax.swing.JTable jtblRelatorioVendas;
     private javax.swing.JMenuItem mnuSair;
-    private javax.swing.JRadioButton rbtnAnaltico;
-    private javax.swing.JRadioButton rbtnSintetico;
     private javax.swing.JSpinner spnQuantidade;
     private javax.swing.JTextField txtCodigoBuscar;
     private javax.swing.JTextField txtFabricante;
+    private javax.swing.JTextField txtIDVenda;
     private javax.swing.JTextField txtIdFuncionarioBuscar;
     private javax.swing.JTextField txtNomeCompletoFuncionario;
     private javax.swing.JTextField txtNomeProduto;
