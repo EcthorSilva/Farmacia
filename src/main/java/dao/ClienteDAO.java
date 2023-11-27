@@ -22,7 +22,7 @@ public class ClienteDAO {
 
     private static String url = "jdbc:mysql://localhost:3306/farmacia";
     private static String login = "root";
-    private static String senha = "root";
+    private static String senha = "220105";
 
     /**
      * Insere um objeto Cliente no banco de dados.

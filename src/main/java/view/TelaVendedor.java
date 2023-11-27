@@ -14,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
+import model.Funcionario;
 import util.TelaUtils;
 
 /**
@@ -39,11 +40,21 @@ public class TelaVendedor extends javax.swing.JFrame {
      */
     public TelaVendedor() {
         initComponents();
-        atualizarTabelaCliente();
         //setSize(1000, 600);
         setResizable(false);
+        
+        atualizarTabelaCliente();
     }
-
+    
+    public TelaVendedor(int idVendedor, String nomeVendedor) {
+        initComponents();
+        //setSize(1000, 600);
+        setResizable(false);
+        
+        atualizarTabelaCliente();
+        
+        lblNomeVendedor.setText(nomeVendedor);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,6 +88,7 @@ public class TelaVendedor extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         pnlVendedor = new javax.swing.JPanel();
         lblVendedor = new javax.swing.JLabel();
+        lblNomeVendedor = new javax.swing.JLabel();
         pnlCliente = new javax.swing.JPanel();
         lblCliente = new javax.swing.JLabel();
         pnlCPFcliente = new javax.swing.JPanel();
@@ -327,6 +339,9 @@ public class TelaVendedor extends javax.swing.JFrame {
 
         pnlVendedor.setBorder(javax.swing.BorderFactory.createTitledBorder("Vendedor "));
 
+        lblNomeVendedor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblNomeVendedor.setText("Nome Aqui");
+
         javax.swing.GroupLayout pnlVendedorLayout = new javax.swing.GroupLayout(pnlVendedor);
         pnlVendedor.setLayout(pnlVendedorLayout);
         pnlVendedorLayout.setHorizontalGroup(
@@ -334,13 +349,17 @@ public class TelaVendedor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlVendedorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblVendedor)
-                .addGap(138, 138, 138))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblNomeVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
         pnlVendedorLayout.setVerticalGroup(
             pnlVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlVendedorLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(lblVendedor)
+                .addGroup(pnlVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNomeVendedor)
+                    .addComponent(lblVendedor))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1042,6 +1061,7 @@ public class TelaVendedor extends javax.swing.JFrame {
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblDescPerc;
     private javax.swing.JLabel lblDescReal;
+    private javax.swing.JLabel lblNomeVendedor;
     private javax.swing.JLabel lblProduto;
     private javax.swing.JLabel lblQuantidade;
     private javax.swing.JLabel lblValUni;

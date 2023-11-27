@@ -4,12 +4,12 @@ import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import javax.swing.UIManager;
 import view.TelaLogin;
 
-/**
- * Classe principal que inicia a aplicação.
- * Configura o visual do Java Swing e exibe a tela de login.
- * 
- * @author Ectho
- */
+    /**
+    * Classe principal que inicia a aplicação.
+    * Configura o visual do Java Swing e exibe a tela de login.
+    * 
+    * @author Ectho
+    */
 public class main {
     public static void main(String[] args) {
         /**

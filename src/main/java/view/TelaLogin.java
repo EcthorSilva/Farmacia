@@ -5,23 +5,36 @@
 package view;
 
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import dao.FuncionarioDAO;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import model.Funcionario;
 import util.TelaUtils;
 
 /**
  *
  * @author Ectho
  */
+    /**
+     * Classe que representa a interface gráfica da tela de login.
+     * Contém componentes como botões, campos de texto e rótulos para interação do usuário.
+     * As funcionalidades específicas de cada componente estão implementadas nos métodos correspondentes.
+     */
 public class TelaLogin extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaLogin
      */
+    
+     /**
+     * Método construtor da classe, inicializa os componentes e configurações da tela.
+     * A tela não é redimensionável (resizable).
+     */
     public TelaLogin() {
         initComponents();
         
-        setSize(1000,600);
+        //setSize(1000,600);
         setResizable(false);
     }
 
@@ -37,9 +50,7 @@ public class TelaLogin extends javax.swing.JFrame {
         pnlLogin = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtLogin = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        pswSenha = new javax.swing.JPasswordField();
+        txtCPFLogin = new javax.swing.JTextField();
         btnEntrar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
@@ -53,15 +64,13 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1.setText("Farmacia");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel2.setText("Login:");
+        jLabel2.setText("CPF:");
 
-        txtLogin.addActionListener(new java.awt.event.ActionListener() {
+        txtCPFLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLoginActionPerformed(evt);
+                txtCPFLoginActionPerformed(evt);
             }
         });
-
-        jLabel3.setText("Senha:");
 
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -86,45 +95,42 @@ public class TelaLogin extends javax.swing.JFrame {
         pnlLogin.setLayout(pnlLoginLayout);
         pnlLoginLayout.setHorizontalGroup(
             pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLoginLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(225, 225, 225))
             .addGroup(pnlLoginLayout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(123, 123, 123)
+                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(pnlLoginLayout.createSequentialGroup()
+                            .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlLoginLayout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtCPFLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlLoginLayout.createSequentialGroup()
-                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlLoginLayout.createSequentialGroup()
-                        .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtLogin)
-                            .addComponent(pswSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(128, Short.MAX_VALUE))
+                        .addGap(92, 92, 92)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
         pnlLoginLayout.setVerticalGroup(
             pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLoginLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(96, 96, 96)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(106, 106, 106)
-                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(pswSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
-                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(119, 119, 119))
+                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlLoginLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCPFLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(119, 303, Short.MAX_VALUE))
+                    .addGroup(pnlLoginLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(161, 161, 161))))
         );
 
         jMenu3.setText("Option");
@@ -145,9 +151,9 @@ public class TelaLogin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(490, Short.MAX_VALUE)
-                .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -161,22 +167,46 @@ public class TelaLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
+    private void txtCPFLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtLoginActionPerformed
+    }//GEN-LAST:event_txtCPFLoginActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        String login = txtLogin.getText();
-        String senha = pswSenha.getText();
-        
-        if(login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")){
-            TelaAdmin telaAdm = new TelaAdmin();
-            TelaUtils.abrirNovaTela(this, telaAdm);
-        } else if (login.equalsIgnoreCase("vendedor") && senha.equalsIgnoreCase("123")){
-            TelaVendedor telaVend = new TelaVendedor();
-            TelaUtils.abrirNovaTela(this, telaVend);
+        String cpf = txtCPFLogin.getText();
+
+        // Remover caracteres não numéricos
+        cpf = cpf.replaceAll("[^0-9]", "");
+
+        if (cpf.length() == 11) {
+            // Formatar o CPF
+            cpf = String.format("%s.%s.%s-%s", cpf.substring(0, 3), cpf.substring(3, 6), cpf.substring(6, 9), cpf.substring(9, 11));
+
+            // Chama o método buscarPorCPF para obter informações do funcionário
+            ArrayList<Funcionario> funcionarios = FuncionarioDAO.buscarPorCPF(cpf);
+
+            if (funcionarios != null && !funcionarios.isEmpty()) {
+                // Se o CPF foi encontrado, verifica o cargo do primeiro funcionário retornado
+                Funcionario funcionario = funcionarios.get(0);
+
+                switch (funcionario.getNomeCargo()) {
+                    case "Admin" -> {
+                        TelaAdmin telaAdm = new TelaAdmin();
+                        TelaUtils.abrirNovaTela(this, telaAdm);
+                    }
+                    case "Vendedor" -> {
+                        // Passar ID e nome do vendedor para a tela TelaVendedor
+                        int idVendedor = funcionario.getIdFuncionario();
+                        String nomeVendedor = funcionario.getNome();
+                        TelaVendedor telaVend = new TelaVendedor(idVendedor, nomeVendedor);
+                        TelaUtils.abrirNovaTela(this, telaVend);
+                    }
+                    default -> JOptionPane.showMessageDialog(rootPane, "Cargo não reconhecido. Contate o administrador.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "CPF não cadastrado. Verifique o CPF informado.");
+            }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Senha incorreta. Tente Novamente!");
+            JOptionPane.showMessageDialog(rootPane, "Informe um CPF válido.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
@@ -232,12 +262,10 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem mnuSair;
     private javax.swing.JPanel pnlLogin;
-    private javax.swing.JPasswordField pswSenha;
-    private javax.swing.JTextField txtLogin;
+    private javax.swing.JTextField txtCPFLogin;
     // End of variables declaration//GEN-END:variables
 }
