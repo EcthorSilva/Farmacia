@@ -5,6 +5,7 @@
 package view;
 
 import dao.ClienteDAO;
+import dao.PedidoDAO;
 import dao.ProdutoDAO;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,8 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
+import model.ItemPedido;
+import model.Pedido;
 import model.Produto;
 import util.TelaUtils;
 
@@ -27,6 +30,8 @@ public class TelaVendedor extends javax.swing.JFrame {
     private double totalCompra = 0;
     private int clienteId = -1;
     private String clienteNome;
+    
+    private int vendedorId = -1;
     
     public List<Produto> listaProdutos = new ArrayList<>();
     
@@ -49,9 +54,17 @@ public class TelaVendedor extends javax.swing.JFrame {
         atualizarTabelaProduto();
         atualizarTabelaListaDeCompras();
         
-        lblNomeVendedor.setText(nomeVendedor);
+        // Armazena o ID do vendedor no campo de classe
+        vendedorId = idVendedor;
         
+        lblNomeVendedor.setText(nomeVendedor);
+        System.out.println(vendedorId);
     }
+    
+    public int getVendedorId() {
+        return vendedorId;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,7 +91,6 @@ public class TelaVendedor extends javax.swing.JFrame {
         btnFinalizarVenda = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         pnlVendedor = new javax.swing.JPanel();
-        lblVendedor = new javax.swing.JLabel();
         lblNomeVendedor = new javax.swing.JLabel();
         pnlCliente = new javax.swing.JPanel();
         lblCliente = new javax.swing.JLabel();
@@ -258,20 +270,16 @@ public class TelaVendedor extends javax.swing.JFrame {
         pnlVendedor.setLayout(pnlVendedorLayout);
         pnlVendedorLayout.setHorizontalGroup(
             pnlVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlVendedorLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(lblVendedor)
-                .addGap(51, 51, 51)
+            .addGroup(pnlVendedorLayout.createSequentialGroup()
+                .addGap(89, 89, 89)
                 .addComponent(lblNomeVendedor)
-                .addGap(109, 109, 109))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlVendedorLayout.setVerticalGroup(
             pnlVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlVendedorLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(pnlVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNomeVendedor)
-                    .addComponent(lblVendedor))
+                .addGap(19, 19, 19)
+                .addComponent(lblNomeVendedor)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -734,28 +742,55 @@ public class TelaVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeCompletoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        resetarAposFinalizarCompra();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
-        String formaPagamento = (String) cboxFPagamento.getSelectedItem();
-        
-        if (clienteId <= 0){
-            JOptionPane.showMessageDialog(rootPane, "Selecione um cliente antes de finalizar a venda!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        }else if (listaProdutos.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Selecione ao menos um produto antes de finalizar a compra!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        }else{
-           
-           System.out.println("O pedido do cliente " + clienteNome + " no valor de R$: " + totalCompra + " com o pagamento via " + formaPagamento + ". Deseja Finalizar a Venda?"); 
-           
-           
-           int opcao = JOptionPane.showConfirmDialog(rootPane, "O pedido do cliente " + clienteNome + " no valor de R$: " + totalCompra + " com o pagamento via " + formaPagamento + ". Deseja Finalizar a Venda?", "Confirmação", JOptionPane.YES_NO_OPTION);
-           
-           if (opcao == JOptionPane.YES_OPTION){
-               JOptionPane.showMessageDialog(rootPane, "Venda Finalizada com sucesso!");
-           }else{
-               JOptionPane.showMessageDialog(rootPane, "venda cancelada com sucesso!");
-           }
+        if (obj == null) {
+            // Resgatar dados da interface e passar para o objeto
+            String formaPagamento = (String) cboxFPagamento.getSelectedItem();
+
+            List<ItemPedido> itensPedido = new ArrayList<>(); // Declare e inicialize a lista de itensPedido
+            // Preencher a lista de itensPedido com os dados da listaProdutos
+            for (Produto produto : listaProdutos) {
+                int idProduto = produto.getIdProduto();
+                int quantidade = produto.getQuantidade();
+                double precoUnitario = produto.getPreco();
+
+                ItemPedido itemPedido = new ItemPedido(idProduto, quantidade, precoUnitario);
+                itensPedido.add(itemPedido);
+            }
+
+            if (clienteId <= 0) {
+                JOptionPane.showMessageDialog(rootPane, "Selecione um cliente antes de finalizar a venda!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            } else if (listaProdutos.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Selecione ao menos um produto antes de finalizar a compra!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            } else {
+                int opcao = JOptionPane.showConfirmDialog(rootPane, "O pedido do cliente " + clienteNome + " no valor de R$: " + totalCompra + " com o pagamento via " + formaPagamento + ". Deseja Finalizar a Venda?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+                if (opcao == JOptionPane.YES_OPTION) {
+
+                    Pedido novoPedido = new Pedido(clienteId, vendedorId, itensPedido, formaPagamento, totalCompra);
+
+                    // Mandar o objeto pra a classe DAO
+                    boolean retorno = PedidoDAO.salvarPedido(novoPedido);
+
+                    if (retorno == true) {
+                        // Para cada item no pedido, chama a função para salvar o item
+                        for (ItemPedido item : itensPedido) {
+                            PedidoDAO.salvarItemPedido(novoPedido.getIdPedido(), item.getIdProduto(), item.getQuantidade(), item.getPrecoUnitario());
+                        }
+                        JOptionPane.showMessageDialog(rootPane, "Sucesso! Venda finalizada ID: " + novoPedido.getIdPedido());
+                        resetarAposFinalizarCompra();
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Não foi possível finalizar a venda. Tente Novamente!");
+                        resetarAposFinalizarCompra();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "venda cancelada com sucesso!");
+                    resetarAposFinalizarCompra();
+                }
+            }
         }
     }//GEN-LAST:event_btnFinalizarVendaActionPerformed
 
@@ -764,34 +799,35 @@ public class TelaVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuSairActionPerformed
 
     private void btnAdicionarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarItemActionPerformed
-        try{
-            // 1 - Passo Resgatar a linha e mandar para um objeto
+        try {
+            // Verificar se o clienteId é maior ou igual a 1
+            if (clienteId <= 0) {
+                JOptionPane.showMessageDialog(rootPane, "Selecione um cliente antes de adicionar um item ao carrinho!", "Atenção", JOptionPane.WARNING_MESSAGE);
+                return; // Não continua o código se o clienteId não for válido
+            }
+
+            // Restante do código para adicionar o item à lista
             int linhaSelecionada = jtblListaProdutos.getSelectedRow();
 
-            if(linhaSelecionada == -1){
-                // Nenhuma linha selecionada, executar a função para atualizar a tabela
+            if (linhaSelecionada == -1) {
                 atualizarTabelaProduto();
-            }else{
-                // 2 - acessar a camada model da tabela
+            } else {
                 DefaultTableModel modelo = (DefaultTableModel) jtblListaProdutos.getModel();
 
-                // 3 - resgatar valores da linha selecionada
                 int idSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
                 String nomeSelecionado = modelo.getValueAt(linhaSelecionada, 1).toString();
                 String categoriaSelecionado = modelo.getValueAt(linhaSelecionada, 2).toString();
                 String fabricanteSelecionado = modelo.getValueAt(linhaSelecionada, 3).toString();
                 double precoSelecionado = Double.parseDouble(modelo.getValueAt(linhaSelecionada, 4).toString());
-                //int quantidadeSelecionado = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 5).toString());
                 int quantidade = 1;
 
-                Produto objAdicionar = new Produto(idSelecionado, nomeSelecionado, categoriaSelecionado, 
-                        fabricanteSelecionado, precoSelecionado, quantidade);
+                Produto objAdicionar = new Produto(idSelecionado, nomeSelecionado, categoriaSelecionado, fabricanteSelecionado, precoSelecionado, quantidade);
                 listaProdutos.add(objAdicionar);
-                
+
                 atualizarTabelaListaDeCompras();
             }
-        }catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(rootPane, "Não foi possivel adicionar o item ao carrinho", "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(rootPane, "Não foi possível adicionar o item ao carrinho", "Erro", JOptionPane.ERROR_MESSAGE);
         }
         atualizarTabelaListaDeCompras();
         calcularEMostrarTotal();
@@ -1141,6 +1177,27 @@ public class TelaVendedor extends javax.swing.JFrame {
         }
         return 0; // Retorna 0 se o valor não for encontrado
     }
+    private void resetarAposFinalizarCompra() {
+        // Zerar a variável totalCompra
+        totalCompra = 0;
+
+        // Limpar a lista de produtos
+        listaProdutos.clear();
+
+        // Atualizar a tabela de lista de compras
+        atualizarTabelaListaDeCompras();
+
+        // Limpar id e nome do cliente
+        clienteId = -1;
+        clienteNome = null;
+
+        // Resetar o JComboBox para a primeira opção
+        cboxFPagamento.setSelectedIndex(0);
+
+        
+        lblNomeCliente.setText("");
+        lblPrecoTotal.setText("0");
+    }
     
     /**
      * @param args the command line arguments
@@ -1221,7 +1278,6 @@ public class TelaVendedor extends javax.swing.JFrame {
     private javax.swing.JLabel lblNomeCliente;
     private javax.swing.JLabel lblNomeVendedor;
     private javax.swing.JLabel lblPrecoTotal;
-    private javax.swing.JLabel lblVendedor;
     private javax.swing.JMenuItem mnuSair;
     private javax.swing.JPanel pnlCPFcliente;
     private javax.swing.JPanel pnlCadastroCliente;

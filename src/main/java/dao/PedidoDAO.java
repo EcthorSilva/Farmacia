@@ -21,7 +21,7 @@ public class PedidoDAO {
     private static String login = "root";
     private static String senha = "root";
     
-    public static boolean salvar(Pedido pedido) {
+    public static boolean salvarPedido(Pedido pedido) {
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement comandoSQL = null;
@@ -75,7 +75,7 @@ public class PedidoDAO {
         return retorno;
     }
     
-    private static void salvarItemPedido(int idPedido, int idProduto, int quantidade) {
+    public static void salvarItemPedido(int idPedido, int idProduto, int quantidade, double precoUnitario) {
         Connection conexao = null;
         PreparedStatement comandoSQL = null;
         
@@ -89,7 +89,7 @@ public class PedidoDAO {
             comandoSQL.setInt(3, quantidade);
             // Você precisará obter o preço do produto do banco de dados ou passá-lo como parâmetro.
             // Aqui, estou assumindo que o preço é 0.0. Substitua conforme necessário.
-            comandoSQL.setDouble(4, 0.0);
+            comandoSQL.setDouble(4, precoUnitario);
             
             comandoSQL.executeUpdate();
         } catch (ClassNotFoundException | SQLException ex) {
