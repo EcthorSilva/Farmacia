@@ -75,7 +75,7 @@ public class TelaVendedor extends javax.swing.JFrame {
         pnlSubtotal = new javax.swing.JPanel();
         lblPrecoTotal = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
+        btnFinalizarVenda = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         pnlVendedor = new javax.swing.JPanel();
         lblVendedor = new javax.swing.JLabel();
@@ -86,7 +86,7 @@ public class TelaVendedor extends javax.swing.JFrame {
         pnlCPFcliente = new javax.swing.JPanel();
         ftxtCPFCliente = new javax.swing.JFormattedTextField();
         btnBuscarCliente = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cboxFPagamento = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -235,14 +235,14 @@ public class TelaVendedor extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jButton7.setText("Finalizar Compra ");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnFinalizarVenda.setText("Finalizar");
+        btnFinalizarVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btnFinalizarVendaActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancelar Compra ");
+        jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -278,7 +278,6 @@ public class TelaVendedor extends javax.swing.JFrame {
         pnlCliente.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente "));
 
         lblNomeCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblNomeCliente.setText("Nome do cliente");
 
         javax.swing.GroupLayout pnlClienteLayout = new javax.swing.GroupLayout(pnlCliente);
         pnlCliente.setLayout(pnlClienteLayout);
@@ -342,7 +341,7 @@ public class TelaVendedor extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pix", "Cartão de Crédito", "Cartão de Débito" }));
+        cboxFPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pix", "Cartão de Crédito", "Cartão de Débito" }));
 
         jLabel9.setText("Forma de pagamento:");
 
@@ -394,19 +393,21 @@ public class TelaVendedor extends javax.swing.JFrame {
                         .addGap(14, 14, 14)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cboxFPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlVendasLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlVendasLayout.createSequentialGroup()
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(pnlSubtotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(pnlCPFcliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(pnlVendasLayout.createSequentialGroup()
-                                .addComponent(jButton7)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(pnlVendasLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(btnFinalizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2)))))
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19)))))
                 .addGap(6, 6, 6))
         );
         pnlVendasLayout.setVerticalGroup(
@@ -423,13 +424,13 @@ public class TelaVendedor extends javax.swing.JFrame {
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboxFPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
                         .addGap(18, 18, 18)
                         .addComponent(pnlSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(pnlVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnFinalizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -736,9 +737,27 @@ public class TelaVendedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
+        String formaPagamento = (String) cboxFPagamento.getSelectedItem();
         
-    }//GEN-LAST:event_jButton7ActionPerformed
+        if (clienteId <= 0){
+            JOptionPane.showMessageDialog(rootPane, "Selecione um cliente antes de finalizar a venda!", "Atenção", JOptionPane.WARNING_MESSAGE);
+        }else if (listaProdutos.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Selecione ao menos um produto antes de finalizar a compra!", "Atenção", JOptionPane.WARNING_MESSAGE);
+        }else{
+           
+           System.out.println("O pedido do cliente " + clienteNome + " no valor de R$: " + totalCompra + " com o pagamento via " + formaPagamento + ". Deseja Finalizar a Venda?"); 
+           
+           
+           int opcao = JOptionPane.showConfirmDialog(rootPane, "O pedido do cliente " + clienteNome + " no valor de R$: " + totalCompra + " com o pagamento via " + formaPagamento + ". Deseja Finalizar a Venda?", "Confirmação", JOptionPane.YES_NO_OPTION);
+           
+           if (opcao == JOptionPane.YES_OPTION){
+               JOptionPane.showMessageDialog(rootPane, "Venda Finalizada com sucesso!");
+           }else{
+               JOptionPane.showMessageDialog(rootPane, "venda cancelada com sucesso!");
+           }
+        }
+    }//GEN-LAST:event_btnFinalizarVendaActionPerformed
 
     private void mnuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSairActionPerformed
         TelaUtils.logout(this);
@@ -768,8 +787,6 @@ public class TelaVendedor extends javax.swing.JFrame {
                 Produto objAdicionar = new Produto(idSelecionado, nomeSelecionado, categoriaSelecionado, 
                         fabricanteSelecionado, precoSelecionado, quantidade);
                 listaProdutos.add(objAdicionar);
-                
-                JOptionPane.showMessageDialog(rootPane, "Produto adicionado ao carrinho com sucesso!");
                 
                 atualizarTabelaListaDeCompras();
             }
@@ -908,20 +925,29 @@ public class TelaVendedor extends javax.swing.JFrame {
 
             // Remover caracteres não numéricos
             cpf = cpf.replaceAll("[^0-9]", "");
-            
+
             if (cpf.length() == 11) {
                 // Formatar o CPF
                 cpf = String.format("%s.%s.%s-%s", cpf.substring(0, 3), cpf.substring(3, 6), cpf.substring(6, 9), cpf.substring(9, 11));
 
-                // Chama o método buscarPorCPF para obter informações do funcionário
+                // Se já existe um cliente, pergunte se deseja substituir
+                if (clienteId > 0) {
+                    int opcao = JOptionPane.showConfirmDialog(rootPane, "Já existe um cliente adicionado. Deseja substituir pelo novo cliente?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+                    if (opcao == JOptionPane.NO_OPTION) {
+                        ftxtCPFCliente.setText("");
+                        return; // Se o usuário escolher não substituir, sai do método
+                    }
+                }
+
+                // Chama o método buscarPorCPF para obter informações do cliente
                 ArrayList<Cliente> clientes = ClienteDAO.buscarPorCPF(cpf);
-                
+
                 if (!clientes.isEmpty()) {
                     Cliente clienteEncontrado = clientes.get(0); // Vamos assumir que o CPF é único, então pegamos o primeiro cliente retornado
                     clienteId = clienteEncontrado.getIdCliente();
                     clienteNome = clienteEncontrado.getNome();
-                    
-                    JOptionPane.showMessageDialog(rootPane, "ID do cliente é " + clienteId + "!");
+
                     lblNomeCliente.setText(clienteNome);
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Cliente não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -933,7 +959,7 @@ public class TelaVendedor extends javax.swing.JFrame {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, "Informe um CPF válido.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         ftxtCPFCliente.setText("");
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
@@ -1159,15 +1185,15 @@ public class TelaVendedor extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnFinalizarVenda;
     private javax.swing.JButton btnRemoverItem;
     private javax.swing.JComboBox<String> cBoxSexoCliente;
+    private javax.swing.JComboBox<String> cboxFPagamento;
     private javax.swing.JFormattedTextField ftxtCPF;
     private javax.swing.JFormattedTextField ftxtCPFCliente;
     private javax.swing.JFormattedTextField ftxtCelular;
     private javax.swing.ButtonGroup grupoSexo;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
