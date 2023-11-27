@@ -21,6 +21,7 @@ dao\FuncionarioDAO.class
 dao\ProdutoDAO.class
 view\TelaAdmin$1.class
 view\TelaUpdateFuncionario$2.class
+view\TelaAdicionarItem$1.class
 view\TelaAdmin$8.class
 view\TelaAdmin$14.class
 view\TelaUpdateCliente$2.class
@@ -38,9 +39,12 @@ view\TelaUpdateCliente.class
 model\Funcionario.class
 view\TelaAdmin$5.class
 view\TelaLogin$3.class
+view\TelaAdicionarItem$2.class
 dao\PedidoDAO.class
+view\TelaLogin$7.class
 view\TelaVendedor$12.class
 view\TelaUpdateProduto$1.class
+view\TelaAdicionarItem.class
 view\TelaVendedor$2.class
 view\TelaVendedor.class
 view\TelaAdmin$11.class
@@ -50,6 +54,7 @@ view\TelaUpdateProduto$4.class
 view\TelaAdmin$6.class
 view\TelaLogin.class
 view\TelaVendedor$7.class
+view\TelaAdicionarItem$3.class
 view\TelaVendedor$5.class
 model\Pedido.class
 view\TelaUpdateProduto$3.class

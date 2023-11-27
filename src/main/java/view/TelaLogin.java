@@ -40,9 +40,9 @@ public class TelaLogin extends javax.swing.JFrame {
         pnlLogin = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtCPFLogin = new javax.swing.JTextField();
         btnEntrar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        ftxtCPFLogin = new javax.swing.JFormattedTextField();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         mnuSair = new javax.swing.JMenuItem();
@@ -55,12 +55,6 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel2.setText("CPF:");
-
-        txtCPFLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCPFLoginActionPerformed(evt);
-            }
-        });
 
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -81,6 +75,17 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
+        try {
+            ftxtCPFLogin.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        ftxtCPFLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ftxtCPFLoginActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
         pnlLogin.setLayout(pnlLoginLayout);
         pnlLoginLayout.setHorizontalGroup(
@@ -96,11 +101,10 @@ public class TelaLogin extends javax.swing.JFrame {
                         .addGroup(pnlLoginLayout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addGap(18, 18, 18)
-                            .addComponent(txtCPFLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(ftxtCPFLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlLoginLayout.createSequentialGroup()
                         .addGap(92, 92, 92)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1)))
                 .addContainerGap(135, Short.MAX_VALUE))
         );
         pnlLoginLayout.setVerticalGroup(
@@ -112,9 +116,9 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addGroup(pnlLoginLayout.createSequentialGroup()
                         .addGap(90, 90, 90)
                         .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCPFLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(119, 303, Short.MAX_VALUE))
+                            .addComponent(jLabel2)
+                            .addComponent(ftxtCPFLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(119, 306, Short.MAX_VALUE))
                     .addGroup(pnlLoginLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -157,12 +161,8 @@ public class TelaLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCPFLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFLoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCPFLoginActionPerformed
-
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        String cpf = txtCPFLogin.getText();
+        String cpf = ftxtCPFLogin.getText();
 
         // Remover caracteres não numéricos
         cpf = cpf.replaceAll("[^0-9]", "");
@@ -219,6 +219,10 @@ public class TelaLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_mnuSairActionPerformed
 
+    private void ftxtCPFLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxtCPFLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ftxtCPFLoginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -241,12 +245,12 @@ public class TelaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEntrar;
+    private javax.swing.JFormattedTextField ftxtCPFLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem mnuSair;
     private javax.swing.JPanel pnlLogin;
-    private javax.swing.JTextField txtCPFLogin;
     // End of variables declaration//GEN-END:variables
 }
